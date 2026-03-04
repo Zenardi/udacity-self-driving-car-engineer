@@ -2,7 +2,7 @@
 
 ## 📖 Course Overview
 
-This Nanodegree program prepares you to design, build, and optimize self-driving car systems. You will learn the techniques that power autonomous vehicles across the full stack of capabilities, including computer vision, deep learning, sensor fusion, localization, path planning, and control. The program features hands-on projects using C++, Python, and deep learning frameworks, and was built in collaboration with industry-leading partners like Mercedes-Benz, Nvidia, and McLaren.
+This [Nanodegree program](https://www.udacity.com/course/self-driving-car-engineer-nanodegree--nd0013) prepares you to design, build, and optimize self-driving car systems. You will learn the techniques that power autonomous vehicles across the full stack of capabilities, including computer vision, deep learning, sensor fusion, localization, path planning, and control. The program features hands-on projects using C++, Python, and deep learning frameworks, and was built in collaboration with industry-leading partners like Mercedes-Benz, Nvidia, and McLaren.
 
 ## ⏱️ Program Details
 

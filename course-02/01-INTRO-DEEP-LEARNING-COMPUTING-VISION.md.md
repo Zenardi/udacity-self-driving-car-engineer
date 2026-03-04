@@ -15,6 +15,18 @@
   - [Summary](#summary-4)
 - [When to Use Deep Learning for Computer Vision](#when-to-use-deep-learning-for-computer-vision)
   - [Summary](#summary-5)
+- [History of Deep Learning](#history-of-deep-learning)
+  - [Summary](#summary-6)
+- [Introduction to TensorFlow](#introduction-to-tensorflow)
+  - [Summary](#summary-7)
+- [Waymo Open Dataset](#waymo-open-dataset)
+  - [The Waymo Open Dataset Cloud Bucket](#the-waymo-open-dataset-cloud-bucket)
+- [Tools, Environment \& Dependencies](#tools-environment--dependencies)
+  - [Summary](#summary-8)
+- [Project: Object Detection in an Urban Environment](#project-object-detection-in-an-urban-environment)
+  - [Summary](#summary-9)
+- [Recap](#recap)
+- [Glossary](#glossary)
 
 
 # Prerequisites
@@ -116,3 +128,118 @@ The "When to Use Deep Learning for Computer Vision" video discusses the scenario
 The video outlines the advantages of using deep learning, including its ability to handle large datasets and complex patterns that traditional methods may struggle with. However, it also highlights the additional computational resources required for deep learning models. The video provides examples of situations where deep learning is particularly beneficial, such as detecting cars, reading characters on traffic signs, estimating pedestrian poses, and classifying activities from videos.
 
 Overall, the video serves as a guide for understanding when deep learning is the appropriate choice for tackling computer vision challenges.
+
+# History of Deep Learning
+
+Before we dive into the history of deep learning,let's introduce a few terms to describe neural networks.By neural network, I actually want to talk about artificial neural network or ANN.This name come from their resemblance to neural networks in our brain.We can see an example of a neural network here.It's shown in this figure represents a neuronand the edges between the neurons represent the connection between them.Neural networks are organized in layers,represented here as vertical stacks of neuron.This particular network has four layers.The left-most is the input and the right-most, the output layer.Any layer that is not the input or the output is called a hidden layer.This network has two hidden layers,but we'll later see in this course a lot of neural networks with many more layers.The term deep learning comes from deep neural network where many layers are stacked.In this neural network,each neuron of a layer is connected to each neuronof the previous layer and each neuron of the next layer.We call such a network a feedforward neural network.Neurons received an input signal and are activated or not based on this input.We sometimes say that the neuron is firing when it's activated.Don't worry, we'll go over all these notions again in the third lesson of this course.For now, I just want you to be familiar with these terms.Let's talk a little bit about the history of deep learning.Because of the recent deep learning revolution,one could assume that this technology is fairly young.However, the first deep neural networks date from the 70s.The backpropagation algorithm, which is at the core of training neural network,was created in 1989 by Yann LeCun.He created this algorithm to train a network to recognize handwritten digits on mail.The 1990s are considered as the winter ofdeep learning when neural network were overlooked by many.However, many scientists kept working on the topic,and some groundbreaking papers were published,such as the Long Short-Term Memory paper in 1997.One of the core limitations of deep learning at the time was the hardware.Training that digit recognition algorithm,for example, took over three days.However, at the beginning of the 2000s,computer became much faster and hours was less of a bottleneck.Deep learning started to be adopted in the industry.2009 marks the creation of the first large scale data set.A Stanford University professor led the effort to createone of the biggest image data set to date, ImageNet.With this dataset came a yearly competition where a researcher fromboth academia and the industry tried to createthe best possible image classification algorithm.In 2012, a paper introduced a novel approach to image classification,a neural network called AlexNet.In my opinion, this paper isthe single most groundbreaking research in deep learning for computer vision.This paper showed how a convolutional neural network can betrained using multiple graphic processing units or GPUs.It crushed the competition that year, and since AlexNet,a neural network-based approach train on the GPU has always won the competition.Let's fast forward to 2020.In the past eight years,tens of thousands of papers have been published in the field ofdeep learning and deep neural network are now everywhere,from your phone where the process camera images totranslation tool when natural language processing relies heavily on this technology,and finally, to self-driving cars.Deep neural networks are the core of the self-driving car technology,from digital image processing to 3D point lab processing to decision-making.This is a very exciting field to be working in right now.This course should give you a good introduction to the power of deep learning.
+
+**Artificial neural networks (ANN)** or simply neural networks are the type of systems at the core of deep learning algorithms.
+
+* **ANN**: machine learning algorithms vaguely based on human neural networks.
+* **Neurons**: the basic unit of neural networks. Takes an input signal and is activated or not based on the input value and the neuron's weights.
+* **Layer**: structure containing multiple neurons. Layers are stacked to create a neural network.
+
+## Summary
+The "History of Deep Learning" video explores the evolution of deep learning, tracing its roots from early artificial neural networks (ANNs) to the modern advancements that have shaped the field. It discusses key milestones, such as the development of the backpropagation algorithm, which significantly improved the training of neural networks.
+
+The video highlights the impact of increased computational power, particularly the use of GPUs for fast matrix multiplication, which has enabled the training of deeper and more complex models. It also emphasizes the importance of large datasets in driving the success of deep learning applications.
+
+Overall, the video provides a comprehensive overview of how deep learning has evolved over the years, showcasing its significance in various applications, including computer vision and natural language processing.
+
+# Introduction to TensorFlow
+In your previous video,we saw how deep learning is now playing a significant role in our day to day technology.Deep learning models, deep learning your phone when self-driving cars are very complex.However, creating and deploying such a model has never been easier.Thanks to libraries such as TensorFlow.TensorFlow is a machine learning library that makes it easy to create,train, and deploy machine learning models.TensorFlow is mostly used with Python library interface.However, it relies on the C++ back-end.In addition, to being a great tool for research and development,TensorFlow also provides easy way to deploy machine learning model to web brothers,mobile devices, and to the cloud.In this class, you will learn how to masterTensorFlow to create and train your first neural networks.
+
+In this course, we will be using the [TensorFlow](https://www.tensorflow.org/) library to create our machine learning models. TensorFlow is one of the most popular ML libraries and is used by many companies to develop and train algorithms. TensorFlow makes it very easy for the user to deploy such algorithms on different platforms, from a smartphone device to the cloud.
+
+## Summary
+The "Introduction to TensorFlow" video provides an overview of TensorFlow, a powerful machine learning library widely used for developing and training algorithms. It explains that TensorFlow simplifies the process of creating, training, and deploying machine learning models across various platforms, from mobile devices to cloud environments.
+
+The video highlights the library's flexibility and efficiency, particularly in handling complex computations and large datasets. It also mentions the integration of TensorFlow with Python, which is the primary programming language used for building models. Overall, the video sets the stage for students to learn how to utilize TensorFlow effectively in their machine learning projects.
+
+
+# Waymo Open Dataset
+One of the truly exciting parts of this version of the Self-Driving Car Engineer Nanodegree program is the usage of the Waymo Open Dataset in some of the exercises and projects. Formerly the Google Self-Driving Car project (also originally headed by Sebastian Thrun, Udacity's founder, years ago), [Waymo](https://waymo.com/) is one of the leaders of self-driving car technology. The Waymo Open Dataset contains [tons of high quality data](https://waymo.com/open/about/) from both lidar and camera sensors from diverse locations and conditions.
+
+Before we continue in the course, it's important to access the Waymo Open Dataset using [this link](https://waymo.com/open/terms).
+
+![Accessing the Waymo Open Dataset](./images/image.png)
+Accessing the Waymo Open Dataset
+
+Once you have been successfully registered, or if you return to the Waymo Open Dataset site, you should see the below page, where you are able to download chunks of the dataset 25GB at a time from the ~2TB total dataset. There is also another method further download the page that further splits these up; note that Udacity workspaces in some cases will have smaller chunks ~1GB pre-loaded for you post-registration as well.
+
+![Dataset Download Page](./images/image2.png)
+Dataset Download Page
+
+## The Waymo Open Dataset Cloud Bucket
+Earlier, we mentioned that the dataset files come in ~25GB chunks if you download from the earlier shown page. However, there are smaller chunks available from a cloud storage bucket as well. Some of the files you will be provided later on in workspaces come from these buckets so that they are easier to work with.
+
+Travel to [this link for the cloud bucket](https://console.cloud.google.com/storage/browser/waymo_open_dataset_v_1_2_0_individual_files/). Once again, it's important to note that your registration may take 48 hours to become effective, so you may not be able to access it just yet, but you may want to bookmark it if you later want to download files from the bucket locally.
+
+![The top level of the cloud bucket](./images/image3.png)
+The top level of the cloud bucket
+
+
+
+[Individual dataset files within the training subdirectory](./images/image4.png)
+Individual dataset files within the training subdirectory
+
+
+While you do not need to download any portions of the dataset right now, please make sure that you can access the Waymo Open Dataset before proceeding.
+
+
+# Tools, Environment & Dependencies
+Let's take some time to talk about the tools you will need during this course.We're going to use a data set that is being hosted on the Google Cloud Platform or GCP.You will need to create an account to be able to use gsutil,the Google command-line interface to manipulate objects stored in the Cloud.Code for the exercises and the project will be stored on GitHub,a software development and version control platform.A good understanding of Git commands is a requirement for any software engineer.You will also be using Jupyter Notebooks,a web interface to write and share code in Python.Jupyter Notebooks are great for rapid prototyping,and I'm personally a big fan of them.Finally, you will actually write most of the code forexercises in an Integrated Development Environment or IDE.You can use your favorite IDE,but I will personally recommend Visual Studio and PyCharm.Over the course of this nanodegree,we'll be using the Waymo open data sets.Waymo is one of the leading self-driving car companies in the Silicon Valley,and they built a very unique data set consisting of hundreds of trips made bytheir self-driving cars consisting of a collection ofhigh-resolution sensor data in diverse environment.In this course, we'll be focusing on the camera sensor.While in other courses in this nanodegree,the Lidar data will be introduced.We'll get to learn more about this data set in later lessons.As of now, you only need to know that a tripis made of a sequence of frames from multiple cameras.Each single frame is annotated with labels.Your first task is to register directly on the Waymo open data set website,such that you can access the data when you need it.It usually takes a day or two to be granted access to the data set,and I would recommend that you take care of this now.The Waymo data set is unique,and it will give you a good understanding of the kind ofdata self-driving car engineer deal with.I could not think of any better data set for this nanodegree.
+
+In this course, you will need the following:
+
+* Install gsutil: a Python application to manipulate Google Cloud Storage items. You will find the tutorial to install it [here](https://cloud.google.com/storage/docs/gsutil).
+* Create a Github account: a version control system. You will need to create an account [here](https://github.com/). You will need a github account to access some of the material and create your submission for the final project. If you already have an account, you are good to go for this step!
+* Set up an Integrated development environment (IDE): a software application to write code. For this course, I would recommend either [Pycharm](https://github.com/) or [VS Code](https://code.visualstudio.com/).
+
+## Summary
+The "Tools, Environment & Dependencies" video outlines the essential tools and setup required for the course. It emphasizes the importance of having the right environment to effectively work on deep learning and computer vision projects. The video discusses the need to install specific tools, such as gsutil for managing Google Cloud Storage, and encourages students to create a GitHub account for version control and project submissions.
+
+Additionally, it highlights the recommendation to set up an Integrated Development Environment (IDE), suggesting options like PyCharm or VS Code for writing and managing code efficiently. Overall, the video provides a clear checklist of tasks to ensure students are well-prepared to engage with the course material and complete their projects successfully.
+
+# Project: Object Detection in an Urban Environment
+The final project is the part of this course I'm the most excited about because you willget to take all the knowledge you have acquired duringthe lessons and apply it to real world problem.The project consist the training inobject detection algorithm to detect and classify cars,pedestrian, and cyclist using the Waymo open datasets.With this project, you will learn how to use the Tensorflow object detection API.You will have access to a machine with a GPU,giving you the opportunity to train your algorithmmultiple times with different sets of parameters.You will also get to performan in-depth error analysis to understand your model's limitation.With this project, you will havea better understanding of the full workflow of a machine learning engineer.Once you are done with the project,you will get personalized feedback from a machine learning professional.You can use this feedback to improve on a GitHub repository youcreated making this project ready to be added to your portfolio.We will also provide the code to generatesuch video of any trip of the Waymo open dataset.I'm looking forward to seeing what you will build.
+
+For the final project of this course, you will have to train an object detection model using the TensorFlow Object Detection API. This API simplifies the training and development of object detection models in TensorFlow. You will learn how to master it in this project. This API makes the exploration of the optimal parameters for your model extremely easy by using config files. Because you should try to create the best possible model, you will have to tweak and test different parameters. Finally, you will have to perform an in-depth error analysis.
+
+![](./images/image5.png)
+
+## Summary
+The video for the project "Object Detection in an Urban Environment" highlights the excitement of applying the knowledge gained throughout the course to a real-world problem. In this project, you will train an object detection algorithm to detect and classify cars, pedestrians, and cyclists using the Waymo open datasets. 
+
+Key points from the video include:
+
+- You will learn to use the TensorFlow Object Detection API, which simplifies the training and development of object detection models.
+- Access to a machine with a GPU will allow you to train your algorithm multiple times with different parameter sets.
+- An in-depth error analysis will help you understand your model's limitations.
+- The project aims to provide a comprehensive understanding of the full workflow of a machine learning engineer.
+- Upon completion, you will receive personalized feedback from a machine learning professional, which you can use to improve your project and add it to your portfolio.
+
+Overall, the project is designed to enhance your practical skills in object detection and machine learning.
+
+
+# Recap
+We started with an overview of the lessons of this course.Next, we introduced the concept of machine learning and deep learning.Then we discovered why cameras weresuch a critical component of self-driving cars system.Because the self-driving car technology will have such an important impact on our lives,we reviewed the different stake holders of this technology.We followed with a short history of deep learning,as well as a brief description of the elements of a neural network.Finally, we reviewed the tool necessary for this course,and we introduced the final project.You are now ready to learn about the machine learning workflow.Well, now, you should have a good overview of what to expect.This course is going to be dense,but you will get exercises,and quizzes, to check that you haveunderstood each one of the concepts you have learned about.Good luck, and I hope you will enjoy this course.
+
+In this lesson, we focused on the following:
+
+* Overall course outline: overview of the different lessons of this course.
+* Cameras and Computer Vision in SDC: we learned why the camera sensor is critical to SDC systems, and its strength and weaknesses.
+* From classic computer vision to Deep Learning: we learned about the history of deep learning and discovered the different components of a neural * network.
+* Tools and Environment for the Course: we listed the different tools and software we will be using in this course.
+* Final Course Project: we listed the different aspects of the final project.
+
+
+# Glossary
+* Artificial Intelligence (AI): a system that leverages information from its environment to make decision. For example, a video game bot.
+* Artificial Neural Networks (ANN): machine learning algorithm vaguely based on human neural networks.
+* Deep Learning (DL): a subset of ML algorithms that do not require handcrafted features and can work with raw data. For example, an object detection * algorithm with a convolutional neural network.
+* Layer: structure containing multiple neurons. Layers are stacked to create neural networks.
+* Machine Learning (ML): an AI that does not need to be explicitly programmed and instead learns from data. For example, a spam classification * algorithm.
+* Neurons: the basic unit of ANNs. Takes an input signal and is activated or not based on the input value and the neuron's weights.
+* TensorFlow: ML library using a Python interface. Extremely useful to develop, train and deploy ML algorithms on multiple platforms.
+* TensorFlow Object Detection API: This API simplifies the training and development of object detection models in TensorFlow.
