@@ -3,28 +3,18 @@
 - [INTRODUCTION TO DEEP LEARNING FOR COMPUTER VISION](#introduction-to-deep-learning-for-computer-vision)
 - [Prerequisites](#prerequisites)
 - [Lesson Outline](#lesson-outline)
-  - [Summary](#summary)
 - [Course Outline](#course-outline)
-  - [Summary](#summary-1)
 - [Key Stakeholders](#key-stakeholders)
 - [Introduction to Deep Learning and Computer Vision](#introduction-to-deep-learning-and-computer-vision)
-  - [Summary](#summary-2)
 - [Supervised Learning](#supervised-learning)
-  - [Summary](#summary-3)
 - [Why CV Is Important for SDC](#why-cv-is-important-for-sdc)
-  - [Summary](#summary-4)
 - [When to Use Deep Learning for Computer Vision](#when-to-use-deep-learning-for-computer-vision)
-  - [Summary](#summary-5)
 - [History of Deep Learning](#history-of-deep-learning)
-  - [Summary](#summary-6)
 - [Introduction to TensorFlow](#introduction-to-tensorflow)
-  - [Summary](#summary-7)
 - [Waymo Open Dataset](#waymo-open-dataset)
   - [The Waymo Open Dataset Cloud Bucket](#the-waymo-open-dataset-cloud-bucket)
 - [Tools, Environment \& Dependencies](#tools-environment--dependencies)
-  - [Summary](#summary-8)
 - [Project: Object Detection in an Urban Environment](#project-object-detection-in-an-urban-environment)
-  - [Summary](#summary-9)
 - [Recap](#recap)
 - [Glossary](#glossary)
 
@@ -46,7 +36,8 @@ In this lesson, we'll look at the following:
 * Tools and Environment for the Course
 * The Final Course Project
 
-## Summary
+**Summary**
+
 The "Lesson Outline" video introduces the key topics that will be covered in the lesson. It begins with an overview of the course structure, highlighting the importance of deep learning in the context of self-driving cars (SDC). The video discusses the role of cameras in SDC and transitions from classic computer vision techniques to deep learning approaches.
 
 It also addresses the challenges of detecting objects in SDC and outlines the tools and environment that will be utilized throughout the course. Finally, the video provides a brief introduction to the final project that students will complete by the end of the course. Overall, it sets the stage for what students can expect to learn and accomplish in the lesson.
@@ -63,7 +54,8 @@ The overall course is structured as follows:
 * Detect Objects in an Image
 * Final Project
 
-## Summary
+**Summary**
+
 The "Course Outline" video provides an overview of the structure and key components of the course. It begins by introducing the concept of computer vision and deep learning, emphasizing the goal of training students to become machine learning engineers. The video outlines the progression of the course, starting with an overview of the machine learning workflow, followed by lessons on linear regression, neural networks, and convolutional neural networks (CNNs) for image classification.
 
 It also mentions the importance of understanding camera sensors and how they relate to digital images. The course culminates in a final project where students will apply their knowledge to solve a real-world machine learning problem. Throughout the course, students will engage in exercises and quizzes to reinforce their learning. Overall, the video sets clear expectations for what students will learn and achieve by the end of the course.
@@ -82,7 +74,8 @@ Let's now talk about machine learning.But before we can understand what machine 
 * Deep Learning (DL): a subset of ML algorithms that do not require handcrafted features and can work with raw data. For example, an object detection algorithm with a convolutional neural network.
 
 
-## Summary
+**Summary**
+
 The "Introduction to Deep Learning and Computer Vision" video provides an overview of the fundamental concepts and significance of deep learning in the field of computer vision. It begins by defining artificial intelligence, machine learning, and deep learning, explaining how deep learning is a subset of machine learning that utilizes neural networks to analyze and interpret visual data.
 
 The video discusses the importance of computer vision in various applications, such as self-driving cars, facial recognition, and image classification. It highlights the advancements in deep learning techniques that have improved the accuracy and efficiency of computer vision tasks. Additionally, the video sets the stage for the course by outlining the key topics that will be covered, including neural networks, convolutional neural networks (CNNs), and practical applications in the real world.
@@ -98,7 +91,8 @@ In this course, we will focus on supervised learning, where we use annotated dat
 * Ground truth / Y / label: the known associated label with the input data. For example, a human created label describing the email as a spam or not.
 * Output variable / Y^ / prediction: the model prediction given the input data. For example, the model predicts the input as being spam.
 
-## Summary
+**Summary**
+
 The "Introduction to Deep Learning and Computer Vision" video provides a foundational overview of the concepts and significance of deep learning within the realm of computer vision. It begins by defining key terms such as artificial intelligence (AI), machine learning (ML), and deep learning (DL), explaining how deep learning is a subset of machine learning that utilizes neural networks to process and analyze visual data.
 
 The video highlights the applications of computer vision in various fields, including self-driving cars, facial recognition, and image classification, showcasing the impact of deep learning techniques on improving accuracy and efficiency in these tasks. It sets the stage for the course by outlining the topics that will be covered, such as neural networks, convolutional neural networks (CNNs), and practical applications in real-world scenarios.
@@ -111,7 +105,8 @@ To build intelligent cars that are able tonavigate through environments as compl
 
 Self-driving cars have multiple sensors, such as cameras, radar or lidar. In this course, we will focus on the **camera sensor**. Using this sensor, the system will be able to perform multiple tasks critical to its autonomy, such as detecting pedestrian, lanes or traffic signs. Later in the Nanodegree, you will perform **sensor fusion** using camera and lidar data!
 
-## Summary
+**Summary**
+
 The "Why CV Is Important for SDC" video explains the critical role of computer vision (CV) in self-driving cars (SDC). It begins by highlighting the necessity for autonomous vehicles to understand their environment, similar to how humans use their eyes while driving. The video discusses how CV techniques enable cars to interpret visual data from cameras, allowing them to detect essential elements such as pedestrians, lane markings, and traffic signs.
 
 These detections are crucial for making informed driving decisions, such as when to stop or turn. The video also mentions the integration of other sensors, like Lidar, for enhanced perception, which will be covered later in the course. Overall, it emphasizes that computer vision is at the core of enabling self-driving cars to navigate complex environments safely and effectively.
@@ -122,7 +117,8 @@ Previously, we discovered how computer visionis at the core of the self-driving 
 
 Deep Learning algorithms are now the **state of the art (SOTA)** in most computer vision problems, such as image classification or object detection. Therefore, they are now in every SDC system. However, using deep learning adds additional constraints to the system because they require more computational power.
 
-## Summary
+**Summary**
+
 The "When to Use Deep Learning for Computer Vision" video discusses the scenarios in which deep learning techniques are most effective for computer vision tasks. It emphasizes that deep learning algorithms have become the state-of-the-art (SOTA) for various computer vision problems, such as image classification and object detection.
 
 The video outlines the advantages of using deep learning, including its ability to handle large datasets and complex patterns that traditional methods may struggle with. However, it also highlights the additional computational resources required for deep learning models. The video provides examples of situations where deep learning is particularly beneficial, such as detecting cars, reading characters on traffic signs, estimating pedestrian poses, and classifying activities from videos.
@@ -139,7 +135,8 @@ Before we dive into the history of deep learning,let's introduce a few terms to 
 * **Neurons**: the basic unit of neural networks. Takes an input signal and is activated or not based on the input value and the neuron's weights.
 * **Layer**: structure containing multiple neurons. Layers are stacked to create a neural network.
 
-## Summary
+**Summary**
+
 The "History of Deep Learning" video explores the evolution of deep learning, tracing its roots from early artificial neural networks (ANNs) to the modern advancements that have shaped the field. It discusses key milestones, such as the development of the backpropagation algorithm, which significantly improved the training of neural networks.
 
 The video highlights the impact of increased computational power, particularly the use of GPUs for fast matrix multiplication, which has enabled the training of deeper and more complex models. It also emphasizes the importance of large datasets in driving the success of deep learning applications.
@@ -151,7 +148,8 @@ In your previous video,we saw how deep learning is now playing a significant rol
 
 In this course, we will be using the [TensorFlow](https://www.tensorflow.org/) library to create our machine learning models. TensorFlow is one of the most popular ML libraries and is used by many companies to develop and train algorithms. TensorFlow makes it very easy for the user to deploy such algorithms on different platforms, from a smartphone device to the cloud.
 
-## Summary
+**Summary**
+
 The "Introduction to TensorFlow" video provides an overview of TensorFlow, a powerful machine learning library widely used for developing and training algorithms. It explains that TensorFlow simplifies the process of creating, training, and deploying machine learning models across various platforms, from mobile devices to cloud environments.
 
 The video highlights the library's flexibility and efficiency, particularly in handling complex computations and large datasets. It also mentions the integration of TensorFlow with Python, which is the primary programming language used for building models. Overall, the video sets the stage for students to learn how to utilize TensorFlow effectively in their machine learning projects.
@@ -196,7 +194,8 @@ In this course, you will need the following:
 * Create a Github account: a version control system. You will need to create an account [here](https://github.com/). You will need a github account to access some of the material and create your submission for the final project. If you already have an account, you are good to go for this step!
 * Set up an Integrated development environment (IDE): a software application to write code. For this course, I would recommend either [Pycharm](https://github.com/) or [VS Code](https://code.visualstudio.com/).
 
-## Summary
+**Summary**
+
 The "Tools, Environment & Dependencies" video outlines the essential tools and setup required for the course. It emphasizes the importance of having the right environment to effectively work on deep learning and computer vision projects. The video discusses the need to install specific tools, such as gsutil for managing Google Cloud Storage, and encourages students to create a GitHub account for version control and project submissions.
 
 Additionally, it highlights the recommendation to set up an Integrated Development Environment (IDE), suggesting options like PyCharm or VS Code for writing and managing code efficiently. Overall, the video provides a clear checklist of tasks to ensure students are well-prepared to engage with the course material and complete their projects successfully.
@@ -208,7 +207,8 @@ For the final project of this course, you will have to train an object detection
 
 ![](./images/image5.png)
 
-## Summary
+**Summary**
+
 The video for the project "Object Detection in an Urban Environment" highlights the excitement of applying the knowledge gained throughout the course to a real-world problem. In this project, you will train an object detection algorithm to detect and classify cars, pedestrians, and cyclists using the Waymo open datasets. 
 
 Key points from the video include:
