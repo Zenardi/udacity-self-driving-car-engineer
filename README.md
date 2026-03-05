@@ -84,6 +84,35 @@
 - [Waymo: The Factory Model](course-02/02-INTRO-MACHINE-LEARNING-WORKFLOW.md#waymo-the-factory-model)
 - [Lesson Conclusion](course-02/02-INTRO-MACHINE-LEARNING-WORKFLOW.md#lesson-conclusion)
 
+**Sensor and Camera Calibration**
+
+- [Intro to the Camera Sensor](course-02/03-INTRO-TO-CAMERA-SENSOR.md#intro-to-the-camera-sensor)
+- [Big Picture](course-02/03-INTRO-TO-CAMERA-SENSOR.md#big-picture)
+- [Distortion Correction](course-02/03-INTRO-TO-CAMERA-SENSOR.md#distortion-correction)
+- [Pinhole Camera Model](course-02/03-INTRO-TO-CAMERA-SENSOR.md#pinhole-camera-model)
+  - [Distortion Coefficients and Correction](course-02/03-INTRO-TO-CAMERA-SENSOR.md#distortion-coefficients-and-correction)
+- [Camera Calibration](course-02/03-INTRO-TO-CAMERA-SENSOR.md#camera-calibration)
+  - [Examples of Useful Code](course-02/03-INTRO-TO-CAMERA-SENSOR.md#examples-of-useful-code)
+  - [A note on image shape](course-02/03-INTRO-TO-CAMERA-SENSOR.md#a-note-on-image-shape)
+  - [Note on real chessboard dimension vs. calibration camera chessboard](course-02/03-INTRO-TO-CAMERA-SENSOR.md#note-on-real-chessboard-dimension-vs-calibration-camera-chessboard)
+  - [Solution: Camera Calibration](course-02/03-INTRO-TO-CAMERA-SENSOR.md#solution-camera-calibration)
+- [Image Manipulation](course-02/03-INTRO-TO-CAMERA-SENSOR.md#image-manipulation)
+- [Exercise 2](course-02/03-INTRO-TO-CAMERA-SENSOR.md#exercise-2)
+  - [Solution: Image Manipulation](course-02/03-INTRO-TO-CAMERA-SENSOR.md#solution-image-manipulation)
+- [Pixel Level Transformation](course-02/03-INTRO-TO-CAMERA-SENSOR.md#pixel-level-transformation)
+    - [**Key Highlights and Techniques**](course-02/03-INTRO-TO-CAMERA-SENSOR.md#key-highlights-and-techniques)
+    - [**Comparison of Color Models**](course-02/03-INTRO-TO-CAMERA-SENSOR.md#comparison-of-color-models)
+    - [**Quick Code Reference**](course-02/03-INTRO-TO-CAMERA-SENSOR.md#quick-code-reference)
+  - [Image Enhancement and Filtering](course-02/03-INTRO-TO-CAMERA-SENSOR.md#image-enhancement-and-filtering)
+- [Geometric Transformation](course-02/03-INTRO-TO-CAMERA-SENSOR.md#geometric-transformation)
+    - [**Overview**](course-02/03-INTRO-TO-CAMERA-SENSOR.md#overview)
+    - [**Key Concepts Covered:**](course-02/03-INTRO-TO-CAMERA-SENSOR.md#key-concepts-covered)
+- [Exercise 3 - Geometric transformations](course-02/03-INTRO-TO-CAMERA-SENSOR.md#exercise-3---geometric-transformations)
+  - [Solution: Geometric Transformation](course-02/03-INTRO-TO-CAMERA-SENSOR.md#solution-geometric-transformation)
+- [Lesson Conclusion](course-02/03-INTRO-TO-CAMERA-SENSOR.md#lesson-conclusion)
+- [Glossary](course-02/03-INTRO-TO-CAMERA-SENSOR.md#glossary)
+
+
 </details>
 
 

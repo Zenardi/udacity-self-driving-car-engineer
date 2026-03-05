@@ -11,6 +11,18 @@
 - [Image Manipulation](#image-manipulation)
 - [Exercise 2](#exercise-2)
   - [Solution: Image Manipulation](#solution-image-manipulation)
+- [Pixel Level Transformation](#pixel-level-transformation)
+    - [**Key Highlights and Techniques**](#key-highlights-and-techniques)
+    - [**Comparison of Color Models**](#comparison-of-color-models)
+    - [**Quick Code Reference**](#quick-code-reference)
+  - [Image Enhancement and Filtering](#image-enhancement-and-filtering)
+- [Geometric Transformation](#geometric-transformation)
+    - [**Overview**](#overview)
+    - [**Key Concepts Covered:**](#key-concepts-covered)
+- [Exercise 3 - Geometric transformations](#exercise-3---geometric-transformations)
+  - [Solution: Geometric Transformation](#solution-geometric-transformation)
+- [Lesson Conclusion](#lesson-conclusion)
+- [Glossary](#glossary)
 
 
 # Intro to the Camera Sensor
@@ -453,3 +465,343 @@ if __name__ == "__main__":
     mean, std = calculate_mean_std(image_list)
     check_results(mean, std)
 ```
+
+# Pixel Level Transformation
+
+Youtube Video: [Link]()
+
+With [inaudible] , you learn how to manipulate images with the OpenCV library.In this video, we will use another very popular Python image library, Pillow.We're going to see how we can leverage this library to open images,convert them in different color models,and perform colors thresholding.Let's start by importing some packages.
+
+In this video, we will only use the image module.We can use the image.open to load an image.A Pillow image has several attributes,such as the size or the mode,which is the color model used.Our image is in the PNG format,which supports among other RGB and RGBA color models.The mode of an image depends on the way it was saved.Even though our image is already in the RGB format,we can run image.convert to transform it into RGB image.In Jupyter Notebooks, Pillow images are veryeasily displayed by just typing the variable name.
+
+Now that we have loaded an RGB image,what if we want to look at the grayscale versions?Well to do, so we just have to run Image.convert L to convert it into a grayscale format.Finally, let's convert our image to the HSV color model.We cannot display such image in a notebook,however, we can still manipulate it.Let's try to see if we can isolate the red car in this image.
+
+We can get the pixel values of these HSV image by loading it into a NumPy array,then we can isolate hue channel.We are trying to select only the dark red pixels,which are pixels with a hue between 340 and 360.However, because pixels in HSV images in Pillow are stored as eight bits integer,we need to scale this value.We can create a binary mask to keep only the pixel,whether hue is above our threshold.We can use this mask to mask the RGB image.We multiply the RGB pixel values by two to emphasize the colors.
+
+Finally, we can visualize the masked RGB image.If we were to use the RGB model to create this mask,it will be much more challenging as we wouldhave to create the mask based on triplets of value.Hopefully, this shows you the pros and cons of the different color models.
+
+
+**Pillow** is a python imaging library. Using Pillow, we can easily load images, convert them from one color model to another and perform diverse pixel level transformation, such as color thresholding. **Color thresholding** consists of isolating a range of color from a digital image. It can be done using different color models, but the HSV/HLS color models are particularly well suited for this task.
+
+---
+
+### **Key Highlights and Techniques**
+
+* **Loading and Inspection:** Using `Image.open()` to load files (like PNGs) and checking attributes such as `.size` and `.mode`.
+* **Color Model Conversions:**
+* **RGB:** The standard color format.
+* **L (Grayscale):** Achieved using `.convert('L')`.
+* **HSV (Hue, Saturation, Value):** Useful for color-based segmentation. While not directly viewable in some notebooks, it is ideal for mathematical manipulation.
+
+
+* **Color Thresholding:** The tutorial isolates a red car by converting the image to the **HSV** model.
+* **Why HSV?** It is much easier to isolate a color by a single "Hue" value than by trying to balance triplets of Red, Green, and Blue values.
+* **Processing:** The image is converted to a NumPy array to filter pixels where the Hue falls within a specific range (scaled for 8-bit integers).
+
+
+* **Masking:** A binary mask is created from the thresholded HSV data and applied back to the original RGB image to highlight the target object.
+
+---
+
+### **Comparison of Color Models**
+
+| Model | Use Case | Benefit |
+| --- | --- | --- |
+| **RGB** | Standard display | Default for most digital images. |
+| **L** | Grayscale analysis | Reduces data complexity for shape recognition. |
+| **HSV** | Color Filtering | Separates "color" (Hue) from "intensity" (Value). |
+
+---
+
+### **Quick Code Reference**
+
+Based on the transcript, the workflow follows this logic:
+
+```python
+from PIL import Image
+import numpy as np
+
+img = Image.open('car.png').convert('RGB')
+hsv_img = img.convert('HSV')
+
+# Process with NumPy to create a mask for "Red"
+# Scale thresholds for 8-bit (0-255)
+
+```
+
+
+## Image Enhancement and Filtering
+
+Youtube Video: [Link](https://www.youtube.com/watch?v=C-pCfNIvL9I)
+
+In this second video about pixel level transformations,we are going to learn about a few more ways you canleverage the Pillow Library to transform images.Let's start by loading the different function,as well as the small helper function to plot image histograms.In the first part of this video,we're going to focus on image contrast.The contrast of an image is defined by the differencein colors between the different object in this image.Let's look at this first image and take a look at the RGB value histograms.As we can see on this histogram,the channel distributions are much more spread out.
+
+This is an example of what you can do with image enhance.I encourage you to spend time playing around with this module.I also want you to be familiar with image filtering.It's an extremely useful Pillow feature.
+
+Pillow comes with pre-implemented filters,but you can also implement your own and I encourage you to look into that.Filters are pixel level transformation, such as blurring.We can blur this image using the pre-implemented filter.As you can see, the output image is slightly blurred.This is extremely useful if we were to mimic foggy images, for example.Other pre-implemented filter exist in Pillow,such as contour, smooth, or sharpen.Well, with this notebook,we're done with pixel-level transformation with the Pillow Library.In the next video,we are going to focus on geometric transformation.
+
+
+Images in ML dataset reflect real life conditions and therefore may need to be improved upon or modified. Pillow provides a very useful module, **ImageEnhance**, to perform pixel level transformations on images, such as contrast changes. Moreover, ML engineers often want to add some noise to the images in the dataset to reduce overfitting. **ImageEnhance** provides simple ways of doing so.
+
+
+**Summary**
+
+This lesson explores pixel-level transformations in Python using the Pillow Library, focusing primarily on image contrast and image filtering.
+
+**Key Topics Covered**
+
+* **Image Contrast and Enhancement:** The video demonstrates how to analyze image contrast by plotting and examining RGB value histograms. It highlights the use of Pillow's `ImageEnhance` module to adjust the color differences between objects in an image.
+* **Image Filtering:** Pillow offers several pre-implemented filters for pixel-level transformations. Examples discussed include:
+* **Blurring:** Can be used to mimic environmental conditions like fog.
+* **Other Filters:** Contour, smooth, and sharpen.
+* *Note:* While Pillow provides built-in options, you can also implement custom filters.
+
+# Geometric Transformation
+
+Youtube Video: [Link](https://www.youtube.com/watch?v=a1WG6FIr6yY)
+
+In the previous videos,we learnt about color spaces and the different typesof pixel over transformation we can apply on an image. This video is going to focus on geometric transformation. The first type of geometric transformation we are going to see is resizing. This is a very common operation,especially useful when loading data into a Machine Learning Algorithm. Indeed, we often cannot load full resolution images because of memory limitation. 
+
+Pillow makes image resizing extremely easy. Using the Image. resize function,we can resize our image from 1920 by 1080-960 by 640 in one line. The resizing operation is an example of an Affine transformation. We can replicate the results of the resizing operationusing the transform method of the Pillow image class. For resizing, we need to define a transformation matrix as such,where c_x and c_y are the re-scaling factors. 
+
+If we want to divide by two the dimension of the image,we can use c_x and c_y equals 0. 5. Be careful, the transform method takesthe inverse of the transformation matrix as an input. After running this transformation,we observe that the image dimensions are indeed divided by two. affine transformations are very powerful. 
+
+We are going to see two more, translation and shearing. The transformation matrices are slightly different for this operation,as we can see here. Translation just shift the image by a certain number of pixels. For example, here we shift the image by 200 pixels to the right and 100 pixels down. We can use the transformation matrix to perform shearing as displayed here. In this case, we are going to perform Horizontal Shearing. Finally, we can also combine different transformation. For example, here we combine translation and shearing. I encourage you to read more about affine transformations. There's a lot more we can do with Pillow. 
+
+
+In addition to pixel level transformation, Pillow also provides ways to perform **geometric transformations**, such as rotation, resizing or translation. In particular, we can use Pillow to perform affine transformation (a geometric transformation where lines are preserved) using a transformation matrix.
+
+
+### **Overview**
+
+This section transitions from pixel-level color adjustments to **geometric transformations** using the Pillow library. These transformations alter the spatial arrangement of pixels rather than their colors, which is a critical preprocessing step for computer vision tasks in self-driving car engineering.
+
+### **Key Concepts Covered:**
+
+* **Image Resizing for Machine Learning:**
+* Full-resolution images are often too large for machine learning algorithms due to memory limitations.
+* Pillow simplifies this with the `Image.resize` function, allowing rapid dimension scaling (e.g., from 1920x1080 to 960x640) in a single line of code.
+
+
+* **Affine Transformations:**
+* Resizing is just one example of an **Affine Transformation**—a family of geometric operations that preserve parallel lines.
+* These can be performed using Pillow’s `transform` method, which requires a specific transformation matrix.
+* **Important Technical Detail:** Pillow’s `transform` method specifically requires the *inverse* of the transformation matrix as its input.
+
+
+* **Types of Affine Transformations Demonstrated:**
+* **Rescaling/Resizing:** Uses scaling factors (like c_x and c_y) in the matrix to multiply the image dimensions (e.g., setting both to 0.5 divides the image size in half).
+* **Translation:** Shifts the entire image by a specific number of pixels along the X or Y axis (e.g., shifting 200 pixels right and 100 pixels down).
+* **Shearing:** Slants or deforms the shape of the image (e.g., horizontal shearing).
+
+
+* **Combining Transformations:**
+* Because these operations are matrix-based, you can combine multiple transformations (like translating *and* shearing) into a single mathematical operation.
+
+# Exercise 3 - Geometric transformations
+
+**Objective**
+
+In this exercise, you will implement the following geometric transformations from scratch: horizontal flipping and resizing in augmentations.py. You can also implement random cropping as an additional but not required exercise. Your implementations should not only affect the images but also the associated bounding boxes.
+
+![](./images/exercise3.png)
+
+**Details**
+* The `hflip` function takes the image and bounding boxes as input and performs a horizontal flip. For example, an object initially on the * left of the image will end up on the right.
+* The `resize` function takes the image, bounding boxes and target size as input. It scales up or down images and bounding boxes.
+* The `random_crop` function takes a few additional inputs. It also needs the classes, the crop size and the minimum area. Let's explain * these parameters:
+* `crop_size` is the size of the crop. It should be smaller than the dimensions of the input image.
+* `min_area` is the minimum area of a bounding boxes to be considered as an object after cropping.
+
+Because we are cropping randomly, we may only keep a tiny portion of an object, in which case the annotations will not be useful anymore. For example, in the image below, we may not want to keep the annotation of the cat because most of the animal's body is not visible.
+
+![](./images/exercise3-1.png)
+
+Discard bad annotations due to random cropping
+
+> [!NOTE]
+>  You'll need to use the "Desktop" button to view the visualizations of each augmentation.
+
+> [!TIP]
+> The hflip transform does not affect the x coordinates of the bounding boxes.
+> You will use the same ratio in resize for the image and the bounding boxes.
+> To find which bounding box belongs to the cropped area, you can use the calculate_iou function.
+
+## Solution: Geometric Transformation
+
+```python
+import copy
+import json
+import random
+
+import numpy as np 
+from PIL import Image
+
+from utils import check_results, display_results
+
+
+def calculate_iou(gt_bbox, pred_bbox):
+    """
+    calculate iou 
+    args:
+    - gt_bbox [array]: 1x4 single gt bbox
+    - pred_bbox [array]: 1x4 single pred bbox
+    returns:
+    - iou [float]: iou between 2 bboxes
+    """
+    xmin = np.max([gt_bbox[0], pred_bbox[0]])
+    ymin = np.max([gt_bbox[1], pred_bbox[1]])
+    xmax = np.min([gt_bbox[2], pred_bbox[2]])
+    ymax = np.min([gt_bbox[3], pred_bbox[3]])
+    
+    intersection = max(0, xmax - xmin + 1) * max(0, ymax - ymin + 1)
+    gt_area = (gt_bbox[2] - gt_bbox[0]) * (gt_bbox[3] - gt_bbox[1])
+    pred_area = (pred_bbox[2] - pred_bbox[0]) * (pred_bbox[3] - pred_bbox[1])
+    
+    union = gt_area + pred_area - intersection
+    return intersection / union, [xmin, ymin, xmax, ymax]
+
+
+def hflip(img, bboxes):
+    """
+    horizontal flip of an image and annotations
+    args:
+    - img [PIL.Image]: original image
+    - bboxes [list[list]]: list of bounding boxes
+    return:
+    - flipped_img [PIL.Image]: horizontally flipped image
+    - flipped_bboxes [list[list]]: horizontally flipped bboxes
+    """
+    # flip image
+    flipped_img = img.transpose(Image.FLIP_LEFT_RIGHT)
+    w, h = img.size
+    
+    # flip bboxes
+    bboxes = np.array(bboxes)
+    flipped_bboxes = copy.copy(bboxes)
+    flipped_bboxes[:, 1] = w - bboxes[:, 3]
+    flipped_bboxes[:, 3] = w - bboxes[:, 1]
+    return flipped_img, flipped_bboxes
+
+
+def resize(img, boxes, size):
+    """
+    resized image and annotations
+    args:
+    - img [PIL.Image]: original image
+    - boxes [list[list]]: list of bounding boxes
+    - size [array]: 1x2 array [width, height]
+    returns:
+    - resized_img [PIL.Image]: resized image
+    - resized_boxes [list[list]]: resized bboxes
+    """
+    # resize image
+    resized_image = img.resize(size)
+    w, h = img.size
+    ratiow = size[0] / w
+    ratioh = size[1] / h
+    
+    # resize bboxes
+    boxes = np.array(boxes)
+    resized_boxes = copy.copy(boxes)
+    resized_boxes[:, [0, 2]] = resized_boxes[:, [0, 2]] * ratioh
+    resized_boxes[:, [1, 3]] = resized_boxes[:, [1, 3]] * ratiow
+    return resized_image, resized_boxes
+
+
+def random_crop(img, boxes, classes, crop_size, min_area=100):
+    """
+    random cropping of an image and annotations
+    args:
+    - img [PIL.Image]: original image
+    - boxes [list[list]]: list of bounding boxes
+    - classes [list]: list of classes
+    - crop_size [array]: 1x2 array [width, height]
+    - min_area [int]: min area of a bbox to be kept in the crop
+    returns:
+    - cropped_img [PIL.Image]: cropped image
+    - cropped_boxes [list[list]]: cropped bboxes
+    - cropped_classes [list]: cropped classes
+    """
+    # crop coordinates
+    w, h = img.size
+    x1 = np.random.randint(0, w - crop_size[0])
+    y1 = np.random.randint(0, h - crop_size[1])
+    x2 = x1 + crop_size[0]
+    y2 = y1 + crop_size[1]
+
+    # crop the image
+    cropped_image = img.crop((x1, y1, x2 ,y2))
+
+    # calculate iou between boxes and crop
+    cropped_boxes = []
+    cropped_classes = []
+    for bb, cl in zip(boxes, classes):
+        iou, inter_coord = calculate_iou(bb, [y1, x1, y2, x2])
+        # some of the bbox overlap with the crop
+        if iou > 0:
+            # we need to check the size of the new coord
+            area = (inter_coord[3] - inter_coord[1]) * (inter_coord[2] - inter_coord[0])
+            if area > min_area:
+                xmin = inter_coord[1] - x1
+                ymin = inter_coord[0] - y1
+                xmax = inter_coord[3] - x1
+                ymax = inter_coord[2] - y1
+                cropped_box = [ymin, xmin, ymax, xmax]
+                cropped_boxes.append(cropped_box)
+                cropped_classes.append(cl)
+    return cropped_image, cropped_boxes, cropped_classes
+
+
+if __name__ == '__main__':
+    # fix seed to check results
+    np.random.seed(48)
+
+    # open annotations 
+    with open('data/ground_truth.json') as f:
+        ground_truth = json.load(f)
+
+    # filter annotations and open image
+    filename = 'segment-12208410199966712301_4480_000_4500_000_with_camera_labels_79.png'
+    gt_boxes = [g['boxes'] for g in ground_truth if g['filename'] == filename][0]
+    gt_classes = [g['classes'] for g in ground_truth if g['filename'] == filename][0]
+    img = Image.open(f'data/images/{filename}')
+
+    # check horizontal flip
+    flipped_img, flipped_bboxes = hflip(img, gt_boxes)
+    display_results(img, gt_boxes, flipped_img, flipped_bboxes)
+    check_results(flipped_img, flipped_bboxes, aug_type='hflip')
+
+    # check resize
+    resized_image, resized_boxes = resize(img, gt_boxes, size=[640, 640])
+    display_results(img, gt_boxes, resized_image, resized_boxes)
+    check_results(resized_image, resized_boxes, aug_type='resize')
+
+    # check random crop
+    cropped_image, cropped_boxes, cropped_classes = random_crop(img, gt_boxes, gt_classes, [512, 512], min_area=100)
+    display_results(img, gt_boxes, cropped_image, cropped_boxes)
+    check_results(cropped_image, cropped_boxes, aug_type='random_crop', classes=cropped_classes)
+```
+
+
+# Lesson Conclusion
+
+In this lesson, we learned about:
+
+* The camera sensor and its distortion effect. A camera captures light to a digital sensor but the raw images are distorted.
+* The camera pinhole model: a simplified physical model of cameras.
+* Camera calibration and how to use the Python library OpenCV to calibrate a camera using checkerboard images.
+* RGB and other color systems. We discovered the RGB, HLS and HSV color systems and learned about the strength and weaknesses of each one.
+* Image manipulation in Python and how to leverage Pillow to perform pixel-level and geometric transformations of digital images.
+
+# Glossary
+
+* Aperture: size of the opening where the light enters the camera. Controls the amount of light received by the sensor.
+* Calibration: process of estimating a camera's parameters.
+* Focal length / field of view: this parameter controls the angle of view of the image.
+* Grayscale images: single channel images that only contain information about the intensity of the light.
+* HLS/HSV: color model encoding the color with a single value, the hue. The other two values characterize the darkness / colorfulness of * the image.
+* Pinhole camera model: simplified physical model of a camera.
+* Resolution: Number of pixels the image captured by the camera is made of (usually described in mega pixels).
+* RGB: color model using (red, green, blue) triplet to describe a pixel.
+* Shutter speed: duration that the sensor is exposed to the light.
