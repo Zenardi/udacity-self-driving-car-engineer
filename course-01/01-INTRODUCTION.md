@@ -1,3 +1,14 @@
+- [Welcome to Udacity!](#welcome-to-udacity)
+  - [Transcript](#transcript)
+  - [Summary](#summary)
+- [The Udacity Experience](#the-udacity-experience)
+  - [Transcript](#transcript-1)
+  - [Summary](#summary-1)
+- [How to How to Succeed](#how-to-how-to-succeed)
+  - [Transcript](#transcript-2)
+  - [Summary](#summary-2)
+
+
 # Welcome to Udacity!
 I am Sebastian, the founder of Udacity.
 

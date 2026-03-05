@@ -1,3 +1,14 @@
+- [Introduction](#introduction)
+- [What is Waymo?](#what-is-waymo)
+  - [Objects in the Waymo Open Dataset](#objects-in-the-waymo-open-dataset)
+- [Why is Radar Omitted in the Waymo Open Dataset?](#why-is-radar-omitted-in-the-waymo-open-dataset)
+- [The Most Important Techniques for Autonomous Vehicles](#the-most-important-techniques-for-autonomous-vehicles)
+- [Validating the Waymo Driver](#validating-the-waymo-driver)
+- [Prediction in Autonomous Vehicles](#prediction-in-autonomous-vehicles)
+  - [Predicting Actions in the Future](#predicting-actions-in-the-future)
+  - [Techniques that Work Well for Prediction](#techniques-that-work-well-for-prediction)
+  - [Data Structures used for Prediction](#data-structures-used-for-prediction)
+
 # Introduction
 
 In this brief lesson, you'll hear from [Waymo](https://waymo.com), an autonomous driving technology company, originally founded as the Google Self-Driving Car project (and formerly run by Sebastian Thrun, Udacity’s founder!). Specifically, you'll check in with Dragomir Anguelov, Distinguised Scientist at Waymo, who leads the research team there.

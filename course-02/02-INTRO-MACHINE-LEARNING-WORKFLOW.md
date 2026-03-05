@@ -12,6 +12,18 @@
 - [Exercise 2 - Visualization](#exercise-2---visualization)
   - [Solution: Data Acquisition and Visualization](#solution-data-acquisition-and-visualization)
 - [Exploratory Data Analysis](#exploratory-data-analysis)
+- [Cross Validation](#cross-validation)
+  - [Overfitting](#overfitting)
+  - [Bias \& Variance Trade-off](#bias--variance-trade-off)
+  - [Validation Sets \& Cross Validation](#validation-sets--cross-validation)
+- [TFRecord](#tfrecord)
+  - [Waymo Open Dataset vs. TensorFlow Object Detection API](#waymo-open-dataset-vs-tensorflow-object-detection-api)
+- [Exercise 3 - Create tf records](#exercise-3---create-tf-records)
+  - [Solution: TFRecord](#solution-tfrecord)
+- [Model Selection](#model-selection)
+- [Error Analysis](#error-analysis)
+- [Waymo: The Factory Model](#waymo-the-factory-model)
+- [Lesson Conclusion](#lesson-conclusion)
 
 
 # Introduction to the Machine Learning Workflow
@@ -447,3 +459,405 @@ if __name__ == "__main__":
 
 # Exploratory Data Analysis
 
+When working on vision-based machine learning problem,the machine learning engineer often spendhours just looking at the images in the data set. This is a critical part of the exploratory data analysis or EDA. Whereas some information can be extracted from the data numerically,such as mean pixel values. We should spend a significant amount of time visually assessing a data set. On this slide, we can see a few characteristic of the data set. Such as the variability in whether light,environment, and object density. Why is this step so important?Well, machine learning models are only as good as the data they are being fed. For example, a machine learning model that has been trained on daylight images only will absolutely under perform in night conditions. 
+
+![](./images/image9.png)
+
+Machine Learning algorithms may be very sensitive to domain shift. This domain shift can happen at different levels:
+
+ * **weather / light conditions**: for example, an algorithm trained only on sunny images is not going to perform well when shown rainy or * night-time data.
+* **sensor**: a sensor change or different processing methods will create a domain shift.
+* **environment**: an algorithm trained on low intensity traffic data will not perform well on high intensity traffic data for example.
+
+An extensive **Exploratory Data Analysis (EDA)** is critical to the success of any ML project. Why? Because during this phase, the ML engineer gets acquainted with the dataset and discovers any potential challenges with the data. The EDA is such an important part of the project that ML engineers spend a few days on it alone. For a vision problem, it requires looking at 1,000s of images in your dataset!
+
+**Summary**
+
+The video on "Exploratory Data Analysis (EDA)" discusses the importance of EDA in the machine learning workflow. It explains that EDA is a crucial phase where machine learning engineers familiarize themselves with the dataset and identify potential challenges. The video emphasizes that a thorough EDA can take several days, especially for vision problems that require examining thousands of images.
+
+Key points include:
+
+1. **Understanding the Dataset**: EDA helps in understanding the characteristics of the data, including its distribution, patterns, and anomalies.
+2. **Identifying Challenges**: Engineers can discover issues such as missing values, outliers, or biases in the data that may affect model performance.
+3. **Domain Shift**: The video highlights that machine learning algorithms can be sensitive to domain shifts, which can occur due to changes in weather, sensor types, or environmental conditions.
+
+Overall, the video underscores that a comprehensive EDA is essential for the success of any machine learning project.
+
+# Cross Validation
+
+The goal of our ML algorithm is to be deployed in a production environment. For example, the object detection algorithm you will create in the final project could be deployed directly in a self driving car. But before we can deploy such algorithms, we need to be sure that it will perform well in any environments it will encounter. In other words, we want to evaluate the generalization ability of our model.
+
+We are going to introduce three new concepts:
+
+* overfitting: when the model does not generalize well
+* bias-variance tradeoff: why is it hard to create a balanced model
+* cross validation: a technique to evaluate how well the model generalizes
+
+## Overfitting
+When building a machinery model,we want our model to generalize as well as possible. Let's consider the following example. In the first case,shown by the graph on the left,we fit a linear regression model to our dataset as shown by the blue line. In the other case,shown on the right,we use a polynomial regression model which isa much more complex machine learning modeland we observed that this model fits the data precisely. However, how do you think each model is going to perform on new data?. 
+
+The linear regression model will better perform onthis new data because it's not fitting the original data as closely. We will say that this model generalizes well to new data. However, the polynomial regression model will not perform well on the new data. We'll use the term overfitting to describe this behavior. The challenge of machine learning lies in creatinga model that performs well on the available data without overfitting. 
+
+We'll cover these in depth in later sections. From now on, we will use the term Training datasets to describethe data that our models have been trained on and the term Test datasetto describe data that has not been used during training. We'll use the test dataset to solve this overfitting issue. In the following videos,we'll describe how to create such datasets. 
+
+![](./images/overfitting.png)
+
+When a model is **overfitting**, it loses its power to generalize. It often happens when the chosen model is too complex and starts extracting noise instead of meaningful features. For example, a car detection model is overfitting when it starts extracting brand specific features of the cars in the dataset (e.g., car logo) instead of broader features (wheels, shape etc).
+
+Overfitting raises a very important question. How do we know if our model will generalize properly or not? Indeed, when a single dataset is available, it will be challenging to know if we created a model that overfits or simply performs well.
+
+For now, we will use the terms **training data** to describe the data used to teach and create our algorithm and **test data** for any new, unseen data.
+
+**Summary**
+The video on "Cross Validation" explains the importance of this technique in evaluating the performance of machine learning models. It discusses how cross validation helps assess a model's ability to generalize to unseen data and mitigate the risk of overfitting.
+
+Key points include:
+
+1. **Purpose of Cross Validation**: The primary goal is to ensure that the model performs well in various environments, which is crucial before deploying algorithms, such as those used in self-driving cars.
+
+2. **Validation Set Approach**: The video introduces the validation set approach, where the dataset is split into a training set (80-90% of the data) and a validation set (10-20% of the data) to evaluate the model's performance.
+
+3. **Overfitting**: It explains overfitting as a situation where the model learns the training data too well and fails to generalize to new data.
+
+4. **Bias-Variance Trade-off**: The video touches on the bias-variance trade-off, highlighting the challenges in creating a balanced model that performs well on both training and validation datasets.
+
+5. **Other Methods**: While the video mentions other cross validation methods like Leave One Out (LOO) and k-fold cross validation, it notes that these are not typically suited for deep learning algorithms.
+
+Overall, the video emphasizes that cross validation is a vital technique in the machine learning workflow to ensure model reliability and performance.
+
+
+## Bias & Variance Trade-off
+
+Since we would like our algorithm to generalize to unseen dataset during training,we're going to focus on the performance of our algorithm on the test dataset. In particular, we are interested inthe test error which is the error rate of our model on the test dataset. The test error can be decomposed into three terms. The variance, the bias,and epsilon which we will ignore for the moment. The variance describes the amount by whichour model's parameters would change if we were to change the training data. 
+
+The bias describes how good our model is given the training data. To minimize the test error,we need to minimize both of bias and the variance whichmeans that we need our model to both perform well on the training data and the test data. However, by minimizing the bias,we tend to increase the variance because we are over-fitting the training data set. Let's look at an example together. We are fitting a model ona particular dataset and we can control the complexity of this model. 
+
+For example, by increasing the number of parameters. Well, as the model becomes more complex,the bias in red decreases. Our model has more capacity to fit the training data. However, the variance in purple increases with the complexity asour model becomes more and more specialized tothis dataset and loses its capacity to generalize. If we sum both terms,we obtain the test error in blue. 
+
+The blue curves show the existence ofan optimal complexity where the test error is minimized. Well, this is what we call the bias-variance trade-off. You want your model to be complex enough to havea low bias but not too complex so that you can still generalize to unseen data. 
+
+![](./images/bias-variance.png)
+
+The **bias-variance tradeoff** illustrates one the most important challenges in Machine Learning. How do we create a model that performs well while keeping its ability to generalize to new, unseen data? The performance of our algorithm on such data is quantified by the test error. The **test error** can be decomposed in further into the bias and the variance.
+
+The **bias** quantifies the quality of the fit of our model on the training data. A low bias means that our model has a very low error rate on the training dataset.
+
+The **variance** quantifies the sensitivity of the model to the training data. In other words, if we were to replace our training dataset with another one, how much would the training error rate change? A low variance means that our model is not sensitive to the training data and generalizes well.
+
+
+**Summary**
+
+The video on "Cross Validation" covers the essential techniques used to evaluate a machine learning model's ability to generalize to unseen data and address overfitting challenges. Here are the key points discussed:
+
+1. **Purpose of Cross Validation**: It aims to ensure that the model performs well in various environments before deployment, such as in applications like self-driving cars.
+
+2. **Validation Set Approach**: The video explains the validation set approach, where the dataset is split into a training set (80-90% of the data) and a validation set (10-20% of the data) to assess model performance.
+
+3. **Overfitting**: Overfitting is described as a situation where the model learns the training data too well, resulting in poor performance on new, unseen data.
+
+4. **Bias-Variance Trade-off**: The video introduces the bias-variance trade-off, which highlights the difficulty of creating a balanced model that generalizes well.
+
+5. **Other Methods**: While it mentions other cross validation methods like Leave One Out (LOO) and k-fold cross validation, it notes that these methods may not be suitable for deep learning algorithms.
+
+Overall, the video emphasizes that cross validation is a vital technique in the machine learning workflow to ensure the reliability and performance of models.
+
+
+## Validation Sets & Cross Validation
+As we discussed previously,we would like to evaluate our model on the test data rather than the training data. However, most of the time,we do not have access to a testing dataset and end up using a validation set approach. In that case, we split the available datainto two different subsets, training and validation. A good rule of thumb consists in putting 80 percent ofthe data in the training set and 20 percent in the validation set. 
+
+However, when a lot of data is available over 10,000 images,for example, it is pretty common to use a 90 percent,10 percent split. In some cases, you may also want to createa test set by splitting the data into three splits. For example, 75 percent of the data for the training set,50 percent of the data for the validation set,and the remaining 10 percent for the test set. What is the difference between test and validation sets?Well, the validation set is used for cross-validation. 
+
+Meaning that we will use this set to evaluateour model and choose the best possible parameters to minimize the error. We can also use this set to compare models between each other. The test set, however,should only be used once our model has been chosen. But why is that? Well, when performingmany experiments to increase the model's performance on the validation set,we put ourselves at risk of leaking into the validation set. Because of this repeated process,we are slowly leaking information from the validation set into the training set,and we may end up with a model over fitting the validation set,which removed the point of cross-validation. 
+
+By keeping a separate test set,we can protect ourself from data leakage. Another type of data leakage can happen when the splits are not created carefully. Indeed, the validation set couldcontain observation that are very close to the train set,which once again, defeat the purpose of cross-validation. For example, the Waymo dataset is made of sequences of images taken from videos. 
+
+If we were to split such data randomly between training and validation,we would not have a good validation set becausethe distribution would be very similar to the one of the training set. For example, we could decide to split images based onTrip IDs such that all the images from the same sequence are in the same split. Cross-validation is a very powerful ID in machine learning,but it requires careful crafting of the data splits. 
+
+
+![alt text](./images/good-practices-cross-validation.png)
+
+Cross validation is a set of techniques to evaluate the capacity of our model to generalize and alleviate the overfitting challenges. In this course, we will leverage the validation set approach, where we split the available data into two splits:
+
+* a **training set**, used to create our algorithm (usually 80-90% of the available data)
+* a **validation set** used to evaluate it (10-20% of the available data)
+
+In further videos, we will see how we can leverage this approach to alleviate the overfitting problem.
+
+Other cross validation methods exist, such as **LOO (Leave One Out)** or **k-fold cross validation** but they are not suited to Deep Learning algorithms. You can read more about these other [two techniques here](https://www.cs.cmu.edu/~schneide/tut5/node42.html).
+
+
+**Summary**
+The video on "Cross Validation" explains its significance in evaluating machine learning models and ensuring they generalize well to unseen data. Here are the main points covered:
+
+1. **Purpose**: Cross validation is used to assess a model's performance and to mitigate overfitting, which occurs when a model learns the training data too well but fails to perform on new data.
+
+2. **Validation Set Approach**: The video describes the validation set approach, which involves splitting the dataset into a training set (80-90% of the data) and a validation set (10-20% of the data) for model evaluation.
+
+3. **Overfitting**: Overfitting is highlighted as a key challenge, where the model does not generalize well to new data.
+
+4. **Bias-Variance Trade-off**: The video introduces the bias-variance trade-off, explaining the difficulty of creating a balanced model that performs well on both the training and validation sets.
+
+5. **Other Methods**: It briefly mentions other cross validation techniques, such as Leave One Out (LOO) and k-fold cross validation, noting that they may not be suitable for deep learning algorithms.
+
+Overall, the video emphasizes that cross validation is a crucial technique in the machine learning workflow to ensure model reliability and performance.
+
+
+# TFRecord
+Let's take a break from the theory and spend some time talking about TF records. TF records are TensorFlow custom data format. They are not necessarily required to train model with TensorFlow,but may help when data loading becomes a bottleneck. Also, the data in the Waymo Open Dataset is using the TFRecord format,and you will be using that format for your final project.
+
+Whereas XML or JSON format are human readable,TF records files are not. For example, let's try to open this TF record. As you can see, this file is not human readable. However, we can use protofiles to understand the structure of these TF records. Let's look at an example of a protofile from the Waymo Open Dataset. This protofile describes the structure of a TF record. 
+ 
+Well, from this profile,I see that the TF record contains a field called CameraName,which has the following six attributes; UNKOWN,FRONT, FRONT_LEFT, FRONT_RIGHT, SIDE_LEFT, and SIDE_RIGHT. Looking at this protofile is extremely informative,and you will have to learn how to leverage them for the final project. 
+
+![](./images/tffrecords-example.png)
+
+By the way, you can create TF records files from your own data format. To do so, you will have to leverage a TensorFlow function called tf. train. Example. You will learn about this in the next exercise. 
+
+Let's summarize what we have learned about TF records. TF records are TensorFlow custom data formats. They are not required to train a model with TensorFlow,but they may help to speed up data loading. Their structure is defined by protofiles. TF records are created using protocol buffers or proto buff,a mechanism to serialize data. 
+
+**TF Records** are TensorFlow's custom data format. Even though they are not technically required to train a model with TensorFlow, they can be very useful. For some pre-existing TensorFlow APIs, such as the object detection API that we will use for the final project, a TF Record format is required to train models.
+
+**Summary**
+The video on "TFRecord" explains the significance of TensorFlow's custom data format, TFRecord, in the machine learning workflow. Here are the key points covered:
+
+1. **Purpose of TFRecord**: While TFRecords are not strictly required to train a model with TensorFlow, they can be highly beneficial, especially when data loading becomes a bottleneck. They are particularly necessary for certain TensorFlow APIs, such as the object detection API used in projects.
+
+2. **Data Format**: Unlike human-readable formats like XML or JSON, TFRecords are not easily readable. However, they are optimized for performance and can handle large datasets efficiently.
+
+3. **Protofiles**: The video discusses protofiles, which define the structure of TFRecords. Understanding these protofiles is crucial for working with TFRecords effectively.
+
+4. **Creating TFRecords**: Engineers can create TFRecord files from their own data formats using TensorFlow functions, specifically `tf.train.Example`.
+
+5. **Summary**: The video concludes by reiterating that TFRecords are a powerful tool in TensorFlow, helping to streamline data handling and improve model training efficiency.
+
+
+## Waymo Open Dataset vs. TensorFlow Object Detection API
+
+In the final project of this course, you will use data from the Waymo Open Dataset with the TensorFlow Object Detection API to perform object detection on camera images. While each use `.tfrecord` files, there is a difference in the structure of each. As such, the upcoming exercise will have you take a `.tfrecord` from the Waymo Open Dataset and convert it into a new `.tfrecord` useable by the TensorFlow Object Detection API.
+
+While also linked in the exercise itself, you'll need a few resources to be able to do so more easily.
+
+* First, [this repository](https://github.com/Jossome/Waymo-open-dataset-document) gives some additional information around the Waymo Open Dataset itself (note that Waymo link to https://waymo.com/open/data/(opens in a new tab) therein now should be https://waymo.com/open/data/perception(opens in a new tab), as Waymo has also added a "motion" component to the previous perception-only dataset).
+* Secondly, [this tutorial for the TF Object Detection API](https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/training.html#create-tensorflow-records) for converting from .xml to .tfrecord also shows certain steps that will apply in our case as well.
+
+
+This exercise will require some research on your own of the above documentation (and potentially other documentation) to reach a converted file; however, if you get stuck, it is perfectly reasonable to skip ahead to the solution video for some assistance.
+
+**Additional Resources**
+
+* [Using TFRecord and tf.train.Example from the TensorFlow documentation](https://www.tensorflow.org/tutorials/load_data/tfrecord)
+
+The above documentation will be useful to refer to as you work on the upcoming exercise.
+
+# Exercise 3 - Create tf records
+
+**Objective**
+
+The goal of this exercise is to make you familiar with the tf record format. In particular, your job is to convert the data from the Waymo Open Dataset into the tf record format used by the Tensorflow Object Detection API. As a Machine Learning Engineer, you will often have to convert dataset from one format to another and this is a great example of such task.
+
+**Details**
+
+You can read more about the Waymo Open Dataset data format [here](https://waymo.com/open/data/perception/). Each tf record files contains the data for an entire trip made by the car, meaning that it contains images from the different cameras as well as LIDAR data. Because we want to keep our dataset small, we are implementing the `create_tf_example` function to create cleaned tf records files.
+
+> [!NOTE]
+>  We are using the Waymo Open Dataset github repository to parse the raw tf record files. We would recommend to follow [this tutorial](https://github.com/waymo-research/waymo-open-dataset) to better understand the data format before diving into this exercise.
+
+> [!TIP]
+> This [document](https://github.com/Jossome/Waymo-open-dataset-document) provides an overview of the dataset structure.
+> Later on, we will leverage the Tensorflow Object Detection API to train Object Detection models. In the API tutorial, you can find an example of `create_tf_example` [here](https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/training.html#create-tensorflow-records).
+> Note that running the code will require the use of the example `.tfrecord` included in the `/home/workspace` directory. You will need the GPU enabled (see bottom left of workspace) for the appropriate libraries to be available in the workspace as well.
+
+
+## Solution: TFRecord
+In this exercise, you are asked to implement a function that convertsthe TF record in the way more open data set format to a different TF record format.This function takes as input the file name of the original TF record,an encoded jpeg image in a byte like format,and the list containing annotations.First, we need to load the encoded image ina memory buffer using Python input-output library.We can then open this image with Pillow and extract the image widths and height.We use the provided class mapping to map classes name to classes IDs.Indeed, the way more open data set only contain the classes name.We then need to convert the annotation in the right format.In a way more open data sets,bounding boxes use the center coordinates instead of the corner coordinates.We convert them to the wanted format byadding or subtracting half of the lengths and half of the widths.Multiple bounding boxes format exist andthis is an operation you will have to do pretty frequently.Finally, we need to create the different protocol messages using the provided functions.We put these protocol messages into a TF train example.Because different machine learning libraries require different data formats,you need to become comfortable converting data from one format to another.
+
+```python
+import io
+import os
+
+import tensorflow.compat.v1 as tf
+from PIL import Image
+from waymo_open_dataset import dataset_pb2 as open_dataset
+
+from utils import parse_frame, int64_feature, int64_list_feature, bytes_feature \
+    bytes_list_feature, float_list_feature
+
+
+def create_tf_example(filename, encoded_jpeg, annotations):
+    """
+    convert to tensorflow object detection API format
+    args:
+    - filename [str]: name of the image
+    - encoded_jpeg [bytes-likes]: encoded image
+    - annotations [list]: bboxes and classes
+    returns:
+    - tf_example [tf.Example]
+    """
+    encoded_jpg_io = io.BytesIO(encoded_jpeg)
+    image = Image.open(encoded_jpg_io)
+    width, height = image.size
+    
+    mapping = {1: 'vehicle', 2: 'pedestrian', 4: 'cyclist'}
+    image_format = b'jpg'
+    xmins = []
+    xmaxs = []
+    ymins = []
+    ymaxs = []
+    classes_text = []
+    classes = []
+    filename = filename.encode('utf8')
+    
+    for ann in annotations:
+        xmin, ymin = ann.box.center_x - 0.5 * ann.box.length, 
+                     ann.box.center_y - 0.5 * ann.box.width
+        xmax, ymax = ann.box.center_x + 0.5 * ann.box.length,  
+                     ann.box.center_y + 0.5 * ann.box.width
+        xmins.append(xmin / width)
+        xmaxs.append(xmax / width)
+        ymins.append(ymin / height)
+        ymaxs.append(ymax / height)    
+        classes.append(ann.type)
+        classes_text.append(mapping[ann.type].encode('utf8'))
+
+    tf_example = tf.train.Example(features=tf.train.Features(feature={
+        'image/height': int64_feature(height),
+        'image/width': int64_feature(width),
+        'image/filename': bytes_feature(filename),
+        'image/source_id': bytes_feature(filename),
+        'image/encoded': bytes_feature(encoded_jpeg),
+        'image/format': bytes_feature(image_format),
+        'image/object/bbox/xmin': float_list_feature(xmins),
+        'image/object/bbox/xmax': float_list_feature(xmaxs),
+        'image/object/bbox/ymin': float_list_feature(ymins),
+        'image/object/bbox/ymax': float_list_feature(ymaxs),
+        'image/object/class/text': bytes_list_feature(classes_text),
+        'image/object/class/label': int64_list_feature(classes),
+    }))
+    return tf_example
+
+
+def process_tfr(path):
+    """
+    process a waymo tf record into a tf api tf record
+    """
+    # create processed data dir
+    file_name = os.path.basename(path)
+
+    logger.info(f'Processing {path}')
+    writer = tf.python_io.TFRecordWriter(f'{dest}/{file_name}')
+    dataset = tf.data.TFRecordDataset(path, compression_type='')
+    for idx, data in enumerate(dataset):
+        frame = open_dataset.Frame()
+        frame.ParseFromString(bytearray(data.numpy()))
+        encoded_jpeg, annotations = parse_frame(frame)
+        filename = file_name.replace('.tfrecord', f'_{idx}.tfrecord')
+        tf_example = create_tf_example(filename, encoded_jpeg, annotations)
+        writer.write(tf_example.SerializeToString())
+    writer.close()
+
+
+if __name__ == "__main__": 
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-p', '--path', required=True, type=str,
+                        help='Waymo Open dataset tf record')
+    args = parser.parse_args()  
+    process_tfr(args.path)
+```
+
+
+**Extra Resources**
+[TFRecord tutorial](https://www.tensorflow.org/tutorials/load_data/tfrecord)
+
+
+# Model Selection
+
+We now have to deal with building a model. Before we dive into model building,we have to establish a baseline. It will allow us to better assess the quality of our models. These baseline could be an upper bound. For example, how good would a human be at solving this task?In a case of traffic sign classification,we can safely assume that a human would have an accuracy close to one. While exploring the data,it's actually important to try to classify the different images by yourself. 
+
+This baseline could also be a lower bound. For example, how good would the algorithm be if he was randomly guessing predictions?Let's say that we have two different types of traffic signs. If you were to build a random guessing algorithm,the accuracy of such an algorithm would be around 0. 5. Any algorithm built later on that has an accuracyunder 0. 5 is actually worse than random guessing. Once you have established these baselines,you can start building different models. 
+
+A good rule of thumb is to start fromthe simplest possible model and iterate on complexity. For example, linear and logistic regression arefairly simple models andusually a good starting point for regression and classification problems. Then we can iterate usingmore complex algorithm such as polynomial regression or neural networks. How do we iterate to select the best model?
+
+Well, we start with the simplest model,train it on our training split,and evaluate it using the validation set. Once we have evaluated this model,we can experiment with a different one based on our findings. For example, we could try a polynomial regression model. We train it and realized that it overfits out datasets. We can decide to offer simpler model with less parameters. We can also experiments with different techniques to reduce overfitting. 
+
+Keep in mind that the training and validation sets have to remain the samewhen iterating on the model in order to maintain the integrity of our experiments,we may sometimes have to gather more data,in which case, we have to start over the model selection process. 
+
+ML Engineers get very excited about creating new models. However, before diving into this step of the ML workflow, one must set realistic expectations, by setting up baselines.
+
+A lower bound baseline gives you an idea of a minimum expected performance. If you are getting metrics below such baseline, a red flag should be raised and should be concerned that something is wrong with your training pipeline. For example, for a classification problem, the random guess baseline is a good lower bound. Given C classes, the accuracy of your accuracy of your algorithm should be higher than 1/C.
+
+An upper bound baseline gives you a sense of the maximum expected performance. If a client comes to you and asks for an algorithm that classifies images correctly 100% of the time, you can safely let them know that it won't happen. Human performance is a good upper bound baseline. For a classification problem, you should try to manually classify 100s of images to get an idea of what level of performance your algorithm could reach.
+
+Model selection is a dynamic part of the ML workflow. It requires many iterations. Unless you have some prior knowledge of the task, it is recommended to start with simple models and iterate on complexity. Keep in mind that the validation set should remain the same during this phase!
+
+**Summary**
+The video on "Model Selection" discusses the importance of choosing the right machine learning model as part of the overall ML workflow. Here are the key points covered:
+
+1. **Dynamic Process**: Model selection is described as a dynamic part of the machine learning workflow that requires multiple iterations. It's essential to start with simple models and gradually increase complexity based on performance.
+
+2. **Setting Realistic Expectations**: The video emphasizes the need to set realistic expectations by establishing baselines. This includes defining a lower bound baseline (minimum expected performance) and an upper bound baseline (maximum expected performance) to evaluate the model's effectiveness.
+
+3. **Lower Bound Baseline**: For classification problems, a random guess baseline is suggested as a lower bound, where the model's accuracy should exceed 1/C, with C being the number of classes.
+
+4. **Upper Bound Baseline**: The video mentions that human performance can serve as an upper bound baseline, helping to gauge the maximum achievable accuracy for the model.
+
+5. **Iterative Improvement**: The importance of iterating on model selection and continuously refining the approach based on validation results is highlighted.
+
+Overall, the video underscores that careful model selection is crucial for achieving optimal performance in machine learning tasks.
+
+
+# Error Analysis
+
+We're going to focus on the model evaluation step,also called error analysis. In this step, we will understand the limitation ofour model and use these limitations to improve it. Luckily, we have multiple tools to help us. The value of the loss function and the accuracy,or whatever metrics we decided on,are great indicators of our model performances. By sorting the observation based on the loss value,we can extract patterns in the worst performing data points. 
+
+For example, we may realize that all the roundabout traffic signs have a very high loss. It is also important to keep in mind the baseline we mentioned previously. How does our model compare to the human baseline and the random guessing baseline?Let's look at the following images. 
+
+We have built a car detection model and we are displaying the model's detections. What do we learn from looking at these images?Well, first of all,it seems that our model is correctly detecting some cars but not all of them. On the left image,we can see that the cars in the blurry part of the image are not detected. 
+
+This is probably because the model was not trained onblurry images and therefore never learned to recognize cars in such conditions. This is something we can fix relatively easily by adding blurry data in the training set. 
+
+![](./images/error-analysis.png)
+
+Moreover, we also notice onthe right image that cars in the backgrounds are not detected. We can infer that maybe our algorithm is not good atdetecting smaller objects and we may need to consider a different model. Performing such error analysis gives usa great amount of information about our model's limitations. 
+
+Validation set metrics are a good indicator of global performances of the model but we often need a finer understanding. A metric like accuracy won't tell you if a certain class of objects is always misclassified, for example. For these reasons, one must perform an in-depth error analysis before iterating on the model.
+
+Sorting predictions based on the metric or loss values is always a useful way to identify error patterns.
+
+**Summary**
+
+The video on "Error Analysis" focuses on the importance of evaluating a machine learning model's performance and understanding its limitations. Here are the key points discussed:
+
+1. **Model Evaluation**: Error analysis is a crucial step in the machine learning workflow that helps identify where the model is performing well and where it is failing.
+
+2. **Global Performance Metrics**: While metrics like accuracy provide a general overview of model performance, they may not reveal specific issues, such as consistent misclassification of certain classes.
+
+3. **Identifying Error Patterns**: The video suggests sorting predictions based on loss values to uncover patterns in the worst-performing data points. This can help identify specific classes or conditions where the model struggles.
+
+4. **Example Analysis**: The video provides examples, such as a car detection model, to illustrate how error analysis can reveal insights about the model's limitations, such as difficulties detecting cars in blurry images or smaller objects in the background.
+
+5. **Iterative Improvement**: The insights gained from error analysis can inform subsequent iterations of model training and refinement, leading to improved performance.
+
+Overall, the video emphasizes that conducting thorough error analysis is essential for enhancing model reliability and effectiveness.
+
+
+# Waymo: The Factory Model
+Waymo refers to the Machine Learning Workflow as "The Factory Model". Hear from Dragomir, Distinguished Scientist at Waymo, on their approach.
+
+The factory model of machine learning isan allegory or a framework that I think describeswell how to bootstrap a system into high-performance with data. The factory really is a mapping between dataset and outcome a model you want that does your job. But it's usually not quite so simple. Typically, the process is cyclical. 
+
+You start by collecting a data set on a task you want,send part of it for labeling. Take these labels and create a model. Evaluate this model, find shortcomings,and decide potentially what other data needs to be collected or labeled. Perform that, collect this version 2 of the data set and repeat. 
+
+This is a environment and infrastructure in a pipeline that once established,can keep churning models for you and close this virtuous loop. In typical industry we see over many generations,your models keep getting better and better and better. Even though it takes a non-trivial investment in setting up all this infrastructure,that it does a lot of work for you. 
+
+# Lesson Conclusion
+
+You're now done with the machinery learning workflow lesson. Congrats.  This is the first step on your journey to become a self-driving car engineer. In this lesson, you learned the basic principle of the machinery workflow. From setting up a problem to choosing the best metrics. You learned the importance of understanding your data-sets. 
+
+Finally, you also discovered the importance ofcross-validation and how to leverage it to select machinery models. As machinery engineers say,a model is as good as its data andI cannot highlight enough how important this saying is. As a machinery engineer,you need to cherish your data and become one with it. In the next lesson,we will learn more about digital images. The type of data we will focus on in this course. 
+
+
+The Machine Learning workflow is organized as follow:
+
+* Frame the problem: understand the stakes, and define relevant metrics.
+* Understand the data: perform an Exploratory Data Analysis, and extract patterns from the dataset.
+* Iterate on the model: create a validation set, set up baselines, and iterate on models from simpler to more complex.
