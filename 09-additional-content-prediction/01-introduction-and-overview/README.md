@@ -1,0 +1,37 @@
+# Introduction and Overview
+
+> Part of: **Prediction**
+
+## Video
+
+[Watch on YouTube](https://www.youtube.com/watch?v=aHmVFZ6hMjc)
+
+## Summary
+
+**Prediction Module Overview**
+=====================================
+
+This README file provides an overview of the key concepts and techniques used in the prediction module, as discussed in the Udacity lesson video.
+
+### Key Concepts
+
+* **Multi-modal uncertainty**: The idea that there can be multiple possible outcomes or modes for a given situation. In the context of self-driving cars, this means that the car's sensors may not always know exactly what another vehicle will do.
+* **Probability distributions**: A way to represent the likelihood of different outcomes in a multi-modal system. For example, if a green car is approaching an intersection, its probability distribution might have two peaks: one for going straight and one for turning right.
+* **Process models**: Mathematical models that describe how objects move through space. These can be used to predict trajectories and handle uncertainty associated with prediction.
+* **Multi-modal estimators**: Techniques used to estimate the probabilities of different outcomes in a multi-modal system. They take into account the uncertainty associated with prediction.
+* **Hybrid approaches**: Methods that combine data-driven and model-based techniques to predict motion.
+
+### Practical Notes
+
+The lesson will cover various practical steps, including:
+
+* Implementing an algorithm called Naive Bayes to predict the motion of a car at a T-shaped intersection.
+* Understanding how data processing happens in a typical prediction module.
+* Learning about trajectory clustering, a strictly data-driven approach for prediction.
+* Exploring model-based approaches using process models and multi-modal estimators.
+
+Note: This README file is intended as a summary of the key concepts and practical steps discussed in the Udacity lesson video. It is not meant to be a comprehensive guide or tutorial on the topic.
+
+## Transcript
+
+<v English>Welcome back. My name is Mahni and I work on the prediction team at Mercedes.</v> <v English>To understand what the prediction team does,</v> <v English>imagine at T-shaped intersection.</v> <v English>You are a self-driving car that has just pulled up to the stop sign.</v> <v English>You want to turn left but your sensors notice another vehicle coming from the left.</v> <v English>Now, let&#39;s pause for a moment.</v> <v English>At this point, you as a human probably know the green vehicle will do one of two things,</v> <v English>either it will go straight or it will go right.</v> <v English>Well, let&#39;s say that at this point,</v> <v English>the green vehicle starts slowing down and moving right in the lane.</v> <v English>Well, you probably know that they are</v> <v English>turning right which means it is safe for you to go left.</v> <v English>By making a successful prediction,</v> <v English>you were able to make a decision that got you to your destination safely and efficiently.</v> <v English>And what makes prediction interesting but also</v> <v English>challenging is that it is inherently multi-modal.</v> <v English>A good way of thinking about what that</v> <v English>means is to think of how you would answer the question,</v> <v English>&#34;Where is the green car likely to be in five seconds?&#34;</v> <v English>If we try to come up with the probability distribution,</v> <v English>we would see that it has multiple peaks or moats.</v> <v English>If the car is going straight,</v> <v English>then the car is likely to be somewhere here.</v> <v English>But if the car turns right,</v> <v English>then it&#39;s more likely to be here.</v> <v English>And in general, the way we think about handling multi-modal uncertainty is</v> <v English>by maintaining some beliefs about how probable each potential mode is.</v> <v English>Initially, if we just see this green car coming from far away,</v> <v English>those beliefs could be initialized using some prior knowledge about this intersection.</v> <v English>In this case, let&#39;s say that cars generally go straight at this intersection.</v> <v English>But as we continue watching the car,</v> <v English>we may notice that it is slowing down.</v> <v English>Since this behavior is more consistent with turning right,</v> <v English>the probability of turning right increases.</v> <v English>And then, at the next timestep,</v> <v English>we might notice that the car has already started turning</v> <v English>right which again increases the probability of turning right.</v> <v English>And as we keep observing,</v> <v English>we continue updating our belief based on new evidence until eventually we</v> <v English>can predict with high certainty that the vehicle is turning right at this intersection.</v> <v English>So the responsibility of the prediction module is to do the</v> <v English>following: We take as input a map of the world and data from sensor fusion</v> <v English>and generate as output some predictions of the future state of</v> <v English>all the vehicles and other moving objects in the vicinity of our vehicle.</v> <v English>Typically, these predictions are represented by a set</v> <v English>of possible trajectories like that two dotted arrows</v> <v English>emanating from the green car in this scenario and</v> <v English>an associated probability for each trajectory.</v> <v English>Before we get into the details,</v> <v English>let me explain what we are going to discuss in this lesson.</v> <v English>First, we&#39;ll go through a brief overview where you will learn</v> <v English>a bit more about the inputs and outputs to prediction.</v> <v English>Next, we will talk about how prediction is actually done.</v> <v English>We will discuss the two main classes of prediction techniques,</v> <v English>model-based approaches and data-driven approaches.</v> <v English>There, model-based approaches use mathematical models of motion to predict</v> <v English>trajectories and data-driven approaches rely</v> <v English>on machine learning and examples to learn from.</v> <v English>Then, I will briefly walk you through how to apply</v> <v English>strictly data-driven approach for prediction called trajectory clustering.</v> <v English>Then, we will dig into model-based approaches where I&#39;ll introduce</v> <v English>process models as a mathematical technique for modeling</v> <v English>various maneuvers like lane changes, vehicle following, etc.</v> <v English>And introduce multi-modal estimators as</v> <v English>an effective technique for handling the uncertainty associated with prediction,</v> <v English>namely, the uncertainty about which maneuver an object will do in a particular situation.</v> <v English>Finally, we will dive deep into hybrid approaches</v> <v English>which use data and process models to predict motion</v> <v English>through a cycle of intense classification where we try to</v> <v English>figure out what a driver wants to do and trajectory generation.</v> <v English>There we try to figure out how they are likely to do it.</v> <v English>We will end by implementing an algorithm called Naive Bayes to</v> <v English>predict the motion of a car at a T-shaped intersection like the one you just saw.</v> <v English>In the next few segments,</v> <v English>I&#39;m going to ask you to do some reading about</v> <v English>the data processing that happens in a typical prediction module.</v>

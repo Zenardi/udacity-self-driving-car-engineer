@@ -1,0 +1,33 @@
+# Process Models
+
+> Part of: **Prediction**
+
+## Video
+
+[Watch on YouTube](https://www.youtube.com/watch?v=VcRDsKBn7tc)
+
+## Summary
+
+**Process Models for Autonomous Vehicles**
+
+This README file summarizes the key concepts and practical notes from a lesson on process models for autonomous vehicles.
+
+### Key Concepts
+
+* **Lane Following**: A motion model where a vehicle follows a lane with constant velocity.
+	+ Can be described mathematically using linear or non-linear equations, depending on the complexity of the model.
+* **Holonomic vs. Non-Holonomic Systems**: A holonomic system is one where the point can move in any direction at any time, while a non-holonomic system has constraints on its motion (e.g., a car cannot change direction instantly).
+* **Bicycle Model**: A popular approach for modeling a car as a non-holonomic system, which takes into account steering angle and acceleration.
+* **PID Controllers**: A type of controller that can be used to regulate the steering angle or acceleration in a bicycle model.
+* **Uncertainty Representation**: The use of a multivariate Gaussian with zero mean to represent uncertainty in process models.
+
+### Practical Notes
+
+* When choosing a process model, there is often a tradeoff between simplicity and accuracy.
+* Linear point models are too simplistic for most applications and can be improved by incorporating non-linearities or using more complex models like the bicycle model.
+* The bicycle model strikes a good balance between simplicity and accuracy, but can be further improved by including more details about vehicle dynamics.
+* In practice, minor accuracy improvements to process models may not be worth the computational overhead, especially when considering the uncertainty inherent in predicting other drivers' behaviors.
+
+## Transcript
+
+<v English>Let&#39;s consider some process models for</v> <v English>a situation where a self-driving car is trying to merge onto a highway.</v> <v English>But, let&#39;s say there is another vehicle in the rightmost lane.</v> <v English>Now, this vehicle might do a few things.</v> <v English>It might just ignore us,</v> <v English>it might speed up to let us merge behind it,</v> <v English>it might slow down to let us get ahead of it,</v> <v English>or it might change lanes.</v> <v English>Now, for each of these behaviors,</v> <v English>we want to come up with a process model that formalizes the likely motion of the car.</v> <v English>If the car ignores us,</v> <v English>it will likely follow lane A with constant velocity.</v> <v English>If they speed up, we may choose to model</v> <v English>their motion as lane following with positive acceleration.</v> <v English>If they slow down,</v> <v English>we would do the same thing,</v> <v English>but with negative acceleration.</v> <v English>Lane changing, we could model as lane following on lane B, with constant velocity.</v> <v English>You can see this term lane following show up a lot.</v> <v English>What is lane following?</v> <v English>How do we describe it mathematically?</v> <v English>We have many options here.</v> <v English>In general, there is a tradeoff between</v> <v English>simplicity and accuracy when choosing a process model.</v> <v English>One very simple approach is to treat</v> <v English>the car as a point particle with holonomic properties.</v> <v English>This means we assume the point can move in any direction at any time.</v> <v English>Which of course is a very simplistic assumption.</v> <v English>The simplest motion models are linear.</v> <v English>Constant velocity lane following for any coordinates would look something like this.</v> <v English>Where the car moves forward at each timestep,</v> <v English>and is assumed to keep a constant distance to the lane center.</v> <v English>In practice, linear point models usually wind up being too simplistic.</v> <v English>The next step in complexity happens when we allow non-linearities into our model.</v> <v English>Typically, if you start incorporating heading into our state vector,</v> <v English>you will end up with sines and cosines in our model equations.</v> <v English>An example of a non-linear point model of lane</v> <v English>following could look like this in Cartesian coordinates.</v> <v English>Note the presence of cosine and sine,</v> <v English>which are where the non-linearity comes in.</v> <v English>The next jump in complexity happens when we</v> <v English>take into account that a car is a non-holonomic system.</v> <v English>A popular approach is to use a bicycle model,</v> <v English>which looks like this in an inertial cartesian reference frame.</v> <v English>A bicycle model takes two inputs,</v> <v English>the steering angle and the acceleration.</v> <v English>For the steering angle,</v> <v English>we could use a PID controller with the target lane center line as the reference line.</v> <v English>For the acceleration, we could once again use a constant velocity model,</v> <v English>or a constant acceleration model,</v> <v English>or if we wanted more complex acceleration behavior,</v> <v English>we could use a PID controller with the speed limit as the target.</v> <v English>In practice, these sorts of models tend to</v> <v English>strike a good balance between simplicity and accuracy.</v> <v English>But you could always go more complex by including more details about vehicle dynamics.</v> <v English>For example, you could use a dynamic bicycle model,</v> <v English>which looks like this.</v> <v English>Note the presence of terms like F_c, f,</v> <v English>which represents the lateral force on the tires at the front of the vehicle,</v> <v English>and F_c, r, which represents the lateral force on the rear tire.</v> <v English>You could even add more complexity and model the four wheels of the car.</v> <v English>While these models are technically more accurate than any of the others,</v> <v English>in practice, using them doesn&#39;t usually make sense for prediction.</v> <v English>There is so much uncertainty inherent to predicting the behaviors of other drivers that</v> <v English>minor accuracy improvements to process models just</v> <v English>aren&#39;t worth the computational overhead that they come with.</v> <v English>Note how all the models contain an additional term</v> <v English>W. This is where the uncertainty on the process model is stored.</v> <v English>A classic choice to represent uncertainty is a multivariate Gaussian with zero mean.</v> <v English>Next, I&#39;m going to ask you to think a bit more about process models.</v> <v English>Then, we will talk about how we can reason about</v> <v English>multiple behaviors by considering multiple process models simultaneously.</v>
