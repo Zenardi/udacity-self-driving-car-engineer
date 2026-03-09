@@ -29,6 +29,35 @@
   - [Batch Normalization](#batch-normalization)
     - [**Summary: Batch Normalization**](#summary-batch-normalization)
     - [**Transcript**](#transcript-7)
+- [AlexNet](#alexnet)
+    - [**Summary: AlexNet Architecture**](#summary-alexnet-architecture)
+    - [**Formatted Transcript**](#formatted-transcript)
+  - [VGG](#vgg)
+    - [**Summary: VGG Architecture**](#summary-vgg-architecture)
+    - [**Formatted Transcript**](#formatted-transcript-1)
+  - [ResNet](#resnet)
+    - [**Summary: ResNet Architecture**](#summary-resnet-architecture)
+    - [**Formatted Transcript**](#formatted-transcript-2)
+- [Exercise 2 - CNN](#exercise-2---cnn)
+  - [Solution: Build a Custom Architecture](#solution-build-a-custom-architecture)
+- [Transfer Learning](#transfer-learning)
+    - [**Summary: Transfer Learning and Fine-Tuning**](#summary-transfer-learning-and-fine-tuning)
+    - [**Formatted Transcript**](#formatted-transcript-3)
+  - [The Four Main Cases When Using Transfer Learning](#the-four-main-cases-when-using-transfer-learning)
+  - [Demonstration Network](#demonstration-network)
+  - [Case 1: Small Data Set, Similar Data](#case-1-small-data-set-similar-data)
+  - [Case 2: Small Data Set, Different Data](#case-2-small-data-set-different-data)
+  - [Case 3: Large Data Set, Similar Data](#case-3-large-data-set-similar-data)
+  - [Case 4: Large Data Set, Different Data](#case-4-large-data-set-different-data)
+  - [Extra Resources](#extra-resources)
+- [Augmentations](#augmentations)
+    - [**Summary: Data Augmentations**](#summary-data-augmentations)
+    - [**Formatted Transcript**](#formatted-transcript-4)
+  - [Albumentations](#albumentations)
+- [Exercise 3 - Augmentations](#exercise-3---augmentations)
+  - [Solution: Augmentations](#solution-augmentations)
+- [Lesson Conclusion](#lesson-conclusion)
+- [Glossary](#glossary)
 
 
 
@@ -645,3 +674,570 @@ Well, with these two more layers, we are now ready to look at deeper and more mo
 
 Batch Normalization or Batchnorm was first introduced in a [2015 paper](https://arxiv.org/pdf/1502.03167.pdf). A batchnorm layers computes batch statistics and scales its inputs using these statistics. By doing so, Batchnorm improves the convergence time of neural networks. Similarly to Dropout, Batchnorm behaves differently during training and testing. During training, this layer calculates an exponential moving average of batch statistics. During testing, these statistics are used instead of the batch statistics from the test batches.
 
+# AlexNet
+
+Youtube Video: [Link](https://www.youtube.com/watch?v=QpvVlF1Hfyc)
+
+### **Summary: AlexNet Architecture**
+
+**Overview**
+This section introduces **AlexNet**, the groundbreaking Convolutional Neural Network (CNN) that won the 2012 ImageNet competition by a landslide. While it is no longer actively used in modern applications, it is a massive historical milestone that proved the dominance of deep learning in computer vision.
+
+**Key Architecture Specifications:**
+
+* **Input:** A 224x224 RGB image.
+* **First Layer:** A convolutional layer featuring 96 filters of a massive **11x11** size, immediately followed by a 3x3 max pooling layer.
+* **Middle Layers:** A continued sequence of convolutional and pooling layers.
+* **The Classifier:** The network finishes with fully connected (linear) layers. The final output layer has exactly 1,000 neurons to match the 1,000 distinct classes in the ImageNet dataset.
+* **Total Size:** AlexNet contains approximately 61 million learnable parameters.
+
+**The Key Takeaway / Legacy:**
+The most important design detail to remember about AlexNet is the unusually large **11x11 filter size** in its first layer. As the course will soon demonstrate, modern architectures quickly abandoned these massive filters in favor of stacking smaller ones. AlexNet paved the way for the next generation of networks, such as the VGG network.
+
+---
+
+### **Formatted Transcript**
+
+I previously mentioned the ImageNet competition, a yearly event where teams of researchers try to create the best image classification algorithm possible. Well, in 2012, a CNN named AlexNet won the competition by a landslide. Even though some of the design choices made by AlexNet are a little out of date now, it was such a groundbreaking algorithm in the field of deep learning for computer vision, that I wanted us to learn about it.
+
+AlexNet takes a 224 by 224 RGB image as an input. The first layer is a convolutional layer made of 96 filters of size 11 by 11. It is followed by a 3 by 3 max pooling layer. The rest of the architecture is made of convolution and pooling layers.
+
+The last few layers are fully connected, and since the ImageNet dataset contains 1,000 classes, the last layer has 1,000 neurons. In total, AlexNet has around 61 million parameters.
+
+The most important detail I would like you to remember about AlexNet is the filter size of the first convolutional layer. As we will see, such a large filter size is a design decision that was quickly abandoned in more modern architectures.
+
+Overall, AlexNet is not particularly used anymore, unlike the VGG network that we are going to study in the following video.
+
+---
+
+The Alexnet architecture was a critical breakthrough in the field of computer vision for deep learning. In this [2012 paper](https://proceedings.neurips.cc/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf), the authors successfully used a CNN trained on GPU to classify images.
+
+## VGG
+
+Youtube Video: [Link](https://www.youtube.com/watch?v=rrH0sY-qKio)
+
+Here is the summary of the lesson on the VGG architecture, followed by the formatted transcript with improved paragraph spacing.
+
+### **Summary: VGG Architecture**
+
+**Overview**
+This section introduces the **VGG network**, the winner of the 2014 ImageNet competition. Unlike AlexNet, VGG remains a highly popular and influential architecture today. Its defining characteristics are its depth and its exclusive use of small filters.
+
+**Key Concepts Covered:**
+
+* **The VGG Algorithm (VGG16 & VGG19):**
+* VGG comes in two primary versions, defined by their depth: 16 layers and 19 layers. The focus here is on **VGG16**.
+
+
+* **Convolutional Blocks (Conv Blocks):**
+* VGG formalized the concept of "Conv Blocks." A block consists of multiple stacked convolutional layers followed by a single pooling layer.
+* *The Pattern:* Throughout the entire network, the filter size remains exactly the same ($3 \times 3$). However, the *number* of filters doubles every time you move to a new Conv Block.
+
+
+* **The Power of Small Filters ($3 \times 3$ vs. $7 \times 7$):**
+* Why use three $3 \times 3$ layers instead of one large $7 \times 7$ layer (like older architectures)?
+* **Receptive Field Equivalence:** If you stack three $3 \times 3$ convolutional layers, the neurons in the final layer will look at the exact same $7 \times 7$ spatial area of the original image as a single $7 \times 7$ filter would.
+* **Advantage 1 (More Non-linearity):** Three layers mean three activation functions. More non-linearity allows the network to understand and model much more complex signals.
+* **Advantage 2 (Fewer Parameters):** A stack of three $3 \times 3$ filters actually requires mathematically fewer learnable weights than a single massive $7 \times 7$ filter, making the network more efficient.
+
+
+
+---
+
+### **Formatted Transcript**
+
+Whereas AlexNet is not an architecture that you will encounter in modern CNNs, the VGG architecture is one that is still very popular nowadays. The VGG algorithm won the 2014 ImageNet competition and brought the following improvements: It uses smaller filter sizes for the convolutional layers and is much deeper than previous architectures.
+
+Two versions of the VGG architecture exist: VGG16 and VGG19 with 16 and 19 layers respectively. In this video, we are going to look at the VGG16 version.
+
+The VGG introduced the notion of convolutional blocks or conv blocks. A conv block is made of stacked convolutional layers followed by a pooling layer. For example, VGG 16 has five conv blocks. In this architecture, each convolutional layer in a block has the same filter size $3 \times 3$, and the same number of filters. Whereas the filter size remains constant in this network, the number of filters doubles for each conv block. This approach remains one of the most common designs of convolutional neural networks.
+
+What are the pros of using smaller filter sizes in comparison to larger ones, like in AlexNet? Remember when I mentioned that the spatial area where the filter is convolved is called the receptive field of a neuron? If you stack multiple convolutional layers with $3 \times 3$ filters, you increase the receptive field of the neurons in the last layer.
+
+Let's look at an example of three stacked convolutional layers, which is similar to what we have in the last conv blocks of the VGG16 architecture. Let's look at an element of a depth slice of the last output volume. The filter size of the last layer is $3 \times 3$. We can draw the receptive field of this element. We can repeat this operation for each element of this array and then we can repeat this operation again and obtain a $7 \times 7$ square.
+
+Basically, a block of three convolutional layers with a filter size of $3 \times 3$ has the same receptive field than a single convolutional layer with a $7 \times 7$ filter size. How is that an improvement?
+
+Having three layers introduces more non-linearity in our system, which is great because we are trying to understand complex signals and it also reduces the number of parameters. Indeed, a stack of three convolutional layers with $3 \times 3$ filters has less parameters than a single convolutional layer with $7 \times 7$ filters. We will go over this calculation in your future exercise. For now, I want you to remember this convolutional block design and the smaller filter sizes.
+
+---
+
+In this [2015 paper](https://arxiv.org/pdf/1409.1556.pdf), the authors introduced two very important concepts:
+
+* using smaller filter sizes, in this case `3x3` filters.
+* using convolutional blocks: blocks of 2 or 3 convolutional layers followed by one pooling layer.
+
+By stacking multiple convolutional layers with small filters, we create a block that has less parameters than a single layer with larger filter sizes, while having the same effective receptive field and more non-linearities.
+
+## ResNet
+
+Youtube Video: [Link](https://www.youtube.com/watch?v=U2IDL3F_iAk)
+
+Here is the summary of the lesson on the ResNet architecture, followed by the formatted transcript with improved paragraph spacing and minor speech-to-text corrections for clarity.
+
+### **Summary: ResNet Architecture**
+
+**Overview**
+This section introduces **ResNet** (Residual Networks), a pivotal architecture that solved a major roadblock in deep learning: the degradation problem. By introducing the concept of "skip connections," ResNet allowed engineers to build networks exponentially deeper than previous models like VGG.
+
+**Key Concepts Covered:**
+
+* **The Degradation Problem:**
+* As researchers tried to make networks deeper than VGG to improve performance, they hit a wall. Adding more layers actually caused performance to *degrade*.
+* Crucially, this was **not** caused by overfitting, because both the training error and the test error increased.
+* The authors of ResNet realized that standard, ultra-deep architectures were simply too mathematically difficult for the optimizer to train effectively.
+
+
+* **The Solution: Skip Connections (Shortcuts):**
+* To fix this optimization issue, ResNet introduced **skip connections**.
+* Instead of forcing data to flow strictly layer-by-layer, a skip connection takes the original input of a convolutional block and passes it directly to the end of that block, adding it to the output.
+
+
+* **The Math (Residual Mapping):**
+* Let $x$ be the input and $f(x)$ be the complex mapping the block is trying to learn.
+* *Without* a skip connection, the block struggles to learn $f(x)$ directly.
+* *With* a skip connection, the block instead learns $f(x) - x$ (the "residual"). It turns out it is significantly easier for gradient descent to optimize this residual mapping than the original mapping.
+
+
+* **Impact and Legacy:**
+* This seemingly simple addition completely revolutionized CNNs. It allowed the creation of incredibly deep networks like ResNet-101 (101 layers) and ResNet-152 (152 layers).
+* ResNet easily won the 2015 ImageNet competition and remains one of the most heavily used architectures in image classification today.
+
+
+
+---
+
+### **Formatted Transcript**
+
+There is one last architecture that I would like us to go over, the ResNet model, because it introduced another very important concept. But first, let's talk about an issue that architectures like VGG have. VGG was the first very deep convolutional neural network, and researchers realized that going deeper was improving performances. Naturally, people tried stacking even more layers than VGG.
+
+However, they quickly realized that the performances of such networks was degrading when extra layers were added. As we can see here, not only the error on the test set is higher for networks with more layers, but also the error on the training set. Overfitting is not the problem here. Why are larger networks getting worse performances? Indeed, deeper networks should not perform worse than shallower ones.
+
+Let's consider the VGG network, for example. If we added a few more convolutional blocks to it, this new network should at least perform as well as the original architecture simply because this newly added layer could learn the identity function. But in practice, researchers did not observe that, and the authors of the ResNet paper argued that it was way too hard to optimize over larger architectures. To remediate this, they introduced shortcuts or skip connections, which we'll learn about in the next slide.
+
+The authors of ResNet decided to add skip connections, meaning that the input of a convolutional block is added to its output. Let's add some formal notation by calling $x$ our input and $f(x)$, the mapping of the input $x$. Without the skip connection, the conv block is trying to learn $f(x)$. With the skip connection, the conv block is now trying to learn $f(x) - x$, which is the residual of $f(x)$.
+
+The authors argue that it is easier to learn the residual mapping than the original mapping. With this simple trick, they were able to create very deep architectures such as ResNet-101 that contains 101 layers, or ResNet-152 that contains 152 layers. Thanks to this approach, the authors won the 2015 ImageNet competition. Skip connections are a very important component of modern architecture. The ResNet model remains one of the most popular models to date for image classification.
+
+---
+
+In another very important [paper published in 2015](https://arxiv.org/pdf/1512.03385.pdf), the authors introduced the Resnet architecture. They realized that networks with more layers started underperforming. To solve this and allow for deeper networks, the authors introduced the concept of residual connections or skip connections. A skip connection simply adds the input of a layer or a block of layers to its output. By doing so, it will alleviate gradient propagation issues linked to activation functions.
+
+**Inception**
+
+One last neural network that may be of interest to you is the Inception network, introduced in [this 2014 paper](https://arxiv.org/pdf/1409.4842.pdf). While it is beyond the scope of this course, it also has some interesting and ground-breaking research, such as the use of multiple different sizes of convolutional filters within a "layer", as well as the use even of 1x1 filters, enabling deep networks with often fewer parameters. Make sure to check out the paper if you want to dive deeper!
+
+# Exercise 2 - CNN
+
+**Objective**
+
+In this exercise, you will use the Keras API to create a first CNN.
+
+**Details**
+
+Using the Keras API, you have to create a small convolutional neural networks using less than 15 layers, containing at least one convolutional layer, one pooling layer and one dense (fully connected layer). You can find a list of the different layers available [here](https://www.tensorflow.org/api_docs/python/tf/keras/layers).
+
+You should experiment with different designs (number of layers, types of pooling, filter sizes, number of fully connected layers, number of neurons).
+
+You will need to feed the image directory to `training.py` (`GTSRB/Final_Training/Images/`) with `-d`, and can view the final metrics visualization in the Desktop.
+
+
+> [!TIP] A good starting point for small networks is LeNet5. You will find many existing implementations online.
+> Don't forget the basic structure of a convnet: convolutional layer, activation and pooling.
+> You can use the [summary](https://www.tensorflow.org/api_docs/python/tf/keras/Model#summary) method of the Keras model API to print the description of your model.
+
+## Solution: Build a Custom Architecture
+
+```python
+import argparse
+import logging
+
+import tensorflow as tf
+from tensorflow.keras.layers import Dense, Flatten, Conv2D, MaxPooling2D
+
+from utils import get_datasets, get_module_logger, display_metrics
+
+
+def create_network():
+    net = tf.keras.models.Sequential()
+    input_shape = [32, 32, 3]
+    net.add(Conv2D(6, kernel_size=(3, 3), strides=(1, 1), activation='relu', 
+                   input_shape=input_shape))
+    net.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2)))
+    net.add(Conv2D(16, kernel_size=(3, 3), strides=(1, 1), activation='relu'))   
+    net.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2)))
+    net.add(Flatten())
+    net.add(Dense(120, activation='relu'))
+    net.add(Dense(84, activation='relu'))
+    net.add(Dense(43))
+    return net
+
+
+if __name__  == '__main__':
+    logger = get_module_logger(__name__)
+    parser = argparse.ArgumentParser(description='Download and process tf files')
+    parser.add_argument('-d', '--imdir', required=True, type=str,
+                        help='data directory')
+    parser.add_argument('-e', '--epochs', default=10, type=int,
+                        help='Number of epochs')
+    args = parser.parse_args()    
+
+    logger.info(f'Training for {args.epochs} epochs using {args.imdir} data')
+    # get the datasets
+    train_dataset, val_dataset = get_datasets(args.imdir)
+
+    model = create_network()
+
+    model.compile(optimizer='adam',
+              loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+              metrics=['accuracy'])
+    history = model.fit(x=train_dataset, 
+                        epochs=args.epochs, 
+                        validation_data=val_dataset)
+    display_metrics(history)
+```
+
+
+# Transfer Learning
+
+Youtube Video: [Link](https://www.youtube.com/watch?v=Od9EU9QeWKI)
+
+### **Summary: Transfer Learning and Fine-Tuning**
+
+**Overview**
+This section introduces a highly practical and widely used industry technique: **Transfer Learning**. It explains how to train powerful deep learning models even when you have a relatively small dataset by repurposing the "knowledge" a network has already learned from a massive dataset (like ImageNet).
+
+**Key Concepts Covered:**
+
+* **The Concept of Transfer Learning:**
+* Convolutional Neural Networks (CNNs) act as feature extractors.
+* Early (shallow) layers always learn very basic, general visual features like straight lines, edges, and simple color gradients. Because these features appear in almost *all* images, they are "data-agnostic."
+* Therefore, a network trained to recognize thousands of objects can have its foundational knowledge transferred to a completely new, specific task without starting from scratch.
+
+
+* **Pre-trained Weights vs. Training from Scratch:**
+* Instead of initializing a network with random weights and requiring millions of images to teach it what an edge looks like, you initialize the network with **pre-trained weights** (e.g., from a model that already won the ImageNet competition).
+* In the professional machine learning industry, engineers rarely train complex architectures entirely from scratch.
+
+
+* **Fine-Tuning Strategies:**
+* Once the pre-trained weights are loaded, the network must be adapted to your specific dataset through a process called **fine-tuning**.
+* **Strategy 1 (Retrain Everything):** You can continue to train and update the weights of every single layer in the network using your new, smaller dataset.
+* **Strategy 2 (Freeze and Retrain):** You can "freeze" the feature extractor (keeping the convolutional layer weights locked exactly as they were) and only retrain the classifier (the final linear layers) to recognize your specific new classes.
+
+
+
+---
+
+### **Formatted Transcript**
+
+I previously said that deep learning requires a lot of data. Well, this is not entirely true. Thanks to transfer learning, we can use deep learning models on smaller datasets.
+
+What is transfer learning? Transfer learning leverages a very cool property of convolutional neural networks. As we mentioned earlier, convnets act as feature extractors. The shallower layers of a convolutional neural network learn general features such as lines or edges, whereas deeper layers learn more specialized features. These features learned in the shallow layers are data agnostic and should be useful for an entirely different dataset than the one the network was trained on. This is exactly what transfer learning is.
+
+Instead of using randomly initialized weights, we're going to use the weights of a network trained on another dataset. In practice, it means that we are almost never training a network from scratch, but instead initializing our network with ImageNet weights, for example. In my many years training deep neural networks, I have trained very few neural networks from scratch. Instead, we'll do something called fine tuning.
+
+There are many different ways to perform fine tuning. For example, we can decide to retrain every single layer of the network. We can also decide to just retrain the classifier and not the feature extractor. You will have a chance to experiment with transfer learning and fine tuning for the final project.
+
+Transfer learning is a very powerful idea as it overcomes some of the challenges of training deep neural networks.
+
+---
+
+
+## The Four Main Cases When Using Transfer Learning
+
+Transfer learning involves taking a pre-trained neural network and adapting the neural network to a new, different data set.
+
+Depending on both:
+
+the size of the new data set, and
+the similarity of the new data set to the original data set
+the approach for using transfer learning will be different. There are four main cases:
+
+1. new data set is small, new data is similar to original training data
+2. new data set is small, new data is different from original training data
+3. new data set is large, new data is similar to original training data
+4. new data set is large, new data is different from original training data
+
+
+![](./images/transfered-1.png)
+Four Cases When Using Transfer Learning
+
+A large data set might have one million images. A small data could have two-thousand images. The dividing line between a large data set and small data set is somewhat subjective. Overfitting is a concern when using transfer learning with a small data set.
+
+Images of dogs and images of wolves would be considered similar; the images would share common characteristics. A data set of flower images would be different from a data set of dog images.
+
+Each of the four transfer learning cases has its own approach. In the following sections, we will look at each case one by one.
+
+## Demonstration Network
+To explain how each situation works, we will start with a generic pre-trained convolutional neural network and explain how to adjust the network for each case. Our example network contains three convolutional layers and three fully connected layers:
+
+![](./images/transfered-2.png)
+General Overview of a Neural Network
+
+Here is an generalized overview of what the convolutional neural network does:
+
+* the first layer will detect edges in the image
+* the second layer will detect shapes
+* the third convolutional layer detects higher level features
+
+Each transfer learning case will use the pre-trained convolutional neural network in a different way.
+
+
+## Case 1: Small Data Set, Similar Data
+
+![](./images/transfered-case1.png)
+
+If the new data set is small and similar to the original training data:
+
+* slice off the end of the neural network
+* add a new fully connected layer that matches the number of classes in the new data set
+* randomize the weights of the new fully connected layer; freeze all the weights from the pre-trained network
+* train the network to update the weights of the new fully connected layer
+
+To avoid overfitting on the small data set, the weights of the original network will be held constant rather than re-training the weights.
+
+Since the data sets are similar, images from each data set will have similar higher level features. Therefore most or all of the pre-trained neural network layers already contain relevant information about the new data set and should be kept.
+
+Here's how to visualize this approach:
+
+![](./images/transfered-case1-1.png)
+
+
+## Case 2: Small Data Set, Different Data
+
+If the new data set is small and different from the original training data:
+
+* slice off most of the pre-trained layers near the beginning of the network
+* add to the remaining pre-trained layers a new fully connected layer that matches the number of classes in the new data set
+* randomize the weights of the new fully connected layer; freeze all the weights from the pre-trained network
+* train the network to update the weights of the new fully connected layer
+
+Because the data set is small, overfitting is still a concern. To combat overfitting, the weights of the original neural network will be held constant, like in the first case.
+
+But the original training set and the new data set do not share higher level features. In this case, the new network will only use the layers containing lower level features.
+
+Here is how to visualize this approach:
+
+
+![](./images/transfered-case2.png)
+Neural Network with Small Data Set, Different Data
+
+
+## Case 3: Large Data Set, Similar Data
+
+
+![](./images/transfered-case3.png)
+Case 3: Large Data Set, Similar Data
+
+If the new data set is large and similar to the original training data:
+
+* remove the last fully connected layer and replace with a layer matching the number of classes in the new data set
+* randomly initialize the weights in the new fully connected layer
+* initialize the rest of the weights using the pre-trained weights
+* re-train the entire neural network
+
+
+Overfitting is not as much of a concern when training on a large data set; therefore, you can re-train all of the weights.
+
+Because the original training set and the new data set share higher level features, the entire neural network is used as well.
+
+Here is how to visualize this approach:
+
+![](./images/transfered-case3-1.png)
+Neural Network with Large Data Set, Similar Data
+
+## Case 4: Large Data Set, Different Data
+
+![](./images/transfered-case4.png)
+Case 4: Large Data Set, Different Data
+
+If the new data set is large and different from the original training data:
+
+remove the last fully connected layer and replace with a layer matching the number of classes in the new data set
+retrain the network from scratch with randomly initialized weights
+alternatively, you could just use the same strategy as the "large and similar" data case
+Even though the data set is different from the training data, initializing the weights from the pre-trained network might make training faster. So this case is exactly the same as the case with a large, similar data set.
+
+If using the pre-trained network as a starting point does not produce a successful model, another option is to randomly initialize the convolutional neural network weights and train the network from scratch.
+
+Here is how to visualize this approach:
+![](./images/transfered-case4-1.png)
+
+
+## Extra Resources
+[Transfer Learning and Fine Tuning](https://www.tensorflow.org/tutorials/images/transfer_learning)
+
+
+
+# Augmentations
+
+Youtube Video: [Link](https://www.youtube.com/watch?v=0-PsNLi2jKc)
+
+### **Summary: Data Augmentations**
+
+**Overview**
+This section introduces **Data Augmentation**, a critical technique used to artificially expand the size and variability of a training dataset. It is the go-to solution when gathering more real-world data is too expensive, difficult, or impossible.
+
+**Key Concepts Covered:**
+
+* **The Problem with Limited Data:**
+* A model is only as good as its data. If you train a self-driving car model exclusively on images taken on clear, sunny days, it will likely fail when it encounters night conditions, heavy rain, or fog in the real world.
+
+
+* **The Solution (Data Augmentation):**
+* Instead of collecting millions of new images, you artificially alter the images you already have to simulate different conditions.
+* These transformations happen *dynamically* as the data is loaded into the neural network, meaning you don't have to save thousands of altered image files to your hard drive.
+
+
+* **Two Main Types of Transformations:**
+* **Pixel-Level:** Changing the actual pixel values (e.g., adjusting brightness, adding blur, shifting colors).
+* **Geometric:** Altering the spatial properties of the image (e.g., rotating, cropping, scaling).
+
+
+* **The Golden Rule of Augmentation (Realism):**
+* Augmentations must always make logical sense for your specific problem domain.
+* *Example:* Vertically flipping an image of a dog might be fine for a general image classifier, but you should never vertically flip a traffic sign for an autonomous vehicle, because cars do not encounter upside-down traffic signs in the real world.
+
+
+
+**Traffic Sign Augmentation Examples:**
+
+* **Blurring:** Simulates foggy weather or motion blur from driving fast.
+* **Small Rotations:** Simulates a camera mounted at a slight angle or a slightly bent signpost.
+* **Brightness Adjustments:** Simulates daytime vs. nighttime, or sunny vs. overcast weather.
+* **Occlusions:** Artificially blocking parts of the sign to teach the network to recognize it even if a tree branch or another vehicle is partially in the way.
+
+---
+
+### **Formatted Transcript**
+
+As machine learning engineers say, an algorithm is only as good as the data you feed it. To get good performances, you need good data. However, we learned that getting data might be expensive, difficult, or simply not possible. In many cases, you won't be able to get more data.
+
+Moreover, your dataset might not contain enough variability to train a robust model. Let's look at this training set for example. We mostly have images with clear weather. A model built using this set would probably perform very well in clear weather conditions. However, this is what the real data is sometimes going to look like: nighttime conditions and overcast weather. Our model trained on clear weather data would not perform well in such conditions. If you cannot gather more data to increase the variability of your training dataset, data augmentation may be the solution for you.
+
+Data augmentation is a way to introduce more variability in your dataset by transforming your input image at the pixel level by adding blur, for example, or transforming your input image using geometric operations such as rotation. We are going to see some examples in the next slide.
+
+Data augmentations should be carefully curated as you want them to reflect what you could potentially see in your dataset but you were not able to capture. For example, a vertical flip augmentation would not be suited for traffic sign classification. As you can hope, the car will never have to read the traffic sign upside down.
+
+Finally, augmentations are often performed dynamically while loading the image and before feeding it into the network. This way, we are not saving the augmented images to disk.
+
+Let's look at some augmentations together in the next slide. Let's consider this image of a crossing sign and let's see what kind of augmentations we can apply to this image. Keep in mind that these augmentations should reflect something that we could see in our test set.
+
+First, we could consider blurring as an augmentation. For example, the weather might be foggy. The car may also be driving fast, in which case we would see some motion blur in the image. We could also apply some small rotation to our image. However, the angle of the rotation should remain small because we would not expect upside-down traffic signs in our test set.
+
+Increasing and decreasing the brightness is a great way to simulate sunny and overcast weather. Finally, we can mimic potential occlusion on the traffic sign. Indeed, a tree or another obstacle could occlude the traffic sign, and we should make our network robust to occlusion.
+
+In the following video, we'll learn how to leverage Albumentations, a Python library that creates augmentations.
+
+---
+
+Data augmentation is a way to increase the variability in the training dataset without having to capture more images. By applying pixel-level and geometric transformations during training, we can artificially simulate different environments. For example, a blur filter could be used to mimic motion blur. The augmentations should be carefully chosen.
+
+You can follow [this tutorial](https://www.tensorflow.org/tutorials/images/data_augmentation) to use data augmentation in Tensorflow. This approach is using the Keras API to create combinations of augmentations. A list of available augmentations can be found [here](https://www.tensorflow.org/api_docs/python/tf/keras/layers/experimental/preprocessing).
+
+Below we are introducing Albumentations, a framework agnostic data augmentation library.
+
+## Albumentations
+
+https://www.youtube.com/watch?v=AKMPesL3MpQ
+
+
+Many image augmentations libraries are available but one of the most popular is [albumentations](https://albumentations.ai/docs/). It provides fast and easy ways to apply pixel-level and geometric transformations to images and labels, including bounding boxes.
+
+You can use the workspace below to play around with the code from the video.
+
+# Exercise 3 - Augmentations
+
+**Objective**
+
+In this exercise, you will experiment with the [Albumentations](https://albumentations.ai/docs/) library to perform different data augmentations.
+
+**Details**
+
+Write down a list of relevant augmentations and store them in the transforms variable. You should also implement a quick script to visualize the batches and check your augmentations.
+
+You can run `python augmentations.py` to display augmented images (in the Desktop window).
+
+> [!TIP]
+> * You should use the `Compose API` to use multiple augmentations. You can find an example of an augmentation pipeline using `Compose` [here](https://albumentations.ai/docs/examples/example/#define-an-augmentation-pipeline-using-compose-pass-the-image-to-it-and-receive-the-augmented-image).
+> * This [Github repository](https://github.com/albumentations-team/albumentations_examples) contains different examples of augmentations.
+
+## Solution: Augmentations
+
+```python
+import argparse
+from functools import partial
+
+import albumentations as A
+import matplotlib.pyplot as plt
+import numpy as np
+import tensorflow as tf
+from tensorflow.keras.preprocessing import image_dataset_from_directory
+
+from utils import plot_batch
+
+
+transforms = A.Compose([A.Rotate(limit=30, p=0.5),
+                        A.Blur(blur_limit=5, p=0.5)])
+
+
+def aug_fn(image):
+    """ augment an image """
+    aug_data = transforms(image=image.squeeze())
+    aug_img = aug_data["image"]
+    aug_img = tf.cast(aug_img/255.0, tf.float32)
+    return aug_img
+
+
+def process_data(image, label):
+    """ wrapper function to apply augmentation """
+    aug_img = tf.numpy_function(func=aug_fn, inp=[image], Tout=tf.float32)
+    return aug_img, label
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Augment dataset')
+    parser.add_argument('-d', '--imdir', required=True, type=str,
+                        help='data directory')
+    args = parser.parse_args()    
+
+    dataset = image_dataset_from_directory(args.imdir, 
+                                           image_size=(32, 32),
+                                           validation_split=0.1,
+                                           subset='training',
+                                           seed=123,
+                                           batch_size=1)
+    dataset = dataset.map(process_data).batch(256)
+    for X,Y in dataset:
+        batch_np = X.numpy()
+        plot_batch(batch_np)
+        break
+```
+
+**Extra Resources**
+
+[Data Augmentation](https://www.tensorflow.org/tutorials/images/data_augmentation)
+
+# Lesson Conclusion
+
+In this lesson, we learned about:
+
+* The limitations of feed-forward networks and why neural networks with only fully connected layers are not suited to image data.
+* The convolution layer, a new layer for neural network and its different parameters.
+* Pooling layers, dropout and batch normalization, different layers that are very common in CNNs.
+* The build of a custom architecture to classify traffic signs and how to order the different layers in a CNN.
+* Modern architectures and their design.
+* Augmentations, a way to artificially increase variability in a dataset.
+
+# Glossary
+
+* Augmentations: a way to artificially increase the diversity of a dataset by applying pixel-level and geometric transformations.
+* Batch Normalization: a layer that uses batch statistics to scale its inputs and accelerate the overall convergence of a NN.
+* Convolutional layer: a type of NN layer that is particularly well suited to analyze image data. This layer is made of filters * convolving over an input volume.
+* Dropout: a technique that randomly turns off neurons to prevent overfitting.
+* Feature map: the 2D array resulting of a filter convolution over the input volume.
+* Padding: the act of adding integers (often zeros) to the border of an image.
+* Pooling layer: a layer that spatially aggregates information.
+* Stride: the step size a computing window is shifted by.
+* Transfer Learning: using pretrained networks as a starting point when training a new NN.
