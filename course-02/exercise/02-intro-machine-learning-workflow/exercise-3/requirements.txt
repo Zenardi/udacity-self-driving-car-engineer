@@ -1,4 +1,0 @@
-numpy==2.4.2
-matplotlib==3.10.8
-tensorflow==2.20.0
-waymo-open-dataset-tf-2-11-0
