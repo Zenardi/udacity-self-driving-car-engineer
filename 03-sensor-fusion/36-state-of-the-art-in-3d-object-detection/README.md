@@ -1,3 +1,52 @@
+# State-of-the-Art in 3D Object Detection
+
+> Part of: ** Detecting Objects in Lidar**
+
+# Audio (Transcript)
+
+<audio controls>
+  <source src="state-of-the-art-in-3d-object-detection.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+&nbsp;
+
+# Audio (Natural reading)
+
+<audio controls>
+  <source src="state-of-the-art-in-3d-object-detection_natural.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+## Video
+
+[Watch on YouTube](https://www.youtube.com/watch?v=QkTtLK_m1cI)
+
+## Summary
+
+**Object Detection Techniques for Autonomous Vehicles**
+=====================================================
+
+This project provides an overview of object detection techniques in the deep learning domain, with a focus on converting 3D point cloud data into 2D representations suitable for processing by convolutional neural networks (CNNs).
+
+### Key Concepts
+* **Object Detection**: A three-step process consisting of:
+	+ Data representation: Converting 3D point cloud data into a format suitable for analysis.
+	+ Feature extraction: Using CNN-based techniques to extract relevant features from the data.
+	+ Refinement: Improving detection and prediction results through refinement algorithms.
+* **CNN-based Techniques**: Can be transferred from 2D image processing to 3D point cloud domain, enabling access to optimized algorithms.
+* **BV Map (Bird's Eye View Map)**: A 2D representation of the 3D point cloud that encodes range information, point intensity, and other properties useful for object detection.
+
+### Practical Notes
+To implement object detection in autonomous vehicles, it is essential to consider real-time performance requirements. Single-stage detectors are a suitable choice for this application, as they can process data efficiently. In the next chapter, we will explore Complex YOLO, a network specifically designed for processing LiDAR point clouds.
+
+## Transcript
+
+Now the main purpose of this chapter here has been to provide you with an overview of object detection techniques in the deep learning domain. At this point, you know that object detection consists of three steps, data representation, feature extraction, and also the refinement of detection and prediction results. Also, you now know that CNN based techniques can be transferred from the 2D image processing domain into the 3D point cloud domain, which makes a large class of tests and also well-optimized algorithms available to you. Using these algorithms means that the 3D point cloud needs to be converted into a 2D flat representation, such as the BV map, which we focused on in this chapter, which not only encodes the range information but also point intensity and other properties that can be used as discriminating features. As one of the most important properties of object detection in the context of autonomous vehicles is real-time performance.
+
+We will focus on single-stage detectors. In the next chapter, we will therefore look at a network which is called Complex YOLO, which has been specifically tailored to process LiDAR point clouds.
+
+## Additional Content
 
 ## State-of-the-Art in 3D Object Detection
 In this chapter, we will have a look at a processing pipeline for object detection and classification based on point-clouds. The pipeline structure consists of three major parts, which are (1) data representation, (2) feature extraction and (3) model-based detection. The following figure shows the data flow through the pipeline with raw point cloud on one end and the classified objects on the other end:
