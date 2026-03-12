@@ -128,14 +128,6 @@ processing frame #1
 
 ---
 
-We now know that a range image has 64 lines and 2650 columns. From the previous section, we know that the top lidar covers a horizontal angle of 360°. This means that each column in the range image covers an arc of
-
-$\frac{360\degree}{2650} = 0.1358\degree$
-
-, which corresponds to a horizontal resolution of
-
-$\approx 8'$
-
-*angular minutes*. 
+We now know that a range image has 64 lines and 2650 columns. From the previous section, we know that the top lidar covers a horizontal angle of 360°. This means that each column in the range image covers an arc of $\frac{360\degree}{2650} = 0.1358\degree$, which corresponds to a horizontal resolution of $\approx 8'$ *angular minutes*. 
 
 In order to compute the vertical resolution, we need to make use of the minimum and maximum inclination (i.e. *pitch*).

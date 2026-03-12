@@ -38,11 +38,7 @@ Now welcome to this lesson on lidar based object detection. It will be a real pl
 ## Introduction
 In the previous lesson, we have analyzed the lidar sensor from a technology perspective: You are now familiar with the underlying principles and you know how point-clouds are generated. However, based on point-clouds alone, autonomous vehicles can not safely navigate. In order to make decisions, perform path planning or issue braking maneuvers, an autonomous vehicle needs to identify relevant objects in its surroundings. Such objects are other vehicles of various types (e.g. cars, trucks, trailers), cyclists, pedestrians, lane-boundaries, road-signs and several others.
 
-In computer vision, deep-learning approaches are often used to detect and classify relevant objects in a scene. In the image below this video, a person and a vehicle have been detected and correctly classified by the
-
-[YOLO detection framework](https://pjreddie.com/darknet/yolo/)
-
-.
+In computer vision, deep-learning approaches are often used to detect and classify relevant objects in a scene. In the image below this video, a person and a vehicle have been detected and correctly classified by the [YOLO detection framework](https://pjreddie.com/darknet/yolo/).
 
 Until recently, 2d image processing was the major domain, in which detection and classification based on deep-learning was performed. In recent years however, deep learning based on 3D point-clouds has been attracting the attention of both academic communities and the automotive industry. Especially in the last four or five years, the number of published methods to address problems related to point-cloud processing has increased significantly.
 

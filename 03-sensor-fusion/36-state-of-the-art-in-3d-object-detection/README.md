@@ -1,74 +1,11 @@
-# State-of-the-Art in 3D Object Detection
 
-> Part of: ** Detecting Objects in Lidar**
-
-## Video
-
-[Watch on YouTube](https://www.youtube.com/watch?v=QkTtLK_m1cI)
-
-## Summary
-
-**Object Detection Techniques for Autonomous Vehicles**
-=====================================================
-
-This project provides an overview of object detection techniques in the deep learning domain, with a focus on converting 3D point cloud data into 2D representations suitable for processing by convolutional neural networks (CNNs).
-
-### Key Concepts
-* **Object Detection**: A three-step process consisting of:
-	+ Data representation: Converting 3D point cloud data into a format suitable for analysis.
-	+ Feature extraction: Using CNN-based techniques to extract relevant features from the data.
-	+ Refinement: Improving detection and prediction results through refinement algorithms.
-* **CNN-based Techniques**: Can be transferred from 2D image processing to 3D point cloud domain, enabling access to optimized algorithms.
-* **BV Map (Bird's Eye View Map)**: A 2D representation of the 3D point cloud that encodes range information, point intensity, and other properties useful for object detection.
-
-### Practical Notes
-To implement object detection in autonomous vehicles, it is essential to consider real-time performance requirements. Single-stage detectors are a suitable choice for this application, as they can process data efficiently. In the next chapter, we will explore Complex YOLO, a network specifically designed for processing LiDAR point clouds.
-
-## Transcript
-
-Now the main purpose of this chapter here has been to provide you with an overview of object detection techniques in the deep learning domain. At this point, you know that object detection consists of three steps, data representation, feature extraction, and also the refinement of detection and prediction results. Also, you now know that CNN based techniques can be transferred from the 2D image processing domain into the 3D point cloud domain, which makes a large class of tests and also well-optimized algorithms available to you. Using these algorithms means that the 3D point cloud needs to be converted into a 2D flat representation, such as the BV map, which we focused on in this chapter, which not only encodes the range information but also point intensity and other properties that can be used as discriminating features. As one of the most important properties of object detection in the context of autonomous vehicles is real-time performance.
-
-We will focus on single-stage detectors. In the next chapter, we will therefore look at a network which is called Complex YOLO, which has been specifically tailored to process LiDAR point clouds.
-
-## Images
+## State-of-the-Art in 3D Object Detection
+In this chapter, we will have a look at a processing pipeline for object detection and classification based on point-clouds. The pipeline structure consists of three major parts, which are (1) data representation, (2) feature extraction and (3) model-based detection. The following figure shows the data flow through the pipeline with raw point cloud on one end and the classified objects on the other end:
 
 ![Typical object detection pipeline - 3D point cloud to data representation, to feature extraction, to detection and prediction refinement, and finally the detected vehicles](images/c2-2-img2.png)
 *Typical object detection pipeline*
 
-![Voxel-based data representation](images/sdcnd-c2-2-img3.png)
-*Voxel-based data representation*
 
-![Pillar-based data representation](images/sdcnd-c2-2-img4.png)
-*Pillar-based data representation*
-
-![Frustum-based data representation](images/sdcnd-c2-2-img5.png)
-*Frustum-based data representation*
-
-![Projection-based data representation - front view vs bird's eye view](images/c2-2-img6.png)
-*Projection-based data representation*
-
-![PointNet architecture](images/c2-2-img7.png)
-*PointNet architecture*
-
-![VoxelNet processing pipeline - divide into voxels, feed to a feature learning network, then to convolutional middle layers, and out to a region proposal network](images/sdcnd-c2-2-img8.png)
-*VoxelNet processing pipeline*
-
-![Voxel Feature Extractor](images/sdcnd-c2-2-img9.png)
-*Voxel Feature Extractor*
-
-![R-CNN with region proposal function](images/sdcnd-c2-2-img10.png)
-*R-CNN with region proposal function*
-
-![YOLO object detection with prediction decoder](images/sdcnd-c2-2-img11.png)
-*YOLO object detection with prediction decoder*
-
-![YOLO anchor boxes and feature vector](images/sdcnd-c2-2-img12.png)
-*YOLO anchor boxes and feature vector*
-
-## Additional Content
-
-## State-of-the-Art in 3D Object Detection
-In this chapter, we will have a look at a processing pipeline for object detection and classification based on point-clouds. The pipeline structure consists of three major parts, which are (1) data representation, (2) feature extraction and (3) model-based detection. The following figure shows the data flow through the pipeline with raw point cloud on one end and the classified objects on the other end:
 In the first part, the point cloud provided by the lidar sensor is organized into a structure that is suited for an efficient processing of the data in the subsequent pipeline stages. In the existing research, two major approaches for data representation exist: Either the point cloud is transformed into a structure such as "voxels", "pillars" or "frustums", or the point cloud is left as-is and processed directly. Both approaches have their respective advantages and disadvantages and we will look at both in this chapter.
 
 In the second part, which is about feature extraction, different types of low-dimensional and high-dimensional characteristics are extracted from the transformed point-cloud, which might now be represented as a two-dimensional birds-eye view in a grid. Once a set of features has been detected, the results are forwarded to the actual detection network.
@@ -89,19 +26,38 @@ Point-based methods take the raw and unfiltered input point cloud and transform 
 #### Voxel-based data representation
 
 A voxel is defined as a volume element in a three-dimensional grid in space. A voxel-based approach assigns each point from the input point cloud to a specific volume element. Depending on the coarseness of the voxel grid, multiple points may land within the same volume element. Then, in the next step, local features are extracted from the group of points within each voxel. One of the most significant advantages of voxel-based methods is that they save memory resources as they reduce the number of elements that have to be held in memory simultaneously. Therefore, the feature extraction network will be computationally more efficient, because features are extracted for a group of voxels instead of extracting them for each point individually. A well-known representative of this class of algorithms is [VoxelNet](https://arxiv.org/abs/1711.06396).  The following figure shows a point cloud whose individual points are clustered based on their spatial proximity and assigned to voxels. After the operation is complete, the amount of data representing the object has significantly decreased.
+
+![Voxel-based data representation](images/sdcnd-c2-2-img3.png)
+*Voxel-based data representation*
+
 #### Pillar-based data representation
 
 An approach very similar to voxel-based representation is the pillar-based approach. Here, the point cloud is clustered not into cubic volume elements but instead into vertical columns rising up from the ground up.
+
+![Pillar-based data representation](images/sdcnd-c2-2-img4.png)
+*Pillar-based data representation*
+
+
 As with the voxel-based approach, segmenting the point cloud into discrete volume elements saves memory resources - even more so with pillars as there are usually significantly fewer pillars than voxels. A well-known detection algorithm from this class is [PointPillars](https://arxiv.org/abs/1812.05784).
 
 #### Frustum-based data representation
 
 When combined with another sensor such as a camera, lidar point clouds can be clustered based on pre-detected 2d objects, such as vehicles or pedestrians. If the 2d region around the projection of an object on the image plane is known, a frustum can be projected into 3D space using both the internal and the external calibration of the camera. One method belonging to this class is e.g. [Frustum PointNets](https://arxiv.org/pdf/1711.08488v1.pdf). The following figure illustrates the principle.
+
+
+![Frustum-based data representation](images/sdcnd-c2-2-img5.png)
+*Frustum-based data representation*
+
+
 One obvious disadvantage of this method when compared to the previous ones is that it requires a second sensor such as a camera. However, as these are already used for object detection in autonomous driving and guaranteed to be on-board a vehicle, this is not a significant downside.
 
 #### Projection-based data representation
 
 While both voxel- and pillar-based algorithms cluster the point-cloud based on a spatial proximity measure, projection-based approaches reduce the dimensionality of the 3D point cloud along a specified dimension. In the literature, three major approaches can be identified, which are front view (RV), range view (RV) and bird's eye view (BEV). In the FV approaches, the point cloud is compacted along the forward-facing axis while with BEV images, points are projected onto the ground plane. The following figure illustrates both methods.
+
+![Projection-based data representation - front view vs bird's eye view](images/c2-2-img6.png)
+*Projection-based data representation*
+
 RV methods are very similar to the FV approach with the exception that the point cloud is not projected onto a plane but onto a panoramic view instead. As you will recall from the previous lesson, this concept is the one implemented in the Waymo dataset, in which lidar data is stored as range images.
 
 In the literature, BEV is the projection scheme most widely used. The reasons for this are three-fold: (1) The objects of interest are located on the same plane as the sensor-equipped vehicle with only little variance. Also, (2) the BEV projection preserves the physical size and the proximity relations between objects, separating them more clearly than with both the FV and the RV projection. In the next chapter, we will implement the BEV projection as the basis for the object detection method used in this course.
@@ -126,6 +82,10 @@ and
 [PointNet++](https://arxiv.org/abs/1706.02413)
 
 , which currently are among the most well-known feature extractors. To illustrate the principle, let us briefly look at the PointNet architecture, which is illustrated in the following figure:
+
+![PointNet architecture](images/c2-2-img7.png)
+*PointNet architecture*
+
 PointNet uses the the entire point cloud as input. It extracts global structures from spatial features of each point within a subset of points in Euclidean space. To achieve this, PointNet implements a non-hierarchical neural network that consists of the three main blocks, which are a max-pooling layer, a structure for combining local and global information and two networks that align the input points with the extracted point features. In the diagram,
 
 $N$
@@ -165,7 +125,17 @@ Due to the high computational complexity of point-based features, alternative ap
 [VoxelNet](https://arxiv.org/abs/1711.06396)
 
 . In a nutshell, the idea of VoxelNet is to encode each voxel via an architecture called "Voxel Feature Extractor (VFE)" and then combine local voxel features using 3D convolutional layers and then transform the point cloud into a high dimensional volumetric representation. Finally, a region proposal network processes the volumetric representation and outputs the actual detection results.
+
+![VoxelNet processing pipeline - divide into voxels, feed to a feature learning network, then to convolutional middle layers, and out to a region proposal network](images/sdcnd-c2-2-img8.png)
+*VoxelNet processing pipeline*
+
+
 To illustrate the concept, the figure below shows the architecture of the [Voxel Feature Extractor](https://arxiv.org/abs/1711.06396) within the feature learning network shown in the previous diagram:
+
+![Voxel Feature Extractor](images/sdcnd-c2-2-img9.png)
+*Voxel Feature Extractor*
+
+
 As this chapter is intended to provide a broad overview of the literature, we will not go into further details on VoxelNet or VFE. If you would like to see the algorithm in action, please refer to [this unofficial implementation](https://github.com/qianguih/voxelnet).
 
 #### Convolutional Neural Networks (CNN)
@@ -182,15 +152,31 @@ Once features have been extracted from the input data, a detection network is ne
 A problem faced by CNN-based object detection is that we do not know how many instances of a certain object type are located within the input data. It could be that only a single vehicle is visible in the point cloud, or it could also be 10 vehicles. A naive approach to solve this problem would be to apply a CNN to multiple regions and check for the presence of objects within each region individually. However, as objects will have different locations and shapes, one would have to select a very large number of regions, which quickly becomes computationally infeasible.
 
 To solve this problem,  Ross Girshick et al. proposed a method (R-CNN) where a selective search is used to extract ~2000 regions, which he called region proposals. This meant a significant decrease in the number of regions that needed to be classified. Note that in the original publication, the input data were camera images and not point clouds. The candidate regions are then fed into a CNN to produce a high-dimensional feature vector, from which the presence of objects within the candidate regions is inferred using a support vector machine (SVM). The following figure illustrates the process:
+
+![R-CNN with region proposal function](images/sdcnd-c2-2-img10.png)
+*R-CNN with region proposal function*
+
+
 In order to refine the predictions and increase the accuracy of the model output, dual-stage encoders feed the results from the first stage to an additional detection network which refines the predictions by combining different feature types to produce refinement results.
 
 Single-stage object detectors on the other hand perform region proposal, classification and bounding box regression all in one step, which makes them significantly faster and thus more suitable for real-time applications. In many cases though, two-stage detectors tend to achieve better accuracy.
 
 One of the most famous single-stage detectors is YOLO (You Only Look Once). This model runs a deep learning CNN on the input data to produce network predictions. The object detector decodes the predictions and generates bounding boxes, as shown in the figure below:
+
+![YOLO object detection with prediction decoder](images/sdcnd-c2-2-img11.png)
+*YOLO object detection with prediction decoder*
+
 YOLO uses anchor boxes to detect classes of objects, which are predefined bounding boxes of a specific height and width. These boxes are defined to capture the scale and aspect ratio of specific object classes (e.g. vehicles, pedestrians) and are typically chosen based on object sizes in the training dataset. During detection, the predefined anchor boxes are tiled across the image. The network predicts the probability and other attributes, such as background, intersection over union (IoU) and offsets for every tiled anchor box. The predictions are used to refine each individual anchor box.
 
 When using anchor boxes, you can evaluate all object predictions at once without the need for a sliding-window as with many classical applications. An object detector that uses anchor boxes can process the entire input data at once, making real-time object detection systems possible.
+
+![YOLO anchor boxes and feature vector](images/sdcnd-c2-2-img12.png)
+*YOLO anchor boxes and feature vector*
+
 The network returns a unique set of predictions for every anchor box defined. The final feature map represents object detections for each class. The use of anchor boxes enables a network to detect multiple objects, objects of different scales, and overlapping objects.
 
 As stated before, most of the CNN-based approaches originally come from the computer vision domain and have been developed with image-based detection in mind. Hence, in order to apply these methods to lidar point clouds, a conversion of 3d points into a 2d domain has to be performed. Which is exactly what we will be doing in the next chapter on object detection in point clouds.
+
 ### 3D Object Detection Overview Outro
+
+[Watch on YouTube](https://www.youtube.com/watch?v=QkTtLK_m1cI)

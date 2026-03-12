@@ -49,15 +49,7 @@ Autonomous vehicles must perceive their environment in a 360° circumference. Al
 
 ### Angular resolution
 
-A critical parameter which controls the density of the point-cloud is the angular resolution of a LiDAR sensor. It defines the number of laser beams the sensor can project into its FOV. For the Velodyne HDL 64E with its 64 individual beams, the vertical resolution is at
-
-$\approx 0.4\degree$
-
-while the horizontal resolution is at
-
-$\approx 0.8\degree$
-
-based on the number of scans over a full rotation of the mirror. In order to track features such as curb-sides or a bicycle frame, a very fine angular resolution both in the horizontal and vertical direction are needed. 
+A critical parameter which controls the density of the point-cloud is the angular resolution of a LiDAR sensor. It defines the number of laser beams the sensor can project into its FOV. For the Velodyne HDL 64E with its 64 individual beams, the vertical resolution is at $\approx 0.4\degree$ while the horizontal resolution is at $\approx 0.8\degree$ based on the number of scans over a full rotation of the mirror. In order to track features such as curb-sides or a bicycle frame, a very fine angular resolution both in the horizontal and vertical direction are needed. 
 
 ### Number of points
 
@@ -74,4 +66,7 @@ Depending on the relative speed between LiDAR sensor and targets, you need to de
 Based on factors such as return signal strength, receiver sensitivity and the resolution of the timing device, the range resolution provides the smallest change in target distance, that is still perceivable by the LiDAR system. 
 
 Other common parameters are e.g. "Pulse Repetition Rate (PRR) or Frequency (PRF)", the "Peak Power" and "Average Power" as well as the "Wavelength" of the laser beam.
+
 ## Outro
+
+[Watch on YouTube](https://www.youtube.com/watch?v=fZIeGABPHtM)
