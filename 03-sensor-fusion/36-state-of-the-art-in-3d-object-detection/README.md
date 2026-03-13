@@ -6,7 +6,7 @@
 
 <audio controls>
   <source src="state-of-the-art-in-3d-object-detection.mp3" type="audio/mpeg">
-  ![Audio](./state-of-the-art-in-3d-object-detection.mp3)
+  [Audio](./state-of-the-art-in-3d-object-detection.mp3)
 </audio>
 
 &nbsp;
@@ -15,7 +15,7 @@
 
 <audio controls>
   <source src="state-of-the-art-in-3d-object-detection_natural.mp3" type="audio/mpeg">
-  ![AudioNatural](./state-of-the-art-in-3d-object-detection_natural.mp3)
+  [AudioNatural](./state-of-the-art-in-3d-object-detection_natural.mp3)
 </audio>
 
 ## Video
