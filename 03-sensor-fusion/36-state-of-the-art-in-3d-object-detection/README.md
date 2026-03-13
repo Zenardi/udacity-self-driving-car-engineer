@@ -128,58 +128,18 @@ In the following, we will look at a number of feature extractor classes found in
 
 #### Point-wise feature extractors
 
-The term "point-wise" refers to the fact that the entire point cloud is used as input. This approach is obviously suited for the point-based data representation from the first step. Point-wise feature extractors analyze and label each point individually, such as in
-
-[PointNet](https://arxiv.org/abs/1612.00593)
-
-and
-
-[PointNet++](https://arxiv.org/abs/1706.02413)
-
-, which currently are among the most well-known feature extractors. To illustrate the principle, let us briefly look at the PointNet architecture, which is illustrated in the following figure:
+The term "point-wise" refers to the fact that the entire point cloud is used as input. This approach is obviously suited for the point-based data representation from the first step. Point-wise feature extractors analyze and label each point individually, such as in [PointNet](https://arxiv.org/abs/1612.00593) and [PointNet++](https://arxiv.org/abs/1706.02413), which currently are among the most well-known feature extractors. To illustrate the principle, let us briefly look at the PointNet architecture, which is illustrated in the following figure:
 
 ![PointNet architecture](images/c2-2-img7.png)
 *PointNet architecture*
 
-PointNet uses the the entire point cloud as input. It extracts global structures from spatial features of each point within a subset of points in Euclidean space. To achieve this, PointNet implements a non-hierarchical neural network that consists of the three main blocks, which are a max-pooling layer, a structure for combining local and global information and two networks that align the input points with the extracted point features. In the diagram,
-
-$N$
-
-refers to the number of points that are fed into PointNet and
-
-$Y$
-
-is the dimensionality of the features. In order to extract features point-wise, a set of multi-layer perceptrons (MLP) is used to map each of the
-
-$N$
-
-points from three dimensions (
-
-$x, y, z$
-
-) to 64 dimensions. This procedure is then repeated to map the
-
-$N$
-
-points from 64 dimensions to
-
-$M=1024$
-
-dimensions. When this is done, max-pooling is used to create a global feature vector in
-
-$\mathbb{R}^{1024}$
-
-.  Finally, a three-layer fully-connected network is used to map the global feature vector to generate both object classification and object location.
+PointNet uses the the entire point cloud as input. It extracts global structures from spatial features of each point within a subset of points in Euclidean space. To achieve this, PointNet implements a non-hierarchical neural network that consists of the three main blocks, which are a max-pooling layer, a structure for combining local and global information and two networks that align the input points with the extracted point features. In the diagram, $N$ refers to the number of points that are fed into PointNet and $Y$ is the dimensionality of the features. In order to extract features point-wise, a set of multi-layer perceptrons (MLP) is used to map each of the $N$ points from three dimensions ($x, y, z$) to 64 dimensions. This procedure is then repeated to map the $N$ points from 64 dimensions to $M=1024$ dimensions. When this is done, max-pooling is used to create a global feature vector in $\mathbb{R}^{1024}$. Finally, a three-layer fully-connected network is used to map the global feature vector to generate both object classification and object location.
 
 One of the downsides of PointNet is its inability to capture local structure information between neighboring points, since features are learned individually for each point and the relation between points is ignored. This has been improved e.g. in PointNet++, but for reasons of brevity we will not go into further details here. Even though point-wise feature extractors show very promising results, they are not yet suitable for use in autonomous driving due to high memory requirements and computational complexity.
 
 #### Segment-wise feature extractors
 
-Due to the high computational complexity of point-based features, alternative approaches are needed so that object detection in lidar point clouds can be used in a real-time environment. The term "segment-wise" refers to the way how the point cloud is divided into spatial clusters (e.g. voxels, pillars or frustums). Once this has been done, a classification model is applied to each point of a segment to extract suitable volumetric features. One of the most-cited representatives of this class of feature extractors is
-
-[VoxelNet](https://arxiv.org/abs/1711.06396)
-
-. In a nutshell, the idea of VoxelNet is to encode each voxel via an architecture called "Voxel Feature Extractor (VFE)" and then combine local voxel features using 3D convolutional layers and then transform the point cloud into a high dimensional volumetric representation. Finally, a region proposal network processes the volumetric representation and outputs the actual detection results.
+Due to the high computational complexity of point-based features, alternative approaches are needed so that object detection in lidar point clouds can be used in a real-time environment. The term "segment-wise" refers to the way how the point cloud is divided into spatial clusters (e.g. voxels, pillars or frustums). Once this has been done, a classification model is applied to each point of a segment to extract suitable volumetric features. One of the most-cited representatives of this class of feature extractors is [VoxelNet](https://arxiv.org/abs/1711.06396). In a nutshell, the idea of VoxelNet is to encode each voxel via an architecture called "Voxel Feature Extractor (VFE)" and then combine local voxel features using 3D convolutional layers and then transform the point cloud into a high dimensional volumetric representation. Finally, a region proposal network processes the volumetric representation and outputs the actual detection results.
 
 ![VoxelNet processing pipeline - divide into voxels, feed to a feature learning network, then to convolutional middle layers, and out to a region proposal network](images/sdcnd-c2-2-img8.png)
 *VoxelNet processing pipeline*
