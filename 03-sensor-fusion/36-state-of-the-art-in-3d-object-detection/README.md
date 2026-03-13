@@ -6,8 +6,10 @@
 
 <audio controls>
   <source src="state-of-the-art-in-3d-object-detection.mp3" type="audio/mpeg">
-  [Audio](./state-of-the-art-in-3d-object-detection.mp3)
+  GitHub does not support the audio element. Click on link below to play audio.
 </audio>
+
+[Audio](state-of-the-art-in-3d-object-detection.mp3)
 
 &nbsp;
 
@@ -15,8 +17,12 @@
 
 <audio controls>
   <source src="state-of-the-art-in-3d-object-detection_natural.mp3" type="audio/mpeg">
-  [AudioNatural](./state-of-the-art-in-3d-object-detection_natural.mp3)
+  GitHub does not support the audio element. Click on link below to play audio.
 </audio>
+
+[AudioNatural](state-of-the-art-in-3d-object-detection_natural.mp3)
+
+
 
 ## Video
 
