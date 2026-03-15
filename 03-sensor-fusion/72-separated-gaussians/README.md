@@ -48,12 +48,4 @@ Let me ask you a different quiz, which from the math, but it tests your intuitio
 ## Images
 
 ![There are two gaussians sitting at an unspecified distance from one another. Both have the same covariance. Where would the new mean be? Option A is closer to the first gaussian, option B is in between, option C is closer to the second gaussian, and option D is not between either.](images/kalman-separated-gauss.jpg)
-*Quiz Options*
 
-## Additional Content
-
-## Separated Gaussians
-
-### Quiz Image
-
-### Solution

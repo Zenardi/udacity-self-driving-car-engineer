@@ -23,15 +23,7 @@ $\sigma^2$
 
 $\Large f(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \times \exp^{-1/2 \frac{(x - \mu)^2}{\sigma^2}}$
 
-The mean is represented by
-
-$\mu$
-
-("mu") while the variance is represented by
-
-$\sigma^2$
-
-("sigma squared").
+The mean is represented by $\mu$ ("mu") while the variance is represented by $\sigma^2$ ("sigma squared").
 
 #### Measurement Update
 
@@ -39,31 +31,7 @@ $\Large \mu^\prime = \frac{1}{\sigma^2 + r^2} \times (r^2 \times \mu + \sigma^2 
 
 $\Large \sigma^{2\prime} = \frac{1}{\frac{1}{\sigma^2} + \frac{1}{r^2}}$
 
-Where
-
-$\mu^\prime$
-
-("mu prime") is the new mean,
-
-$\sigma^{2\prime}$
-
-("sigma squared prime") is the new variance,
-
-$r^2$
-
-("r squared") is the measurement variance, and
-
-$\nu$
-
-("nu") is the measurement mean (
-
-$\mu$
-
-and
-
-$\sigma^2$
-
-are the mean and variance of the prior, respectively).
+Where $\mu^\prime$ ("mu prime") is the new mean, $\sigma^{2\prime}$ ("sigma squared prime") is the new variance, $r^2$ ("r squared") is the measurement variance, and $\nu$ ("nu") is the measurement mean ( $\mu$ and $\sigma^2$ are the mean and variance of the prior, respectively).
 
 #### Motion Update
 
@@ -71,23 +39,8 @@ $\Large \mu^\prime = \mu + u$
 
 $\Large \sigma^{2\prime} = \sigma^2 + r^2$
 
-Where
+Where $u$ ("u") is the motion, and $r^2$ ("r squared") in this case is the variance of the motion (and $\mu^\prime$ and $\sigma^{2\prime}$ are the mean and variance after motion, respectively).
 
-$u$
-
-("u") is the motion, and
-
-$r^2$
-
-("r squared") in this case is the variance of the motion (and
-
-$\mu^\prime$
-
-and
-
-$\sigma^{2\prime}$
-
-are the mean and variance after motion, respectively).
 ### Kalman Filter Definitions and Equations
 
 #### Definitions

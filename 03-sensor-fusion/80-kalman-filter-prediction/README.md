@@ -48,10 +48,3 @@ If a car's starting point is the point over here, for which we know the location
 ![There is a line graph showing points 1, 2, 3 and 4. t =1 is over 1. t =2 is over 2. t =3 is over 3. t=4 is circled.  “Prediction” is a graph with 1 through 4 on the x axis and -1 to 2 on the y axis.  There is a line through x = 1.   You have to select from one of three points - (1, 1), (2, 0) and (2, 1).](images/kalman-filter-prediction.jpg)
 *Quiz Options*
 
-## Additional Content
-
-## Kalman Filter Prediction
-
-### Quiz Image
-
-### Solution

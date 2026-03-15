@@ -38,7 +38,7 @@ In Kalman filters we iterate measurement and motion. This is often called a "mea
 
 It's a very wide Gaussian with the mean over here. Now, say we get a measurement that tells us something about the localization of the vehicle, and it comes in like this. It has a mean over here called "mu," and this example has a much smaller covariance for the measurement. This is an example where in our prior we were fairly uncertain about a location, but the measurement told us quite a bit as to where the vehicle is. Here's a quiz for you.
 
-Will the new mean of the subsequent Gaussian be over here, over here, or over here? Check one of these three boxes. <v English>The answer is over here in the middle.</v> <v English>It's between the two old means--the mean of the prior and the mean of the measurement.</v> <v English>It's slightly further on the measurement side,</v> <v English>because the measurement was more certain as to where the vehicle is than the prior.</v> <v English>The more certain we are, the more we pull the mean in the direction of the certain answer.</v>
+Will the new mean of the subsequent Gaussian be over here, over here, or over here? Check one of these three boxes. The answer is over here in the middle. It's between the two old means--the mean of the prior and the mean of the measurement. It's slightly further on the measurement side, because the measurement was more certain as to where the vehicle is than the prior. The more certain we are, the more we pull the mean in the direction of the certain answer.
 
 ## Images
 

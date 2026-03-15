@@ -42,10 +42,4 @@ Just like before, it'll be over here with a velocity of 2, initial position of 1
 ![There is a line graph showing points 1, 2, 3 and 4. t =1 is over 1. t =2 is over 2. t =3 is over 3. t=4 is circled.  “Prediction” is a graph with 1 through 4 on the x axis and -1 to 2 on the y axis.  There is a line through x = 1.   You have to select from one of the six points - (2, 1) and (2, 2) and (3, 1) and (3, 2) and (4, 1) and (4, 2).](images/kalman-another-prediction.jpg)
 *Quiz Options*
 
-## Additional Content
 
-## Another Prediction
-
-### Quiz Image
-
-### Solution

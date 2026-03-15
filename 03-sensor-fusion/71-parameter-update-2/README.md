@@ -48,12 +48,4 @@ Note that the resulting variance is smaller than each of the two variances, indi
 ## Images
 
 ![Parameter mu prime equals 1 over sigma squared plus r squared all multiplied by parentheses r squared mu plus sigma squared v parentheses closed.  The second equation is sigma squared prime equals 1 over parentheses 1 over sigma squared parentheses closed added to 1 over r squared.  mu here equals 10.  v equals 13.  sigma squared equals 8.   r squared equals 2.](images/kalman-param-update-2.jpg)
-*Quiz Information*
 
-## Additional Content
-
-## Parameter Update 2
-
-### Quiz Image
-
-### Solution

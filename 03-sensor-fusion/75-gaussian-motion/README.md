@@ -70,30 +70,8 @@ Since this was so simple, let me quiz you. We have a Gaussian before the predict
 
 There is a typo in the formula. It should read σ²′ ← σ² + r².
 
-Therefore, the equations for the motion update are:
+Therefore, the equations for the motion update are: $\mu^\prime = \mu + u$ $\sigma^{2\prime} = \sigma^2 + r^2$
 
-$\mu^\prime = \mu + u$
+Where $u$ ("u") is the motion, and $r^2$ ("r squared") in this case is the variance of the motion (and $\mu^\prime$ and $\sigma^{2\prime}$ are the mean and variance after motion, respectively).
 
-$\sigma^{2\prime} = \sigma^2 + r^2$
 
-Where
-
-$u$
-
-("u") is the motion, and
-
-$r^2$
-
-("r squared") in this case is the variance of the motion (and
-
-$\mu^\prime$
-
-and
-
-$\sigma^{2\prime}$
-
-are the mean and variance after motion, respectively).
-
-### Quiz Image
-
-### Solution

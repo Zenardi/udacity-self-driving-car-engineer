@@ -36,12 +36,4 @@ Intuitively speaking, this is the case because we actually gain information. The
 ## Images
 
 ![The three options are in a straight, upwards line, where the top is the most confident, and the bottom is the least confident.](images/kalman-predict-peak.jpg)
-*Quiz Options*
 
-## Additional Content
-
-## Predicting the Peak
-
-### Quiz Image
-
-### Solution

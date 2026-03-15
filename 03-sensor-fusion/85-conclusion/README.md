@@ -28,11 +28,9 @@ This summary covers the key concepts and practical steps introduced in the Udaci
 
 ## Transcript
 
-<v English>So this completes my unit on Kalman filters. You learned actually quite a bit.</v> <v English>You learned about Gaussians, how to do measurement updates using multiplication,</v> <v English>how to do prediction or state transitions using convolution,</v> <v English>and you even implemented your first Kalman filter, which is really super cool.</v> <v English>You've implemented it in the context of vehicle tracking,</v> <v English>and you used this to estimate a nonobservable velocity for measurement data.</v> <v English>Now, next is your homework assignment.</v> <v English>I hope you can prove what you've learned and ace it.</v> <v English>Then, next week, we're going to move into particle filters, which is an exciting third method for state estimation.</v> <v English>So I'll see you for the homework assignment, and then I'll see you in class for particle filters.</v>
+So this completes my unit on Kalman filters. You learned actually quite a bit. You learned about Gaussians, how to do measurement updates using multiplication, how to do prediction or state transitions using convolution, and you even implemented your first Kalman filter, which is really super cool. You've implemented it in the context of vehicle tracking, and you used this to estimate a nonobservable velocity for measurement data. Now, next is your homework assignment. I hope you can prove what you've learned and ace it. Then, next week, we're going to move into particle filters, which is an exciting third method for state estimation. So I'll see you for the homework assignment, and then I'll see you in class for particle filters.
 
-## Additional Content
 
-### Conclusion
 ## Other Videos
 
 If you'd like to watch another set of videos on Kalman filters, you might check out:

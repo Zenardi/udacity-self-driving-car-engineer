@@ -59,8 +59,3 @@ This is the one for the variance. I run it, and I get the exact same answer. I r
 
 That's really the difficult step in Kalman filtering. The other one--the prediction step or the motion step--is much, much easier to program.
 
-## Additional Content
-
-## New Mean and Variance
-
-### Solution

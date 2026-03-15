@@ -32,7 +32,7 @@ Note: The code snippet provided in the lesson is incomplete and only shows the c
 
 Starting with the following source code, I'm looking for a completion of this one line over here that returns the Gaussian function with arguments mu = 10, sigma2 = 4, and x = 8, and I want the output to be approximately 0.12. Here's my solution. This is the constant: 1/sprt(2pisigma2). Then I multiply with the exponential of (-.5(x-mu)*2/sigma2). Applying that to the following numbers over here gives me 0.12.
 
-Now, here's a question for you. How do I have to modify x the 8 to get the maximum return value for this function f? <v English>The answer is assess with the same value as mu,</v> <v English>in which case this expression over here becomes zero, and we get the maximum.</v> <v English>We get the peak of the Gaussian.</v> <v English>We set x to the same value as mu, to 10, and the output is 0.2 approximately.</v>
+Now, here's a question for you. How do I have to modify x the 8 to get the maximum return value for this function f? The answer is assess with the same value as mu, in which case this expression over here becomes zero, and we get the maximum. We get the peak of the Gaussian. We set x to the same value as mu, to 10, and the output is 0.2 approximately.
 
 ## Additional Content
 

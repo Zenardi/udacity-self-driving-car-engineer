@@ -34,12 +34,7 @@ Note: This code is a simplified version of a Kalman filter and may not be suitab
 
 ## Transcript
 
-[Thrun] Let's program this. I'm giving you a skeleton code. This is the same update function as before. Now I would like you to do the predict function, which takes our current estimate and its variance and the motion and its uncertainty and computes the new updated prediction: mean and variance. So for example, if our prior is 10 and 4, our motion is 12 and 4, I would like to get out to 22 and 8 according to the formulas I've just given you.
+Let's program this. I'm giving you a skeleton code. This is the same update function as before. Now I would like you to do the predict function, which takes our current estimate and its variance and the motion and its uncertainty and computes the new updated prediction: mean and variance. So for example, if our prior is 10 and 4, our motion is 12 and 4, I would like to get out to 22 and 8 according to the formulas I've just given you.
 
 And yes, it's as easy as this. We just add the two means and the two variances. It's amazing, this entire program over here implements a one-dimensional Kalman filter.
 
-## Additional Content
-
-## Predict Function
-
-### Solution
