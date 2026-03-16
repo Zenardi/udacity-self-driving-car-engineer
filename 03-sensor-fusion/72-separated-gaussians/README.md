@@ -43,7 +43,7 @@ Note that this is a simplified example, and in practice, you would need to consi
 
 Let me ask you a different quiz, which from the math, but it tests your intuition. Suppose we have a prior that sits over here and a measurement probability that sits over here--really far away-- and both have the same covariance. Let me first quiz you where the new mean would be. Is it going to be here, here, here, or here? Please check the corresponding check mark.
 
-<v English>The answer is here. It's in the middle.</v> <v English>It's in the straight middle, because these two variances are the same,</v> <v English>so we just average the means.</v>
+The answer is here. It's in the middle. It's in the straight middle, because these two variances are the same, so we just average the means.
 
 ## Images
 

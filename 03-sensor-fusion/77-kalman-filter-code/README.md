@@ -74,3 +74,7 @@ We have a higher uncertainty. And now when the next measurement comes in, 6, we 
 
 We now are willing to update even more. As you see the 7, we're willing to go to 5.1, but not quite all the way because we feel fairly confident on our wrong prior estimate. And this confidence makes it all the way to the end when we predict 10.5 as opposed to 11 with an uncertainty of 3.98. We've corrected some of it. We were able to drag it into the right direction but not all the way because our false initial belief has such a strong weight in the overall equation.
 
+### Solution
+
+[Watch on YouTube](https://www.youtube.com/watch?v=X7cixvcogl8)
+

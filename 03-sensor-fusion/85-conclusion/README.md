@@ -35,6 +35,4 @@ So this completes my unit on Kalman filters. You learned actually quite a bit. Y
 
 If you'd like to watch another set of videos on Kalman filters, you might check out:
 
-[The Kalman Filter](http://www.ilectureonline.com/lectures/subject/SPECIAL%20TOPICS/26/190)
-
-from iLectureOnline
+[The Kalman Filter](http://www.ilectureonline.com/lectures/subject/SPECIAL%20TOPICS/26/190) from iLectureOnline

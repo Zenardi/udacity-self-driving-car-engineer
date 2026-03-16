@@ -57,4 +57,6 @@ of each Gaussian (not its covariance).
 
 ### Solution
 
+[Watch on YouTube](https://www.youtube.com/watch?v=rczAG7meAY4)
+
 Correction: In the solution video, it should be "x and u" at 00:15.

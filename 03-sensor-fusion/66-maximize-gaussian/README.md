@@ -41,3 +41,6 @@ Now, here's a question for you. How do I have to modify x the 8 to get the maxim
 Note: Sebastian is still using Python 2 in the video, but the workspace below will use Python 3.
 
 ### Solution
+
+[Watch on YouTube](https://www.youtube.com/watch?v=2cD8T65E-jM)
+

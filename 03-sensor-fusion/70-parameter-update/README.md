@@ -80,3 +80,6 @@ $\LARGE \sigma^{2\prime} = \frac{1}{\frac{1}{\sigma^2} + \frac{1}{r^2}}$
 Where $\mu^\prime$ ("mu prime") is the new mean, $\sigma^{2\prime}$ ("sigma squared prime") is the new variance, $r^2$ ("r squared") is the measurement variance, and $\nu$ ("nu") is the measurement mean ($\mu$ and $\sigma^2$ are the mean and variance of the prior, respectively).
 
 
+### Solution
+
+[Watch on YouTube](https://www.youtube.com/watch?v=Lwn6FJgyyYI)

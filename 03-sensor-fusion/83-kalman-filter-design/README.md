@@ -59,7 +59,7 @@ Now I wrote this down so that you have a complete definition, but this is someth
 
 The assignment:
 
-```
+```pseudo
 x_prime = x + x_dot
 ```
 
@@ -76,46 +76,14 @@ As Sebastian notes, you don't need to memorize all of the equations here to be s
 
 #### Definitions
 
--
-
-$\large x$
-
-= estimate
--
-
-$\large P$
-
-= uncertainty covariance
--
-
-$\large F$
-
-= state transition matrix
--
-
-$\large u$
-
-= motion vector
--
-
-$\large z$
-
-= measurement
--
-
-$\large H$
-
-= measurement function
--
-
-$\large R$
-
-= measurement noise
--
-
-$\large I$
-
-= identity matrix
+- $\large x$ = estimate
+- $\large P$ = uncertainty covariance
+- $\large F$ = state transition matrix 
+- $\large u$ = motion vector 
+- $\large z$ = measurement 
+- $\large H$ = measurement function 
+- $\large R$ = measurement noise 
+- $\large I$ = identity matrix
 
 #### Prediction Equations
 

@@ -44,3 +44,7 @@ Velocity is inferred from seeing multiple positions. So one of the most amazing 
 ![There are four points in a nearly perfect diagonal line, sloping upwards from t=0 to t= 1 to t=2 to t=3. Your job is to find where t =4 would be from three points.  The first point, A, is also where it was at at t=2.  The second point, B, It is not on the diagonal line but has a vertical component that is higher than t=3 and a horizontal component that is further right from the line.  The third point, C, is not on the diagonal line but is further up and further to the right than A or B.](images/kalman-prediction.jpg)
 *Quiz Options*
 
+### Solution
+
+[Watch on YouTube](https://www.youtube.com/watch?v=tSfmiuB9s2c)
+

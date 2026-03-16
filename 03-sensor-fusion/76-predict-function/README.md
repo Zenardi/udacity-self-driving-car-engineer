@@ -38,3 +38,6 @@ Let's program this. I'm giving you a skeleton code. This is the same update func
 
 And yes, it's as easy as this. We just add the two means and the two variances. It's amazing, this entire program over here implements a one-dimensional Kalman filter.
 
+### Solution
+
+[Watch on YouTube](https://www.youtube.com/watch?v=AMFig-sYGfM)

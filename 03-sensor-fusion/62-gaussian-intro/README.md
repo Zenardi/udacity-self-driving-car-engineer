@@ -49,16 +49,11 @@ The Gaussian equation given in the video is:
 
 $\LARGE \frac{1}{\sqrt{2\pi\sigma^2}} \times \exp^{-1/2 \frac{(x - \mu)^2}{\sigma^2}}$
 
-The mean is represented by
-
-$\mu$
-
-("mu") while the variance is represented by
-
-$\sigma^2$
-
-("sigma squared").
+The mean is represented by $\mu$ ("mu") while the variance is represented by $\sigma^2$ ("sigma squared").
 
 ### Quiz Image
 
 ### Solution
+
+[Watch on YouTube](https://www.youtube.com/watch?v=oFpvcWEllBs)
+

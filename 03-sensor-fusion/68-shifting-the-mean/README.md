@@ -52,3 +52,5 @@ Will the new mean of the subsequent Gaussian be over here, over here, or over he
 ### Quiz Image
 
 ### Solution
+
+[Watch on YouTube](https://www.youtube.com/watch?v=HmcurWkA0fQ)

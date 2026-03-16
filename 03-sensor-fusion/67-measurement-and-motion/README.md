@@ -2,7 +2,6 @@
 
 > Part of: **Kalman Filters**
 
-## Additional Content
 
 ## Measurement and Motion
 
@@ -12,21 +11,15 @@ Sebastian summarizes some of the key concepts from these cycles in the below ref
 
 ### The first cycle is the **Measurement Update**.
 
-* Requires a
+* Requires a [product](https://classroom.udacity.com/courses/cs373/lessons/48739381/concepts/487235990923#)
 
-[product](https://classroom.udacity.com/courses/cs373/lessons/48739381/concepts/487235990923#)
-
-* Uses
-
-[Bayes rule](https://classroom.udacity.com/courses/cs373/lessons/48739381/concepts/487221690923#)
+* Uses [Bayes rule](https://classroom.udacity.com/courses/cs373/lessons/48739381/concepts/487221690923#)
 
 .
 
 ### The second cycle is the **Motion Update**.
 
 * Involves a convolution 
-* Uses
-
-[total probability](https://classroom.udacity.com/courses/cs373/lessons/48739381/concepts/486736290923#)
+* Uses [total probability](https://classroom.udacity.com/courses/cs373/lessons/48739381/concepts/486736290923#)
 
 .

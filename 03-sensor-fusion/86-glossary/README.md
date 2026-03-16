@@ -6,15 +6,7 @@
 
 ## Glossary
 
-**Gaussian:** A continuous function over a space of locations where the area underneath sums up to 1, giving the probability of being in a given location (based on a mean,
-
-$\mu$
-
-, and variance,
-
-$\sigma^2$
-
-). Gaussians have unimodal distributions (i.e. one "peak").
+**Gaussian:** A continuous function over a space of locations where the area underneath sums up to 1, giving the probability of being in a given location (based on a mean, $\mu$ , and variance, $\sigma^2$). Gaussians have unimodal distributions (i.e. one "peak").
 
 **Kalman Filter:** A tracking method that uses gaussians with a predict and update cycle (with measurements and motion) to estimate location.
 ### Gaussian Equations
@@ -45,46 +37,14 @@ Where $u$ ("u") is the motion, and $r^2$ ("r squared") in this case is the varia
 
 #### Definitions
 
--
-
-$\large x$
-
-= estimate
--
-
-$\large P$
-
-= uncertainty covariance
--
-
-$\large F$
-
-= state transition matrix
--
-
-$\large u$
-
-= motion vector
--
-
-$\large z$
-
-= measurement
--
-
-$\large H$
-
-= measurement function
--
-
-$\large R$
-
-= measurement noise
--
-
-$\large I$
-
-= identity matrix
+- $\large x$ = estimate
+- $\large P$ = uncertainty covariance
+- $\large F$ = state transition matrix 
+- $\large u$ = motion vector 
+- $\large z$ = measurement 
+- $\large H$ = measurement function 
+- $\large R$ = measurement noise 
+- $\large I$ = identity matrix
 
 #### Prediction Equations
 
