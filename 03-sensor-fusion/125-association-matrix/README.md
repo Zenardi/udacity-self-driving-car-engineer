@@ -46,26 +46,8 @@ In the last step, we have to tracks and one measurement left. We find the closes
 ## Additional Content
 
 ## Association Matrix
-- Say we have
-
-$N$
-
-tracks and
-
-$M$
-
-measurements.
-- The
-
-$\textbf{association matrix}$
-
-$\mathbf A$
-
-is an
-
-$N\times M$
-
-matrix that contains the Mahalanobis distances between each track and each measurement:
+- Say we hav $N tracks an $M measurements.
+- Th $\textbf{association matrix} $\mathbf A is a $N\times M matrix that contains the Mahalanobis distances between each track and each measurement:
 
 $$\mathbf A = \begin{pmatrix}
 d(\mathbf x_1, \mathbf z_1) & d(\mathbf x_1, \mathbf z_2) &...&d(\mathbf x_1, \mathbf z_M)\\

@@ -51,21 +51,9 @@ In the next exercise, I want you to implement a gating method in Python.
 ## Additional Content
 
 ## Gating
--
-
-$\textbf{Gating}$
-
-reduces the association complexity by removing unlikely association pairs.
-- Because the residual is Gaussian, the Mahalanobis distance follows a
-
-$\chi^2$
-
-distribution.
-- A measurement lies inside a track's gate if the Mahalanobis distance is smaller than the threshold calculated from the inverse cumulative
-
-$\chi^2$
-
-distribution as follows:
+- $\textbf{Gating}$ reduces the association complexity by removing unlikely association pairs.
+- Because the residual is Gaussian, the Mahalanobis distance follows a $\chi^2$ distribution.
+- A measurement lies inside a track's gate if the Mahalanobis distance is smaller than the threshold calculated from the inverse cumulative $\chi^2$ distribution as follows:
 
 $$d\left(\mathbf x,\mathbf z\right)\leq F_{\chi^2}^{-1}\left(0.995|\dim_{\mathbf z}\right)$$
 

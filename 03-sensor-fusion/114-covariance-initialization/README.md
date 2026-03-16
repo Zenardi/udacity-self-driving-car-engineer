@@ -39,24 +39,12 @@ The overall estimation error covariance consists of this derived matrix P_pos pl
 ## Additional Content
 
 ## Covariance Initialization
-- The 3x3 Matrix for the position estimation error covariance
-
-$\mathbf P_{\text{pos}}$
-
-can be initialized from the measurement covariance
-
-$\textbf R$
-
-by rotating from sensor to vehicle coordinates:
+- The 3x3 Matrix for the position estimation error covariance $\mathbf P_{\text{pos}}$ can be initialized from the measurement covariance $\textbf R$ by rotating from sensor to vehicle coordinates:
 
 $$\mathbf P_{\text{pos}}=
 \mathbf M_{\text{rot}}\cdot \mathbf R \cdot \mathbf M_{\text{rot}}^T$$
 
-- The 3x3 Matrix for the velocity estimation error covariance
-
-$\mathbf P_{\text{vel}}$
-
-can be initialized with a diagonal matrix containing large diagonal values, since we cannot measure velocity and therefore have a huge initial velocity uncertainty. 
+- The 3x3 Matrix for the velocity estimation error covariance $\mathbf P_{\text{vel}}$ can be initialized with a diagonal matrix containing large diagonal values, since we cannot measure velocity and therefore have a huge initial velocity uncertainty. 
 - The overall estimation error covariance can then be initialized as:
 
 $$\mathbf P_0 = 
@@ -71,15 +59,7 @@ $$\mathbf P_0 =
 
 ### Derivation of Covariance Rotation (Optional)
 
-I promised less math for this lesson, so feel free to directly jump to the next page! In case you are interested though, here is the derivation of the rotation formula for the covariance. The measurement covariance
-
-$\textbf R$
-
-is defined via the expectation value
-
-$E$
-
-(see also the Wiki page on [Covariance Matrices](https://en.wikipedia.org/wiki/Covariance_matrix)):
+I promised less math for this lesson, so feel free to directly jump to the next page! In case you are interested though, here is the derivation of the rotation formula for the covariance. The measurement covariance $\textbf R$ is defined via the expectation value $E$ (see also the Wiki page on [Covariance Matrices](https://en.wikipedia.org/wiki/Covariance_matrix)):
 
 $$\mathbf R = cov(\mathbf z) = E\left[(\mathbf z - E(\mathbf z))(\mathbf z - E(\mathbf z))^T\right]$$
 
@@ -87,27 +67,7 @@ Remember the measurement equation:
 
 $$\mathbf z = h(\mathbf x)+\omega$$
 
-where
-
-$\omega \sim \mathcal{N}\left(0, \mathbf R\right)$
-
-is the zero-mean measurement noise with covariance
-
-$\mathbf R$
-
-. Since
-
-$\omega$
-
-is zero-mean, the expectation value of
-
-$\mathbf z$
-
-is simply
-
-$h(\mathbf x)$
-
-:
+where $\omega \sim \mathcal{N}\left(0, \mathbf R\right)$ is the zero-mean measurement noise with covariance $\mathbf R$. Since $\omega$ is zero-mean, the expectation value of $\mathbf z$ is simply $h(\mathbf x)$:
 
 $$E(\mathbf z) = E(h(\mathbf x)+\omega) = h(\mathbf x)$$
 
@@ -121,11 +81,7 @@ $$= E\left[(\mathbf h(\mathbf x)+\omega - h(\mathbf x))(...)^T\right]$$
 
 $$= E\left[\omega \omega^T\right]$$
 
-Now we want to rotate the measurement from sensor to vehicle coordinates, so we get (note that
-
-$(\mathbf A \mathbf B)^T =\mathbf B^T \mathbf A^T$
-
-):
+Now we want to rotate the measurement from sensor to vehicle coordinates, so we get (note that $(\mathbf A \mathbf B)^T =\mathbf B^T \mathbf A^T$):
 
 $$\mathbf P_{\text{pos}} = E\left[\mathbf M_{\text{rot}}\omega \cdot(\mathbf M_{\text{rot}} \omega)^T\right]$$
 

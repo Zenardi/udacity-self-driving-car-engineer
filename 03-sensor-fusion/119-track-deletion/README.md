@@ -48,34 +48,10 @@ There's no theoretic foundation and you can define your own deletion criteria if
 Here is one example for heuristic track deletion criteria that you could use in the final project:
 
 - Confirmed tracks:
-  - Delete if score
-
-$< 0.6$
-
-. This only holds for confirmed tracks, so the score must have been above 0.8 before and then drop below 0.6.
-  - Delete if
-
-$\mathbf P_{11}> 3^2$
-
-or
-
-$\mathbf P_{22}> 3^2$
-
-. This means our object could be anywhere inside a circle of 3 meters radius, the position uncertainty has increased so much that the track should be deleted.
+  - Delete if score $< 0.6$. This only holds for confirmed tracks, so the score must have been above 0.8 before and then drop below 0.6.
+  - Delete if $\mathbf P_{11}> 3^2$ or $\mathbf P_{22}> 3^2$. This means our object could be anywhere inside a circle of 3 meters radius, the position uncertainty has increased so much that the track should be deleted.
 - Tentative or initialized tracks:
-  - Delete if score
-
-$< 0.17$
-
-. Note that this threshold is much lower than for confirmed tracks, we don't want new tracks to be immediately deleted before they can stabilize.
-  - Delete if
-
-$\mathbf P_{11}> 3^2$
-
-or
-
-$\mathbf P_{22}> 3^2$
-
-.
+  - Delete if score $< 0.17$. Note that this threshold is much lower than for confirmed tracks, we don't want new tracks to be immediately deleted before they can stabilize.
+  - Delete if $\mathbf P_{11}> 3^2$ or $\mathbf P_{22}> 3^2$.
 
 Again, these are heuristic design parameters, feel free to experiment and define your own in the final project!

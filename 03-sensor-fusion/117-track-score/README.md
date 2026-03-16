@@ -56,11 +56,7 @@ That's it, this very simple score can help you distinguish between false and tru
 ## Additional Content
 
 ## Track Score
-We can define a simple
-
-$\textbf{track score}$
-
-by setting:
+We can define a simple $\textbf{track score}$ by setting:
 
 $$\text{score} = \frac{\#\text{detections in last $n$ frames}}{n}$$
 

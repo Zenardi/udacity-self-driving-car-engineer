@@ -50,10 +50,6 @@ The difference between the estimated state and true state is called residual. Th
 ## Additional Content
 
 ## Evaluation
-To evaluate the performance of our tracking, we can use the
-
-$\textbf{Root Mean Square Error (RMSE)}$
-
-, which calculates the residual between estimated state and ground truth state:
+To evaluate the performance of our tracking, we can use the $\textbf{Root Mean Square Error (RMSE)}$, which calculates the residual between estimated state and ground truth state:
 
 $$RMSE = \sqrt{\frac 1n\sum_{k=1}^n \left(x_k^{\text{est}}-x_k^{\text{true}}\right)^2}$$

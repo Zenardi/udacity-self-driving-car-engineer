@@ -59,11 +59,7 @@ The rotation and translation matrix is given through calibration. Therefore, we 
 ## Additional Content
 
 ## Track Initialization
-- An unassigned lidar measurement
-
-$\mathbf z = (z_1, z_2, z_3)^T$
-
-first has to be converted from sensor to vehicle coordinates:
+- An unassigned lidar measurement $\mathbf z = (z_1, z_2, z_3)^T$ first has to be converted from sensor to vehicle coordinates:
 
 $$\begin{pmatrix}
 p_x\\ p_y\\p_z\\1

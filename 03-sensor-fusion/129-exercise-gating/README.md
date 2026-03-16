@@ -46,23 +46,7 @@ Here is a new loop that calls the new function named get_closest_track_and_ meas
 ## Exercise: Gating
 ### Hints
 
-- To calculate the inverse cumulative
-
-$\chi^2$
-
-distribution
-
-$F_{\chi^2}^{-1}\left(p|df\right)$
-
-with probability
-
-$p$
-
-and degrees of freedom
-
-$df$
-
-(which equals the dimension of the measurement space here), you can use the scipy package:
+- To calculate the inverse cumulative $\chi^2$ distribution $F_{\chi^2}^{-1}\left(p|df\right)$ with probability $p$ and degrees of freedom $df$ (which equals the dimension of the measurement space here), you can use the scipy package:
 
     ```python
     from scipy.stats.distributions import chi2

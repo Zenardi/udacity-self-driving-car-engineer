@@ -63,15 +63,7 @@ Using the inverse means that a big ellipse will result in a smaller distance and
 ## Additional Content
 
 ## Mahalanobis Distance
-- The
-
-$\textbf{data association}$
-
-assigns measurements to tracks and decides which track to update with which measurement.
-- As a distance measure for this decision, the
-
-$\textbf{Mahalanobis distance}$
-
-is used (note that it actually contains a squared distance):
+- The $\textbf{data association}$ assigns measurements to tracks and decides which track to update with which measurement.
+- As a distance measure for this decision, the $\textbf{Mahalanobis distance}$ is used (note that it actually contains a squared distance):
 
 $$d(\mathbf x, \mathbf z)= \gamma^T\mathbf S^{-1}\gamma = (\mathbf z - h(\mathbf x))^T\mathbf S^{-1}(\mathbf z - h(\mathbf x))$$

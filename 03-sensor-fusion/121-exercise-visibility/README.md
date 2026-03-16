@@ -52,57 +52,11 @@ The script generates random points and calculates whether the points lie inside 
 ## Exercise: Visibility
 ### Hint
 
-Take a look at the image. We want to check the visibility of the red object, whose coordinates
+Take a look at the image. We want to check the visibility of the red object, whose coordinates $p_x$ , $p_y$ are already transformed to sensor coordinates in this image. We have to calculate the angle $\alpha$ of the red target with respect to the vehicle. If the absolute value of $\alpha$ is smaller than the camera's opening angle $\phi$ , we can see the object, otherwise we can't. So how can we calculate $\alpha$?
 
-$p_x$
+Note that we have a right-angled triangle here, so we can calculate $\alpha$ with trigonometric functions. We have given the opposite side $p_y$ and the adjacent side $p_x$ of the triangle, where we assume $p_x > 0$ , therefore we can use the tangent function: $$\tan(\alpha) = \frac{p_y}{p_x}$$
 
-,
-
-$p_y$
-
-are already transformed to sensor coordinates in this image. We have to calculate the angle
-
-$\alpha$
-
-of the red target with respect to the vehicle. If the absolute value of
-
-$\alpha$
-
-is smaller than the camera's opening angle
-
-$\phi$
-
-, we can see the object, otherwise we can't. So how can we calculate
-
-$\alpha$
-
-?
-
-Note that we have a right-angled triangle here, so we can calculate
-
-$\alpha$
-
-with trigonometric functions. We have given the opposite side
-
-$p_y$
-
-and the adjacent side
-
-$p_x$
-
-of the triangle, where we assume
-
-$p_x > 0$
-
-, therefore we can use the tangent function:
-
-$$\tan(\alpha) = \frac{p_y}{p_x}$$
-
-This leads to the required angle
-
-$\alpha$
-
-using the inverse tangent function, or arcus tangens:
+This leads to the required angle $\alpha$ using the inverse tangent function, or arcus tangens:
 
 $$\alpha = \arctan\left(\frac{p_y}{p_x}\right)$$
 
