@@ -49,50 +49,14 @@ We have a non-linear motion with a square value in the y position. Since we use 
 ## Exercise: Lidar
 ### Measurement Noise Covariance Matrix R Explanation
 
-For lidar sensors, we have a 2D measurement vector. Each location component
-
-$\left(p_x, p_y\right)$
-
-is affected by a random noise. So our noise vector
-
-$\omega$
-
-has the same dimension as
-
-$\mathbf z$
-
-. And it is a distribution with zero mean and a 2 x 2 covariance matrix which comes from the product of the vertical vector
-
-$\omega$
-
-and its transpose:
+For lidar sensors, we have a 2D measurement vector. Each location component $\left(p_x, p_y\right)$ is affected by a random noise. So our noise vector $\omega$ has the same dimension as $\mathbf z$. And it is a distribution with zero mean and a 2 x 2 covariance matrix which comes from the product of the vertical vector $\omega$ and its transpose:
 
 $$\mathbf R = E[\omega \omega^T] = \begin{pmatrix} \sigma^2_{x} & 0 \\ 0 & \sigma^2_{y} \end{pmatrix}$$
 
-where
-
-$\textbf R$
-
-is the measurement noise covariance matrix. In other words, the matrix
-
-$\textbf R$
-
-represents the uncertainty in the position measurements we receive from the lidar sensor.
+where $\textbf R$ is the measurement noise covariance matrix. In other words, the matrix $\textbf R$ represents the uncertainty in the position measurements we receive from the lidar sensor.
 
 Generally, the parameters for the measurement noise covariance matrix will be provided by the sensor manufacturer or have to be determined in test drives. In the mid-term project, you evaluated the standard deviation of your lidar detections in x and y, so you can directly use your results for R in the final project.
 
-Remember that the off-diagonal 0 entrys in
-
-$\textbf R$
-
-indicate our assumption that the noise processes are uncorrelated, noise in
-
-$x$
-
-position does not affect the
-
-$y$
-
-position and vice versa.
+Remember that the off-diagonal 0 entrys in $\textbf R$ indicate our assumption that the noise processes are uncorrelated, noise in $x$ position does not affect the $y$ position and vice versa.
 
 You now have all you need for lidar-only tracking! In the following, I want you to apply what you've learned in a programming assignment.

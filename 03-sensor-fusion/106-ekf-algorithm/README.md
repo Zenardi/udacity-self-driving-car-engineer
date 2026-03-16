@@ -42,97 +42,13 @@ Although the mathematical proof is somewhat complex, it turns out that the Kalma
 
 The main differences are:
 
-- The
+- The $\textbf F$ matrix will be replaced by $\mathbf F_J$ when calculating $\mathbf P^-$ .
+- The $\textbf H$ matrix will be replaced by $\mathbf H_J$ when calculating $\mathbf S$ , $\mathbf K$ , and $\mathbf P^+$ .
+- To calculate $\mathbf x^-$ , the prediction update function, $f$ , is used instead of the $\textbf F$ matrix.
+- To calculate $\gamma$ , the measurement function, $h$ , is used instead of the $\textbf H$ matrix.
 
-$\textbf F$
-
-matrix will be replaced by
-
-$\mathbf F_J$
-
-when calculating
-
-$\mathbf P^-$
-
-.
-- The
-
-$\textbf H$
-
-matrix will be replaced by
-
-$\mathbf H_J$
-
-when calculating
-
-$\mathbf S$
-
-,
-
-$\mathbf K$
-
-, and
-
-$\mathbf P^+$
-
-.
-- To calculate
-
-$\mathbf x^-$
-
-, the prediction update function,
-
-$f$
-
-, is used instead of the
-
-$\textbf F$
-
-matrix.
-- To calculate
-
-$\gamma$
-
-, the measurement function,
-
-$h$
-
-, is used instead of the
-
-$\textbf H$
-
-matrix.
-
-For the final project, however, we do not need to use the
-
-$f$
-
-function or
-
-$\mathbf F_J$
-
-, because we are using a linear model for the prediction step. So, for the prediction step, we can still use the regular Kalman filter equations and the
-
-$\textbf F$
-
-matrix rather than the extended Kalman filter equations.
+For the final project, however, we do not need to use the $f$ function or $\mathbf F_J$ , because we are using a linear model for the prediction step. So, for the prediction step, we can still use the regular Kalman filter equations and the $\textbf F$ matrix rather than the extended Kalman filter equations.
 
 The measurement update for lidar will also use the regular Kalman filter equations, since lidar uses linear equations. Only the measurement update for the camera sensor will use the extended Kalman filter equations.
 
-One important point to reiterate is that the equation
-
-$\gamma=\mathbf z-\mathbf H\mathbf x$
-
-for the Kalman filter does not become
-
-$\gamma =\mathbf z-\mathbf H_J\mathbf x$
-
-for the extended Kalman filter. Instead, for extended Kalman filters, we'll use the
-
-$h$
-
-function directly to map predicted locations
-
-$\mathbf x^-$
-
-from cartesian to image coordinates.
+One important point to reiterate is that the equation $\gamma=\mathbf z-\mathbf H\mathbf x$ for the Kalman filter does not become $\gamma =\mathbf z-\mathbf H_J\mathbf x$ for the extended Kalman filter. Instead, for extended Kalman filters, we'll use the $h$ function directly to map predicted locations $\mathbf x^-$ from cartesian to image coordinates.

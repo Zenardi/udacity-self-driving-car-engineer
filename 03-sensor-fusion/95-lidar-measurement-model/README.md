@@ -39,67 +39,15 @@ We also know that our state is a 4D vector, px py and vx vy. Now, I would like y
 ## Lidar Measurement Model
 ### Variables Summary
 
--
-
-$\mathbf z$
-
-is the measurement vector. For a lidar sensor, the
-
-$\mathbf z$
-
-vector contains the position measurements in
-
-$x$
-
-and
-
-$y$
-
-:
+- $\mathbf z$ is the measurement vector. For a lidar sensor, the $\mathbf z$ vector contains the position measurements in $x$ and $y$: 
 
 $$\mathbf z = \begin{pmatrix} p_x\\p_y \end{pmatrix}$$
 
--
+- $\mathbf H$ is the matrix that projects your belief about the object's current state into the measurement space of the sensor. For lidar, this is a fancy way of saying that we discard velocity information from the state variable since the lidar sensor only measures position: The state vector $\mathbf x$ contains information about $\begin{pmatrix}p_x, p_y, v_x, v_y\end{pmatrix}$ , whereas the $\mathbf z$ vector will only contain $\begin{pmatrix}p_x, p_y\end{pmatrix}$ . Multiplying $\mathbf H \mathbf x$ allows us to compare $\mathbf x$ , our predicted state, with $\mathbf z$ , the sensor measurement.
+- 
+### $\mathbf H$ Matrix Quiz
 
-$\mathbf H$
-
-is the matrix that projects your belief about the object's current state into the measurement space of the sensor. For lidar, this is a fancy way of saying that we discard velocity information from the state variable since the lidar sensor only measures position: The state vector
-
-$\mathbf x$
-
-contains information about
-
-$\begin{pmatrix}p_x, p_y, v_x, v_y\end{pmatrix}$
-
-, whereas the
-
-$\mathbf z$
-
-vector will only contain
-
-$\begin{pmatrix}p_x, p_y\end{pmatrix}$
-
-. Multiplying
-
-$\mathbf H \mathbf x$
-
-allows us to compare
-
-$\mathbf x$
-
-, our predicted state, with
-
-$\mathbf z$
-
-, the sensor measurement.
-###
-
-$\mathbf H$
-
-Matrix Quiz
-Find the right
-
-$\mathbf H$
+Find the right $\mathbf H$
 
 matrix to project from a 4D state space to a 2D measurement space, as follows:
 
@@ -107,33 +55,26 @@ $$\begin{pmatrix} p_x\\p_y \end{pmatrix} = \mathbf H \begin{pmatrix} p_x\\p_y\\v
 
 Here are your options:
 
-a.
-
-$\mathbf H = \begin{pmatrix}
+a. $\mathbf H = \begin{pmatrix}
 1 & 0 \\
 0 & 1
 \end{pmatrix}$
 
-b.
-
-$\mathbf H = \begin{pmatrix}
+b. $\mathbf H = \begin{pmatrix}
 1 & 0 \\
 0 & 1 \\
  0 & 0 \\
  0 &0
 \end{pmatrix}$
 
-c.
-
-$\mathbf H = \begin{pmatrix}
+c. $\mathbf H = \begin{pmatrix}
 1 & 1
 \end{pmatrix}$
 
-d.
-
-$\mathbf H = \begin{pmatrix}
+**(X) d. $\mathbf H = \begin{pmatrix}
 1 & 0 & 0 & 0 \\
 0 & 1 & 0 &0
-\end{pmatrix}$
+\end{pmatrix}$**
 
-(Hint: first consider the matrix dimensions, then try to use a 0 or 1 to correctly project the components into the measurement space.)
+> [!TIP]
+> First consider the matrix dimensions, then try to use a 0 or 1 to correctly project the components into the measurement space.

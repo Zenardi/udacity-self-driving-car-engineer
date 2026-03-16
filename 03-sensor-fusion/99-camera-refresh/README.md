@@ -48,15 +48,7 @@ We lose the depth information and can't directly resolve this ambiguity. We can 
 ## Additional Content
 
 ## Camera Refresh
-- Refresh of the pinhole camera model with optical center
-
-$o$
-
-and focal length
-
-$f$
-
-.
+- Refresh of the pinhole camera model with optical center $o$ and focal length $f$.
 - Projection formula of a 3D point to 2D image plane:
 
 $$\begin{pmatrix}

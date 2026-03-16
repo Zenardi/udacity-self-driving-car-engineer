@@ -86,101 +86,28 @@ Finally, we update the state as usual. We will soon learn how to calculate the c
 
 ## Kalman Filter Overview
 Now that we've looked back at the State Transition and Measurement functions, let's also review the Kalman Filter equations.
+
 ### Variables Summary
 
--
-
-$f$
-
-is the
-
-$\textbf{state transition function}$
-
-(in the linear case, it is a matrix
-
-$\mathbf F$
-
-, also called
-
-$\textbf{system matrix}$
-
-). It tells us how to get from one timestamp to the next:
+- $f$ is the $\textbf{state transition function}$ (in the linear case, it is a matrix $\mathbf F$ , also called $\textbf{system matrix}$ ). It tells us how to get from one timestamp to the next: 
 
 $$x_k = f(x_{k-1})+\nu= \mathbf Fx_{k-1}+\nu$$
 
--
+- $\nu \sim \mathcal{N}\left(0, \mathbf Q\right)$ is the zero-mean $\textbf{process noise}$ with covariance $\mathbf Q$.
 
-$\nu \sim \mathcal{N}\left(0, \mathbf Q\right)$
+- $h$ is the $\textbf{measurement function}$ (in the linear case, it is a matrix $\mathbf H$ ). It tells us how state and measurement are related: 
 
-is the zero-mean
+$$z_k = h(x_k)+\omega= \mathbf Hx_k+\omega$$ 
 
-$\textbf{process noise}$
+- $\omega \sim \mathcal{N}\left(0, \mathbf R\right)$ is the zero-mean $\textbf{measurement noise}$ with covariance $\mathbf R$.
 
-with covariance
+- $\mathbf z$ is the $\textbf{measurement vector}$.
 
-$\mathbf Q$
+- $\gamma = \mathbf z- \mathbf H\mathbf x$ is the $\textbf{residual}$ with covariance $\mathbf S = \mathbf H\mathbf P \mathbf H^T+\mathbf R$.
 
-.
--
+- $\mathbf K = \mathbf P \mathbf H^T\mathbf S^{-1}$ is the $\textbf{Kalman gain}$ which weights prediction in comparison to measurement.
 
-$h$
 
-is the
-
-$\textbf{measurement function}$
-
-(in the linear case, it is a matrix
-
-$\mathbf H$
-
-). It tells us how state and measurement are related:
-
-$$z_k = h(x_k)+\omega= \mathbf Hx_k+\omega$$
-
--
-
-$\omega \sim \mathcal{N}\left(0, \mathbf R\right)$
-
-is the zero-mean
-
-$\textbf{measurement noise}$
-
-with covariance
-
-$\mathbf R$
-
-.
--
-
-$\mathbf z$
-
-is the
-
-$\textbf{measurement vector}$
-
-.
--
-
-$\gamma = \mathbf z- \mathbf H\mathbf x$
-
-is the
-
-$\textbf{residual}$
-
-with covariance
-
-$\mathbf S = \mathbf H\mathbf P \mathbf H^T+\mathbf R$
-
-.
--
-
-$\mathbf K = \mathbf P \mathbf H^T\mathbf S^{-1}$
-
-is the
-
-$\textbf{Kalman gain}$
-
-which weights prediction in comparison to measurement.  
 ### Kalman Filter Equations Summary
 
 Prediction step:

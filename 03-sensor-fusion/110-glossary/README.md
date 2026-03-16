@@ -4,269 +4,49 @@
 
 ## Additional Content
 
--
+* **$\mathbf{x}$ (State Vector):** Contains information about the position and velocity of the object being tracked:
 
-$\mathbf{ x}$
+$$\mathbf{x} = \begin{pmatrix} p_x \\ p_y \\ p_z \\ v_x \\ v_y \\ v_z \end{pmatrix}$$
 
-is the
 
-$\textbf{state vector}$
+* **$\mathbf{P}$ (Estimation Error Covariance Matrix):** Contains information about the uncertainty of the object's position and velocity.
+* **$k$ (Time Step Index):** Refers to the specific point in time. Thus, $\mathbf{x}_k$ is the state vector at time $t_k$.
+* **$\Delta t$ (Time Step):** The time interval between two consecutive measurements.
+* **$\mathbf{x}_k^-$ and $\mathbf{P}_k^-$ (Predicted State/Covariance):** Refers to the state and covariance predicted by the model before the measurement update.
+* **$\mathbf{x}_k^+$ and $\mathbf{P}_k^+$ (Updated State/Covariance):** Refers to the state and covariance after the measurement innovation has been applied.
+* **$f$ (State Transition Function):** In the linear case, this is the matrix $\mathbf{F}$ (System Matrix). it defines how to transition from one timestamp to the next:
 
-. It contains information about position and velocity of the object that you are tracking:
+$$\mathbf{x}_k = f(\mathbf{x}_{k-1}) + \nu = \mathbf{F}\mathbf{x}_{k-1} + \nu$$
 
-$$\mathbf{ x} = \begin{pmatrix} p_x\\p_y\\p_z\\v_x\\v_y\\v_z\end{pmatrix}$$
 
--
+* **$\nu \sim \mathcal{N}(0, \mathbf{Q})$ (Process Noise):** Zero-mean noise with covariance $\mathbf{Q}$, representing model uncertainty.
+* **$h$ (Measurement Function):** In the linear case, this is the matrix $\mathbf{H}$. It relates the state $\mathbf{x}$ to the measurement $\mathbf{z}$:
 
-$\mathbf P$
+$$\mathbf{z}_k = h(\mathbf{x}_k) + \omega = \mathbf{H}\mathbf{x}_k + \omega$$
 
-is the
 
-$\textbf{estimation error covariance matrix}$
+* **$\omega \sim \mathcal{N}(0, \mathbf{R})$ (Measurement Noise):** Zero-mean noise with covariance $\mathbf{R}$, representing sensor uncertainty.
+* **$\mathbf{z}$ (Measurement Vector):** For a Lidar sensor, it contains the position measurements:
 
-, which contains information about the uncertainty of the object's position and velocity. 
--
+$$\mathbf{z} = \begin{pmatrix} p_x \\ p_y \\ p_z \end{pmatrix}$$
 
-$k$
 
-refers to the time step index. So
+* **$\gamma$ (Residual):** The innovation $\gamma = \mathbf{z} - \mathbf{H}\mathbf{x}$ with covariance $\mathbf{S} = \mathbf{H}\mathbf{P}\mathbf{H}^T + \mathbf{R}$.
+* **$\mathbf{K}$ (Kalman Gain):** Weights the prediction against the measurement: $\mathbf{K} = \mathbf{P}\mathbf{H}^T\mathbf{S}^{-1}$.
+* **$(c_i, c_j)$ and $(f_i, f_j)$:** Image center (principal point) and focal length in image coordinates, derived from intrinsic camera calibration.
 
-$x_k$
+---
 
-is the object's position and velocity vector at time
+### Coordinate Transformations
 
-$t_k$
+* **Rotation and Translation:** The $3 \times 3$ rotation matrix $\mathbf{M}_{\text{rot}}$ and 3D translation vector $\mathbf{t}$ convert from sensor to vehicle coordinates:
 
-. 
--
+$$\begin{pmatrix} p_x \\ p_y \\ p_z \end{pmatrix} = \mathbf{M}_{\text{rot}} \cdot \begin{pmatrix} z_1 \\ z_2 \\ z_3 \end{pmatrix} + \mathbf{t}$$
 
-$\Delta t$
 
-is the
+* **Transformation Matrix (Homogeneous):** Converts from sensor to vehicle coordinates using a single matrix operation:
 
-$\textbf{time step}$
+$$\begin{pmatrix} p_x \\ p_y \\ p_z \\ 1 \end{pmatrix} = \mathbf{T}_{\text{sens2veh}} \cdot \begin{pmatrix} z_1 \\ z_2 \\ z_3 \\ 1 \end{pmatrix} = \left( \begin{array}{ccc|c} & \mathbf{M}_{\text{rot}} & & \mathbf{t} \\ \hline 0 & 0 & 0 & 1 \end{array} \right) \cdot \begin{pmatrix} z_1 \\ z_2 \\ z_3 \\ 1 \end{pmatrix}$$
 
-between two consecutive measurements.
-- The notation
 
-$\mathbf x_k^-$
-
-refers to the predicted state. The corresponding predicted covariance is denoted as
-
-$\mathbf P_k^-$
-
-.
--
-
-$\mathbf x_k^+$
-
-is the updated state after the measurement innovation. Similarly, the updated covariance is
-
-$\mathbf P_k^+$
-
-.
--
-
-$f$
-
-is the
-
-$\textbf{state transition function}$
-
-(in the linear case, it is a matrix
-
-$\mathbf F$
-
-, also called
-
-$\textbf{system matrix}$
-
-). It tells us how to get from one timestamp to the next:
-
-$$x_k = f(x_{k-1})+\nu= \mathbf F x_{k-1}+\nu$$
-
--
-
-$\nu \sim \mathcal{N}\left(0, \mathbf Q\right)$
-
-is the zero-mean
-
-$\textbf{process noise}$
-
-with covariance
-
-$\mathbf Q$
-
-.
--
-
-$h$
-
-is the
-
-$\textbf{measurement function}$
-
-(in the linear case, it is a matrix
-
-$\mathbf H$
-
-). It tells us how state and measurement are related:
-
-$$z_k = h(x_k)+\omega= \mathbf H x_k+\omega$$
-
--
-
-$\omega \sim \mathcal{N}\left(0, \mathbf R\right)$
-
-is the zero-mean
-
-$\textbf{measurement noise}$
-
-with covariance
-
-$\mathbf R$
-
-.
--
-
-$\mathbf z$
-
-is the
-
-$\textbf{measurement vector}$
-
-. For a lidar sensor, the
-
-$\mathbf z$
-
-vector contains the position measurements in
-
-$x$
-
-,
-
-$y$
-
-and
-
-$z$
-
-:
-
-$$\mathbf z = \begin{pmatrix} p_x\\p_y\\p_z \end{pmatrix}$$
-
--
-
-$\gamma = \mathbf z- \mathbf H\mathbf x$
-
-is the
-
-$\textbf{residual}$
-
-with covariance
-
-$\mathbf S = \mathbf H\mathbf P \mathbf H^T+\mathbf R$
-
-.
--
-
-$\mathbf K = \mathbf P \mathbf H^T\mathbf S^{-1}$
-
-is the
-
-$\textbf{Kalman gain}$
-
-which weights prediction in comparison to measurement.  
--
-
-$\left(c_i, c_j\right)$
-
-is the
-
-$\textbf{image center}$
-
-or
-
-$\textbf{principal point}$
-
-in image coordinates, derived from intrinsic camera calibration.
--
-
-$\left(f_i, f_j\right)$
-
-is the
-
-$\textbf{focal length}$
-
-in image coordinates, derived from intrinsic camera calibration.
-- The 3x3
-
-$\textbf{rotation matrix}$
-
-$\mathbf M_{\text{rot}}$
-
-and 3D
-
-$\textbf{translation vector}$
-
-$\mathbf t$
-
-convert from sensor to vehicle coordinates:
-
-$$\begin{pmatrix}
-p_x\\ p_y\\p_z
-\end{pmatrix}
-=
-\mathbf M_{\text{rot}}
-\cdot
-\begin{pmatrix}
-z_1\\ z_2\\z_3
-\end{pmatrix}
-+\mathbf t$$
-
-- The
-
-$\textbf{Transformation Matrix}$
-
-converts from sensor coordinates to vehicle coordinates using
-
-$\textbf{homogeneous coordinates}$
-
-:
-
-$$\begin{pmatrix}
-p_x\\ p_y\\p_z\\1
-\end{pmatrix}
-=
-\mathbf T_{\text{sens2veh}}
-\cdot
-\begin{pmatrix}
-z_1\\ z_2\\z_3\\1
-\end{pmatrix}
-=
-\left(\begin{array}{c|c}
-{\large\mathbf M_{\text{rot}}}
-  &  
-{\large\text t}\\
-
- \overline{\begin{matrix}
-0 &0&0
-  \end{matrix}}  &
-  \overline{\begin{matrix}
-1
-  \end{matrix}}
-\end{array}\right)
-\cdot
-\begin{pmatrix}
-z_1\\ z_2\\z_3\\1
-\end{pmatrix}$$
-
-- The transformation matrix
-
-$\mathbf T_{\text{veh2sens}}$
-
-from vehicle to sensor coordinates is the inverse matrix of
-
-$\mathbf T_{\text{sens2veh}}$
-
-.
+* **Inverse Transformation:** The matrix $\mathbf{T}_{\text{veh2sens}}$ is the inverse of $\mathbf{T}_{\text{sens2veh}}$.

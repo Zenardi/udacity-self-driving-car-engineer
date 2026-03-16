@@ -1,0 +1,1 @@
+### Exercises are available [here](https://github.com/Zenardi/sdc-c2-fusion-exercises)

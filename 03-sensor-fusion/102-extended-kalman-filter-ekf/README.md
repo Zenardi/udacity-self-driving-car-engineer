@@ -76,73 +76,25 @@ Similarly, extended Kalman filters use exactly the same linearization when the s
 ## Extended Kalman Filter (EKF)
 ### How to Perform a Taylor Expansion
 
-The general form of a Taylor series expansion of an equation,
-
-$h(x)$
-
-, at point
-
-$\mu$
-
-is as follows:
+The general form of a Taylor series expansion of an equation, $h(x)$ , at point $\mu$ is as follows:
 
 $$h(x) = h(\mu) + h'(\mu) ( x - \mu)+ \frac{h''(\mu)}{2!} ( x - \mu)^2+...,$$
 
-where
-
-$n!$
-
-denotes the factorial of
-
-$n$
-
-. You don't have to fully understand the Taylor series, but if you want more details, you can find them [here](https://en.wikipedia.org/wiki/Taylor_series). If
-
-$\mu$
-
-is close to
-
-$x$
-
-,
-
-$(x-\mu)^2$
-
-and higher order terms become very small, so we can neglect them. 
+where $n!$ denotes the factorial of $n$ . You don't have to fully understand the Taylor series, but if you want more details, you can find them [here](https://en.wikipedia.org/wiki). If $\mu$ is close to $x$ , $(x-\mu)^2$ and higher order terms become very small, so we can neglect them. 
 
 Therefore we get:
 
 $$h(x) \approx h(\mu) + h'(\mu) ( x - \mu).$$
 
-Simply replace
+Simply replace $h(x)$ with a given equation, find the derivative, and plug in the value $\mu$ to find the Taylor expansion at that point $\mu$.
 
-$h(x)$
-
-with a given equation, find the derivative, and plug in the value
-
-$\mu$
-
-to find the Taylor expansion at that point
-
-$\mu$
-
-.
-
-See if you can find the Taylor expansion of
-
-$\arctan(x)$
-
-! Let’s say we have a predicted state with mean:
+See if you can find the Taylor expansion of $\arctan(x)$! Let’s say we have a predicted state with mean:
 
 $$\mu = 0$$
 
-The function that projects the predicted state,
+The function that projects the predicted state, $x$, to the measurement space is:
 
-$x$
-
-, to the measurement space is:
-
-$$h(x) = \arctan(x)$$
+$$h(x) = \arctan(x)$$ 
 
 and its derivative is:
 
@@ -150,39 +102,20 @@ $$h'(x) = \frac 1{1+ x^2}$$
 
 I want you to use the first order Taylor expansion to construct a linear approximation of
 
-$h(x)$
+$h(x)$ to find the equation of the line that linearizes the function $h(x)$ at the mean location $\mu=0$.
 
-to find the equation of the line that linearizes the function
-
-$h(x)$
-
-at the mean location
-
-$\mu=0$
-
-.
 ### Further Quiz Explanation
 
 Remember:
 
 $$h(x) \approx h(\mu) + h'(\mu) ( x - \mu)$$
 
-In our example
-
-$\mu=0$
-
-, therefore:
+In our example $\mu=0$, therefore:
 
 $$h(x) \approx \arctan(0) + \frac{1}{1+0}(x-0) = x$$
 
-So, the function
+So, the function $h(x) = \arctan(x)$ will be approximated by a line:
 
-$h(x) = \arctan(x)$
-
-will be approximated by a line:
-
-$h(x) \approx x$
-
-.
+$h(x) \approx x$.
 
 And now, let's keep going!

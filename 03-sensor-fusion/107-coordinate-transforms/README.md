@@ -51,141 +51,26 @@ Substituting the variables with the sample values, we get this transformation ma
 ## Additional Content
 
 ## Coordinate Transforms
-- The 3x3
 
-$\textbf{rotation matrix}$
+Aqui está o conteúdo da imagem convertido para Markdown, utilizando LaTeX para as fórmulas matemáticas conforme solicitado:
 
-$\mathbf M_{\text{rot}}$
+---
 
-and 3D
+* A matriz de rotação $3 \times 3$ $\mathbf{M}_{\text{rot}}$ e o vetor de translação 3D $\mathbf{t}$ convertem das coordenadas do sensor para as coordenadas do veículo:
 
-$\textbf{translation vector}$
+$$\begin{pmatrix} p_x \\ p_y \\ p_z \end{pmatrix} = \mathbf{M}_{\text{rot}} \cdot \begin{pmatrix} z_1 \\ z_2 \\ z_3 \end{pmatrix} + \mathbf{t}$$
 
-$\mathbf t$
+* No entanto, a ordem de aplicação da rotação e da translação é importante aqui, portanto, esta conversão é propensa a erros.
 
-convert from sensor to vehicle coordinates:
+Melhor utilizarmos a seguinte transformação:
 
-$$\begin{pmatrix}
-p_x\\ p_y\\p_z
-\end{pmatrix}
-=
-\mathbf M_{\text{rot}}
-\cdot
-\begin{pmatrix}
-z_1\\ z_2\\z_3
-\end{pmatrix}
-+\mathbf t$$
+* A **Matriz de Transformação** converte das coordenadas do sensor para as coordenadas do veículo usando **coordenadas homogêneas**:
 
-- However, the order of applying rotation and translation matters here, so this conversion is error prone. 
-We better use the following transformation:
+$$\begin{pmatrix} p_x \\ p_y \\ p_z \\ 1 \end{pmatrix} = \mathbf{T}_{\text{sens2veh}} \cdot \begin{pmatrix} z_1 \\ z_2 \\ z_3 \\ 1 \end{pmatrix} = \left( \begin{array}{ccc|c} & \mathbf{M}_{\text{rot}} & & \mathbf{t} \\ \hline 0 & 0 & 0 & 1 \end{array} \right) \cdot \begin{pmatrix} z_1 \\ z_2 \\ z_3 \\ 1 \end{pmatrix} = \begin{pmatrix} r_{11} & r_{12} & r_{13} & t_1 \\ r_{21} & r_{22} & r_{23} & t_2 \\ r_{31} & r_{32} & r_{33} & t_3 \\ 0 & 0 & 0 & 1 \end{pmatrix} \cdot \begin{pmatrix} z_1 \\ z_2 \\ z_3 \\ 1 \end{pmatrix}$$
 
-- The
+* **Exemplo:** Em um veículo onde um sensor está localizado a **4m** à frente do eixo traseiro (= origem do sistema de coordenadas do veículo) e rotacionado $\phi = 0.7 (\approx 45^\circ)$ para a esquerda, temos a seguinte matriz de transformação:
 
-$\textbf{Transformation Matrix}$
+$$\mathbf{T}_{\text{sens2veh}} = \left( \begin{array}{ccc|c} & \mathbf{M}_{\text{rot}} & & \mathbf{t} \\ \hline 0 & 0 & 0 & 1 \end{array} \right) = \begin{pmatrix} \cos(\phi) & -\sin(\phi) & 0 & t_1 \\ \sin(\phi) & \cos(\phi) & 0 & t_2 \\ 0 & 0 & 1 & t_3 \\ 0 & 0 & 0 & 1 \end{pmatrix} = \begin{pmatrix} 0.7 & -0.7 & 0 & 4 \\ 0.7 & 0.7 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \end{pmatrix}$$
 
-converts from sensor coordinates to vehicle coordinates using
+* A matriz de transformação $\mathbf{T}_{\text{veh2sens}}$ de coordenadas do veículo para o sensor é a matriz inversa de $\mathbf{T}_{\text{sens2veh}}$.
 
-$\textbf{homogeneous coordinates}$
-
-:
-
-$\begin{pmatrix}
-p_x\\ p_y\\p_z\\1
-\end{pmatrix}
-=
-\mathbf T_{\text{sens2veh}}
-\cdot
-\begin{pmatrix}
-z_1\\ z_2\\z_3\\1
-\end{pmatrix}
-=
-\left(\begin{array}{c|c }
-{\large \mathbf M_{\text{rot}}}
-  &  
-{\large t} \\ 
-
-\overline{\begin{matrix}
-0 &0&0
-  \end{matrix}}  &
- \overline {\begin{matrix}
-1
-  \end{matrix}}
-\end{array}\right)
-\cdot
-\begin{pmatrix}
-z_1\\ z_2\\z_3\\1
-\end{pmatrix}
-=
-\left(\begin{array}{c|c}
-  \begin{matrix}
-  r_{11} & r_{12}& r_{13} \\
-r_{21} & r_{22}& r_{23}\\
-r_{31} & r_{32}& r_{33}
-  \end{matrix}
-  &  
-\begin{matrix}
-t_1 \\
-t_2\\
-t_3
-  \end{matrix}\\
-
-\overline{ \begin{matrix}
-0 &0&0
-  \end{matrix}}  &
-  \overline{\begin{matrix}
-1
-  \end{matrix}}
-\end{array}\right)
-\cdot
-\begin{pmatrix}
-z_1\\ z_2\\z_3\\1
-\end{pmatrix}$
-
-- Example: In a vehicle where a sensor is located
-
-$4m$
-
-in front of the rear axle (=vehicle coordinate system origin) and rotated
-
-$\phi = 0.7 (=45^{\circ})$
-
-to the left, we have the following transformation matrix:
-
-$\mathbf T_{\text{sens2veh}}
-=
-\left(\begin{array}{c|c}
-{\large \mathbf M_{\text{rot}}}
-  &  
-{\large \text t} \\
-
-\overline{\begin{matrix}
-0 &0&0
-  \end{matrix}}  &
- \overline {\begin{matrix}
-1
-  \end{matrix}}
-\end{array}\right)
-=
-  \begin{pmatrix}
-  \cos(\phi)&  -\sin(\phi)& 0 &t_1  \\
- \sin(\phi) &  \cos(\phi)& 0& t_2\\
-0 & 0&1 & t_3\\
-0&0 & 0&1
-  \end{pmatrix}
-=
-  \begin{pmatrix}
-0.7&  -0.7& 0 &4 \\
-0.7 &  0.7& 0& 0\\
-0 & 0&1 & 0\\
-0&0 & 0&1
-  \end{pmatrix}$
-
-- The transformation matrix
-
-$\mathbf T_{\text{veh2sens}}$
-
-from vehicle to sensor coordinates is the inverse matrix of
-
-$\mathbf T_{\text{sens2veh}}$
-
-.

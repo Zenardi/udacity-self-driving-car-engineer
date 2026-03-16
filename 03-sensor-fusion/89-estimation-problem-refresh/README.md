@@ -53,87 +53,17 @@ A small Q means the motion will vary only little, so we trust our motion model t
 ## Estimation Problem Refresh
 ### Variable Definitions
 
--
-
-$\mathbf{ x}$
-
-is the **state vector**. It contains information about position and velocity of the object that you are
+- $\mathbf{ x}$ is the **state vector**. It contains information about position and velocity of the object that you are
 tracking:
 
 $$\mathbf{ x} = \begin{pmatrix} p_x \\ p_y \\ v_x \\ v_y \end{pmatrix}$$
 
-- Position and velocity are represented by a Gaussian distribution with mean
+- Position and velocity are represented by a Gaussian distribution with mean $\mathbf{ x}$. $P$ is the **estimation error covariance matrix**, which contains information about the uncertainty of the object's position and velocity. You can think of it as containing standard deviations.
 
-$\mathbf{ x}$
+- $k refers to the time step index. S $x_k is the object's position and velocity vector at tim $t_k$.
 
-.
+- $\Delta t$ is the time step between two consecutive measurements.
 
-$P$
+- The notation $\mathbf x_k^-$ refers to the prediction step. At time $t_k$ , you receive a sensor measurement. Before taking into account the sensor measurement to update your belief about the object's position and velocity, you predict where you think the object will be at time $t_k$ . You can predict the position of the object at $t_k$ based on its position and velocity at time $t_{k - 1}$ . Hence $\mathbf x_k^-$ means that you have predicted where the object will be at $t_k$ , but you have not yet taken the new sensor measurement into account. The corresponding predicted covariance is denoted as $\mathbf P_k^-$.
 
-is the **estimation error covariance matrix**, which contains information about the uncertainty of the object's position and velocity. You can think of it as containing standard deviations.
-
--
-
-$k$
-
-refers to the time step index. So
-
-$x_k$
-
-is the object's position and velocity vector at time
-
-$t_k$
-
-.
--
-
-$\Delta t$
-
-is the time step between two consecutive measurements.
-
-- The notation
-
-$\mathbf x_k^-$
-
-refers to the prediction step. At time
-
-$t_k$
-
-, you receive a sensor measurement. Before taking into account the sensor measurement to update your belief about the object's position and velocity, you predict where you think the object will be at time
-
-$t_k$
-
-. You can predict the position of the object at
-
-$t_k$
-
-based on its position and velocity at time
-
-$t_{k - 1}$
-
-. Hence
-
-$\mathbf x_k^-$
-
-means that you have predicted where the object will be at
-
-$t_k$
-
-, but you have not yet taken the new sensor measurement into account. The corresponding predicted covariance is denoted as
-
-$\mathbf P_k^-$
-
-.
--
-
-$\mathbf x_k^+$
-
-means that you have now predicted where the object will be at time
-
-$t_k$
-
-and then used the sensor measurement to update the object's position and velocity. Similarly, the updated covariance is
-
-$\mathbf P_k^+$
-
-.
+- $\mathbf x_k^+$ means that you have now predicted where the object will be at time $t_k$ and then used the sensor measurement to update the object's position and velocity. Similarly, the updated covariance is $\mathbf P_k^+$.

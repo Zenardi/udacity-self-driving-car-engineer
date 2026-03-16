@@ -49,38 +49,17 @@ However, camera measurements involves a non-linear measurement function. When we
 
 Then we will repeat this loop over and over. When we receive a new measurement, we will predict our state to the next timestamp. Then we will correct our prediction with a new measurement and so on.
 
-## Images
-
-![Flowchart for reference](images/ekf-data-flow.png)
-*Flowchart for reference*
 
 ## Additional Content
 
 ## Sensor Fusion Overview
 The Kalman Filter algorithm will go through the following steps to track an object over time:
 - **First measurement** - the filter will receive initial measurements of the object's position relative to thecar. These measurements will come from a camera or lidar sensor.
-- **Initialize state and covariance matrices** - the filter will initialize the object's position
-
-$\begin{pmatrix} p_x \\ p_y \end{pmatrix}$
-
-and velocity
-
-$\begin{pmatrix} v_x \\ v_y \end{pmatrix}$
-
-based on the first measurement.
-- Then the car will receive another sensor measurement after a time period
-
-$\Delta t$
-
-.
-- **Predict** - the algorithm will predict where the object will be after time
-
-$\Delta t$
-
-.
+- **Initialize state and covariance matrices** - the filter will initialize the object's position $\begin{pmatrix} p_x \\ p_y \end{pmatrix}$ and velocity $\begin{pmatrix} v_x \\ v_y \end{pmatrix}$ based on the first measurement.
+- Then the car will receive another sensor measurement after a time period $\Delta t$.
+- **Predict** - the algorithm will predict where the object will be after time $\Delta t$.
 - **Update** - the filter compares the "predicted" location with what the sensor measurement says. The predicted location and the measured location are combined to give an updated location. The Kalman filter will put more weight on either the predicted location or the measured location depending on the uncertainty of each value. The update step is often also referred to as the innovation or correction step.
-- Then the car will receive another sensor measurement after a time period
+- Then the car will receive another sensor measurement after a time period $\Delta t$. The algorithm then does another predict and update step.
 
-$\Delta t$
-
-. The algorithm then does another predict and update step.
+![Flowchart for reference](images/ekf-data-flow.png)
+*Flowchart for reference*

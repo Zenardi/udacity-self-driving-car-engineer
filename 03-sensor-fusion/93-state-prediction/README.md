@@ -79,9 +79,6 @@ $$\begin{pmatrix}
 \nu_{ v_y} 
 \end{pmatrix}$$
 
-Reminder: The process noise
+Reminder: The process noise $\nu$ refers to the uncertainty in the object's position and velocity when predicting. The model assumes velocity is constant between time intervals, but in reality we know that an object's velocity can change due to acceleration. The model includes this uncertainty via the process noise.
 
-$\nu$
-
-refers to the uncertainty in the object's position and velocity when predicting. The model assumes velocity is constant between time intervals, but in reality we know that an object's velocity can change due to acceleration. The model includes this uncertainty via the process noise.
 From the examples I've just showed you we can see that the process noise depends on both 1) the elapsed time and 2) the uncertainty of acceleration. So, how can we model the process noise by considering both of these factors? Keep going to find out!

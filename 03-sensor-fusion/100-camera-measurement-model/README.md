@@ -52,33 +52,9 @@ The formula summarizes how we can compute the image coordinates, hence the expec
 ## Additional Content
 
 ## Camera Measurement Model
--
-
-$\left(c_i, c_j\right)$
-
-is the
-
-$\textbf{image center}$
-
-or
-
-$\textbf{principal point}$
-
-in image coordinates, derived from intrinsic camera calibration.
--
-
-$\left(f_i, f_j\right)$
-
-is the
-
-$\textbf{focal length}$
-
-in image coordinates, derived from intrinsic camera calibration.
-- Projecting a 3D point (or a 6D state vector, since we simply ignore the velocity components) to 2D image space gives the following
-
-$\textbf{nonlinear measurement function}$
-
-:
+- $\left(c_i, c_j\right)$ is the $\textbf{image center}$ or $\textbf{principal point}$ in image coordinates, derived from intrinsic camera calibration.
+- $\left(f_i, f_j\right)$ is the $\textbf{focal length}$ in image coordinates, derived from intrinsic camera calibration.
+- Projecting a 3D point (or a 6D state vector, since we simply ignore the velocity components) to 2D image space gives the following $\textbf{nonlinear measurement function}$:
 
 $$h(\mathbf{x}) =
 h\left(\begin{pmatrix}
@@ -96,40 +72,4 @@ c_j-\frac{f_j\cdot p_z}{p_x}
 
 ### H versus h(x)
 
-The
-
-$\textbf H$
-
-matrix from the lidar lesson and
-
-$h(\mathbf x)$
-
-function from the camera lesson are actually accomplishing the same thing: they are both needed to calculate the residual
-
-$\gamma=\mathbf z-\mathbf H\mathbf x$
-
-in the update step.
-
-But for camera, there is no
-
-$\textbf H$
-
-matrix that will map the state vector
-
-$\textbf x$
-
-into image coordinates; instead, you need to calculate the mapping manually to convert from cartesian coordinates to image coordinates.
- 
-Hence for camera,
-
-$\gamma=\mathbf z-\mathbf H\mathbf x$
-
-becomes
-
-$\gamma=\mathbf z-h(\mathbf x)$
-
-.
-
-$h$
-
-is a nonlinear function. In the next quiz, I would like to check your intuition about what that means.
+The $\textbf H$matrix from the lidar lesson and$h(\mathbf x)$function from the camera lesson are actually accomplishing the same thing:they are both needed to calculate the residual$\gamma=\mathbf z-\mathbf H\mathbf x$in the update step.But for camera, there is no$\textbf H$matrix that will map the state vector$\textbf x$into image coordinates; instead, you need to calculate the mappingmanually to convert from cartesian coordinates to image coordinates. Hence for camera,$\gamma=\mathbf z-\mathbf H\mathbf x$becomes$\gamma=\mathbf z-h(\mathbf x)$. $h$ is a nonlinear function. In the next quiz, I would like to check your intuition about what that means.

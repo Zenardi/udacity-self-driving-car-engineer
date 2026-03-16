@@ -46,35 +46,13 @@ You can find the derivation below this video. It is not required to understand e
 
 This shows how difficult it is in practice to realize a single fusion system for all situations that occur with a self-driving car. One solution can be to use two separate fusion parameterizations. One parameterization to realize a smooth fusion output for normal situations, and a parallel collision avoidance fusion with a much more sensitive parameterization.
 
-## Images
-
-![Calculating Q by discretizing the continuous model](images/codecogseqn-1.jpeg)
-*Calculating Q*
 
 ## Additional Content
 
 ## Process Noise Covariance Q
-If we assume the noise through acceleration in
+If we assume the noise through acceleration in $x$ and $y$ to be equal. $\nu_x = \nu_{y}$ , the continuous process noise covariance $\mathbf Q$ can be modelled as:
 
-$x$
-
-and
-
-$y$
-
-to be equal,
-
-$\nu_x = \nu_{y}$
-
-, the continuous process noise covariance
-
-$\mathbf Q$
-
-can be modelled as:
-
-$$\mathbf{Q}= E\left[\nu\nu^T\right]
- = 
-\begin{pmatrix}
+$$\mathbf{Q}= E\left[\nu\nu^T\right] = \begin{pmatrix}
 0 & 0 & 0 & 0  \\
 0 & 0 & 0 & 0 \\
 0 & 0  & E\left[\nu_{ x}^2\right] & 0 \\
@@ -88,21 +66,10 @@ $$\mathbf{Q}= E\left[\nu\nu^T\right]
  0 & 0 & 0 & q
 \end{pmatrix}$$
 
-Discretizing the continuous model leads to a formula for **Q** depending on
 
-$\Delta t$
+Discretizing the continuous model leads to a formula for **Q** depending on $\Delta t$.
 
-.
-Here
+![Calculating Q by discretizing the continuous model](images/codecogseqn-1.jpeg)
+*Calculating Q*
 
-$q$
-
-is a design parameter and should be chosen depending on the expected maximum change in velocity. For highly dynamic maneuvers, we could use a higher process noise, e.g.
-
-$q=\left(8\,\frac{\text m}{s^2}\right)^2$
-
-would fit for emergency braking, whereas for normal situations on a highway e.g.
-
-$q=\left(3\,\frac{\text m}{s^2}\right)^2$
-
-could be an adequate choice.
+Here $q$ is a design parameter and should be chosen depending on the expected maximum change in velocity. For highly dynamic maneuvers, we could use a higher process noise, e.g. $q=\left(8\,\frac{\text m}{s^2}\right)^2$ would fit for emergency braking, whereas for normal situations on a highway e.g. $q=\left(3\,\frac{\text m}{s^2}\right)^2$ could be an adequate choice.

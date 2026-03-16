@@ -68,11 +68,7 @@ h_1(\mathbf x)\\
 h_2(\mathbf x)
 \end{pmatrix}$$
 
-We are therefore looking for a 2x6 Jacobian
-
-$\mathbf H_J$
-
-:
+We are therefore looking for a 2x6 Jacobian $\mathbf H_J$:
 
 $$\mathbf H_J =
 \Large \begin{pmatrix}
@@ -90,11 +86,7 @@ $$\mathbf H_J =
 \frac{\partial h_2(\mathbf x)}{\partial v_z}
 \end{pmatrix}$$
 
-We can calculate all entries of
-
-$\mathbf H_J$
-
-as follows:
+We can calculate all entries of $\mathbf H_J$ as follows:
 
 $$\frac{\partial h_1(\mathbf x)}{\partial p_x} = \partial p_x \left(c_i-\frac{f_i\cdot p_y}{p_x}\right) = \frac{f_i\cdot p_y}{p_x^2}$$
 
@@ -109,11 +101,7 @@ $$\frac{\partial h_2(\mathbf x)}{\partial p_y} =   \partial p_y \left(c_j-\frac{
 $$\frac{\partial h_2(\mathbf x)}{\partial p_z} =  \partial p_z\left(c_j-\frac{f_j\cdot p_z}{p_x}\right) = -\frac{f_j}{p_x}$$
 
 Further, all derivatives after velocity components are zero, because velocity is not used in the measurement function.
-Summing it up, our Jacobian
-
-$\mathbf H_J$
-
-is:
+Summing it up, our Jacobian $\mathbf H_J$ is:
 
 $$\mathbf H_J =
 \large \begin{pmatrix}
@@ -131,12 +119,4 @@ $$\mathbf H_J =
 0
 \end{pmatrix}$$
 
-Now it is your turn! Please implement the camera measurement function
-
-$h(x)$
-
-and the Jacobian
-
-$\mathbf H_J$
-
-in the exercise below.
+Now it is your turn! Please implement the camera measurement function $h(x)$ and the Jacobian $\mathbf H_J$ in the exercise below.
