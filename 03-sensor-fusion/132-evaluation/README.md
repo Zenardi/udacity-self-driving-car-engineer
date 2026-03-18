@@ -25,7 +25,7 @@ This lesson covers the evaluation of tracking algorithm performance using a comm
 RMSE is computed using the following formula:
 
 ```math
-RMSE = √(1/n \* ∑(x_est - x_true)^2)
+RMSE = \sqrt{\frac{1}{n} \sum \left(x_{\text{est}} - x_{\text{true}}\right)^2}
 ```
 
 where `n` is the number of samples, `x_est` is the estimated state, and `x_true` is the true state.

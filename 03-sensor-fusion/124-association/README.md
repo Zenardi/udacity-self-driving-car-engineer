@@ -40,10 +40,6 @@ Then we can remove the remaining distances for this track measurement pair. Fina
 
 They are much more advanced data association techniques, for example, probabilistic data association algorithms, where such hard decisions are avoided and ambiguities can be resolved in the next time steps. Also, the simple nearest neighbor association is not globally optimal. Check out the quiz below to find out why.
 
-## Images
-
-![Example for a data association problem with two tracks and two measurements. Measurement 2 is closest to Track 1. ](images/quiz-snn.png)
-*Data Association Example*
 
 ## Additional Content
 
@@ -51,3 +47,6 @@ They are much more advanced data association techniques, for example, probabilis
 - The $\textbf{Simple Nearest Neighbor (SNN)} data association calculates all Mahalanobis distances between tracks an measurements, then iteratively updates the closest association pair.
 - The SNN is not globally optimal, this can be resolved using the $\textbf{Global Nearest Neighbor (GNN)}$ data association, which we will not cover here. You can check out [this paper](http://ecet.ecs.uni-ruse.bg/cst/docs/proceedings/S3/III-7.pdf) if you want to read more about it.
 - Both data association methods enforce hard decisions in ambiguous situations. More advanced $\textbf{Probabilistic Data Association (PDA)}$ techniques can avoid these hard decisions and resulting errors. Again, we will not cover them here, but you can search the web for the different variants (e.g. PDA, JPDA, JIPDA) if you are interested, for resources such as [this paper](https://www.researchgate.net/publication/224083228_The_probabilistic_data_association_filter).
+
+![Example for a data association problem with two tracks and two measurements. Measurement 2 is closest to Track 1. ](images/quiz-snn.png)
+*Data Association Example*
