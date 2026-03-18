@@ -1,1 +1,0 @@
-### Source Code Available at [sdc-c2-fusion-starter](https://github.com/Zenardi/sdc-c2-fusion-starter)
