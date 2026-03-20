@@ -12,44 +12,10 @@ $$P(a|b) = \frac{P(b|a) \, P(a)}{P(b)}$$
 
 With respect to localization, these terms are:
 
-1.
-
-$P(location|observation)$
-
-: This is P(a|b), the **normalized** probability of a position given an observation (posterior). 
--
-
-$P(observation|location)$
-
-: This is P(b|a), the probability of an observation given a position (likelihood)
--
-
-$P(location)$
-
-:  This is P(a), the prior probability of a position 
--
-
-$P(observation)$
-
-: This is P(b), the total probability of an observation
-
-Without going into detail yet, be aware that
-
-$P(location)$
-
-is determined by the motion model.  The probability returned by the motion model is the product of the transition model probability (the probability of moving from
-
-$x_{t-1}$
-
--->
-
-$x_t$
-
-)  and the probability of the state
-
-$x_{t-1}$
-
-. 
+1. $P(location|observation)$: This is P(a|b), the **normalized** probability of a position given an observation (posterior). 
+- $P(observation|location)$: This is P(b|a), the probability of an observation given a position (likelihood)
+- $P(location)$:  This is P(a), the prior probability of a position 
+- $P(observation)$: This is P(b), the total probability of an observation Without going into detail yet, be aware that $P(location)$ is determined by the motion model.  The probability returned by the motion model is the product of the transition model probability (the probability of moving from $x_{t-1}$ --> $x_t$) and the probability of the state $x_{t-1}$. 
 
 
 Over the course of this lesson, you’ll build your own Bayes’ filter. In the next few quizzes, you’ll write code to:

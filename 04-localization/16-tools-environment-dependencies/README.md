@@ -11,46 +11,22 @@ For each exercise throughout the course, you will be provided Udacity workspaces
 
 In that case, you will want to use the following tools and libraries:
 
-* C++ -
-
-[VSCode install](https://docs.microsoft.com/en-us/cpp/build/vscpp-step-0-installation)
-
-or
-
-[general install](https://www.tutorialspoint.com/cplusplus/cpp_environment_setup.htm)
-
-(depending on OS, you may already have it)
-*
-
-[CMake](https://cmake.org/install/)
+* C++ -[VSCode install](https://docs.microsoft.com/en-us/cpp/build/vscpp-step-0-installation) or [general install](https://www.tutorialspoint.com/cplusplus/cpp_environment_setup.htm) (depending on OS, you may already have it)
+* [CMake](https://cmake.org/install/)
 
 * Make
-   *
+ 
+  * [Windows](http://gnuwin32.sourceforge.net/packages/make.htm)
 
-[Windows](http://gnuwin32.sourceforge.net/packages/make.htm)
+  * [Mac](https://stackoverflow.com/questions/10265742/how-to-install-make-and-gcc-on-a-mac)
 
-*
+  * [Linux](https://askubuntu.com/questions/161104/how-do-i-install-make)
 
-[Mac](https://stackoverflow.com/questions/10265742/how-to-install-make-and-gcc-on-a-mac)
-
-*
-
-[Linux](https://askubuntu.com/questions/161104/how-do-i-install-make)
-
-*
-
-[VSCode](https://code.visualstudio.com/download)
+* [VSCode](https://code.visualstudio.com/download)
 
 , or a similar IDE
-* The
+* The [CARLA simulator](https://carla.org/)
 
-[CARLA simulator](https://carla.org/)
+* [PCL](https://pointclouds.org/downloads/) (Point Cloud Library)
 
-*
-
-[PCL](https://pointclouds.org/downloads/)
-
-(Point Cloud Library)
-*
-
-[Eigen Library for C++](https://eigen.tuxfamily.org/index.php?title=Main_Page)
+* [Eigen Library for C++](https://eigen.tuxfamily.org/index.php?title=Main_Page)

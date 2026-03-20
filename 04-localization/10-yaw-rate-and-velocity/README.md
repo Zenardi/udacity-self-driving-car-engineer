@@ -16,16 +16,16 @@ This project focuses on understanding sensor fusion and its application in deter
 * **Yaw Angle**: A car's orientation is represented by its yaw angle, which is measured from the x-axis in map coordinates with counterclockwise angles being positive.
 * **Equations for Position Update**: When the yaw rate (θ˙) is zero, the equations to find the new position of the car are:
 ```math
-x_f = x_0 + v \* cos(θ_0) \* dt
-y_f = y_0 + v \* sin(θ_0) \* dt
-θ_f = θ_0
+x_f = x_0 + v \cos(\theta_0)\, dt
+y_f = y_0 + v \sin(\theta_0)\, dt
+	heta_f = \theta_0
 ```
 These equations represent the final x and y positions, and yaw of the car, given its initial position, velocity (v), and time elapsed (dt).
 * **Equations for Position Update with Non-Zero Yaw Rate**: When the yaw rate is not zero, the equations become more complex:
 ```math
-x_f = x_0 + v \* cos(θ_0) \* dt - v \* sin(θ_0) \* θ˙ \* dt^2
-y_f = y_0 + v \* sin(θ_0) \* dt + v \* cos(θ_0) \* θ˙ \* dt^2
-θ_f = θ_0 + θ˙ \* dt
+x_f = x_0 + v \cos(\theta_0)\, dt - v \sin(\theta_0)\, \dot{\theta}\, dt^2
+y_f = y_0 + v \sin(\theta_0)\, dt + v \cos(\theta_0)\, \dot{\theta}\, dt^2
+	heta_f = \theta_0 + \dot{\theta}\, dt
 ```
 These equations take into account the change in the car's heading as it moves.
 
@@ -36,23 +36,4 @@ This lesson emphasizes the importance of considering different types of rotation
 
 ## Transcript
 
-<v English>To recap what you</v>
-<v English>learned in sensor fusion,</v> <v English>a car's heading, or yaw</v>
-<v English>angle, is its orientation.</v> <v English>Yaw is often measured from</v>
-<v English>the x-axis in map coordinates</v> <v English>with counterclockwise</v>
-<v English>angles being positive.</v> <v English>In this situation, the car's yaw</v>
-<v English>is positive pi over 4 radians.</v> <v English>Assuming constant turn</v>
-<v English>rate and velocity,</v> <v English>the equations to find the new</v>
-<v English>position of the car, which</v> <v English>you derived previously</v>
-<v English>in the fusion module,</v> <v English>are shown again here.</v> <v English>These set of equations are valid</v>
-<v English>when the yaw rate, theta dot,</v> <v English>is equal to zero.</v> <v English>Here, x sub f, y sub</v>
-<v English>f, and theta sub f,</v> <v English>represent the final x position,</v>
-<v English>y position, and yaw of the car,</v> <v English>while x sub zero, y sub</v>
-<v English>zero, and theta sub zero</v> <v English>represent the initial</v>
-<v English>x position, y position,</v> <v English>and yaw of the car.</v> <v English>Finally, v is the</v>
-<v English>velocity of the car,</v> <v English>and dt is the time elapsed.</v> <v English>If the yaw rate is not zero, you</v>
-<v English>have these equations instead,</v> <v English>which you first saw</v>
-<v English>in sensor fusion,</v> <v English>because you'll have to take into</v>
-<v English>account the change in the car's</v> <v English>heading as it moves.</v> <v English>Next, I want you</v>
-<v English>to think about some</v> <v English>of the other possible rotations</v>
-<v English>of the vehicle besides the yaw.</v>
+To recap what you learned in sensor fusion, a car's heading, or yaw angle, is its orientation. Yaw is often measured from the x-axis in map coordinates with counterclockwise angles being positive. In this situation, the car's yaw is positive pi over 4 radians. Assuming constant turn rate and velocity, the equations to find the new position of the car, which you derived previously in the fusion module, are shown again here. These set of equations are valid when the yaw rate, theta dot, is equal to zero. Here, x sub f, y sub f, and theta sub f, represent the final x position, y position, and yaw of the car, while x sub zero, y sub zero, and theta sub zero represent the initial x position, y position, and yaw of the car. Finally, v is the velocity of the car, and dt is the time elapsed. If the yaw rate is not zero, you have these equations instead, which you first saw in sensor fusion, because you'll have to take into account the change in the car's heading as it moves. Next, I want you to think about some of the other possible rotations of the vehicle besides the yaw.

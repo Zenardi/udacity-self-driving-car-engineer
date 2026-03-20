@@ -4,24 +4,18 @@
 
 ## Additional Content
 
-| pseudo_position (x) | pre-pseudo_position | delta position | P(transition) |
+| pseudo_position (x) | pre-pseudo_position | delta position | P(transition) | bel(xt−1) | P(position) |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 7 | 1 | 6 | 1.49E-06 | 5.56E-02 | 8.27E-08 |
+| 7 | 2 | 5 | 1.34E-04 | 5.56E-02 | 7.44E-06 |
+| 7 | 3 | 4 | 4.43E-03 | 5.56E-02 | 2.46E-04 |
+| 7 | 4 | ? | 5.40E-02 | 0.00E+00 | 0.00E+00 |
+| 7 | 5 | 2 | ? | 0.00E+00 | 0.00E+00 |
+| 7 | 6 | 1 | 3.99E-01 | 0.00E+00 | 0.00E+00 |
+| 7 | 7 | 0 | 2.42E-01 | ? | 1.66E-03 |
+| 7 | 8 | -1 | 5.40E-02 | 1.79E-03 | ? |
 
-$bel(x_{t-1})$
-
-| P(position) |
-|:------------:|:---------------:|:--------------:|:-------------:|:--------:|:-----------:|
-|       7      |        1        |        6       |    1.49E-06   | 5.56E-02 |   8.27E-08  |
-|       7      |        2        |        5       |    1.34E-04   | 5.56E-02 |   7.44E-06  |
-|       7      |        3        |        4       |    4.43E-03   | 5.56E-02 |   2.46E-04  |
-|       7      |        4        |        ?       |    5.40E-02   | 0.00E+00 |   0.00E+00  |
-|       7      |        5        |        2       |    ?   | 0.00E+00 |   0.00E+00  |
-|       7      |        6        |        1       |    3.99E-01   | 0.00E+00 |   0.00E+00  |
-|       7      |        7        |        0       |    2.42E-01   | ? |   1.66E-03  |
-|       7      |        8        |       -1       |    5.40E-02   | 1.79E-03 |   ?  |
-
-pseudo_position - pre-pseudo_position = **7 - 4 = 3**
-
-Show Solution
+Solution
 
 ```
 #include
@@ -45,7 +39,7 @@ int main() {
 }
 ```
 
-Show Solution
+Solution
 
 Our positon probability is the product of the transition probability and our belief state at t - 1.  Rearranging yields:
 
@@ -69,7 +63,7 @@ By summing the discrete probabilities from the table, we obtain the total probab
 
 8.27E-08 + 7.44E-06 + 2.46E-04 + 0.00E+00 + 0.00E+00 + 0.00E+00 + 1.66E-03 + 9.66E-05 = 2.02E-03
 
-Show Solution
+Solution
 
 Recall that the transition probability can be determined through ```norm_pdf(delta_position, control_parameter, position_stdev)```
 In the next concept we will implement the motion model in C++.

@@ -41,20 +41,4 @@ Note: Odometer measurements might fail to report accurate position estimates in 
 
 ## Transcript
 
-<v English>Now that you know</v>
-<v English>one way to calculate the car's</v> <v English>new position, let's look at</v>
-<v English>another commonly used method</v> <v English>using odometry, or</v>
-<v English>motion sensor data.</v> <v English>For mobile robots, odometry</v>
-<v English>calmly comes from wheel sensors</v> <v English>that measure how many times the</v>
-<v English>wheels of the vehicle or robot</v> <v English>have turned.</v> <v English>For instance, the</v>
-<v English>sensor on this wheel</v> <v English>would tell us it</v>
-<v English>has turned twice.</v> <v English>Given the circumference of the</v>
-<v English>wheel and this odometry data,</v> <v English>you can measure the</v>
-<v English>distance traveled,</v> <v English>as indicated by the red line.</v> <v English>More specifically, the</v>
-<v English>new position of the car</v> <v English>is the starting</v>
-<v English>position of the car</v> <v English>plus the x and y components</v>
-<v English>of the odometry, multiplied</v> <v English>by the circumference</v>
-<v English>of the wheel.</v> <v English>Awesome.</v> <v English>With this knowledge,</v>
-<v English>next I want you</v> <v English>to think about when</v>
-<v English>odometry measurements might</v> <v English>fail to report accurate</v>
-<v English>position estimates.</v>
+Now that you know one way to calculate the car's new position, let's look at another commonly used method using odometry, or motion sensor data. For mobile robots, odometry calmly comes from wheel sensors that measure how many times the wheels of the vehicle or robot have turned. For instance, the sensor on this wheel would tell us it has turned twice. Given the circumference of the wheel and this odometry data, you can measure the distance traveled, as indicated by the red line. More specifically, the new position of the car is the starting position of the car plus the x and y components of the odometry, multiplied by the circumference of the wheel. Awesome. With this knowledge, next I want you to think about when odometry measurements might fail to report accurate position estimates.

@@ -30,15 +30,4 @@ Localization has numerous practical applications in robotics and computer vision
 
 ## Transcript
 
-<v English>If you recognized</v>
-<v English>this as the Eiffel Tower,</v> <v English>then you will probably say</v>
-<v English>something like Paris or France.</v> <v English>This may not seem</v>
-<v English>very impressive,</v> <v English>but it's actually remarkable.</v> <v English>Before the blindfold</v>
-<v English>was removed,</v> <v English>you had zero understanding of</v>
-<v English>where you were in the world.</v> <v English>You could have made a</v>
-<v English>guess, but you would have</v> <v English>had no idea if you were right.</v> <v English>But after being shown a tiny</v>
-<v English>amount of data, a single image,</v> <v English>you reduce that uncertainty</v>
-<v English>to a few kilometer radius.</v> <v English>This is the main intuition</v>
-<v English>behind localization.</v> <v English>A robot gathers information</v>
-<v English>about its current environment</v> <v English>and compares that to a</v>
-<v English>known map to understand</v> <v English>where it is in the world.</v>
+If you recognized this as the Eiffel Tower, then you will probably say something like Paris or France. This may not seem very impressive, but it's actually remarkable. Before the blindfold was removed, you had zero understanding of where you were in the world. You could have made a guess, but you would have had no idea if you were right. But after being shown a tiny amount of data, a single image, you reduce that uncertainty to a few kilometer radius. This is the main intuition behind localization. A robot gathers information about its current environment and compares that to a known map to understand where it is in the world.

@@ -26,27 +26,7 @@ This lesson provides an introduction to the concept of localization and its impo
 
 ## Transcript
 
-<v English>Hi I'm Tiffany, and I'm</v>
-<v English>a self-driving car engineer</v> <v English>at Mercedes-Benz.</v> <v English>I work on the localization team</v>
-<v English>and by the end of this module,</v> <v English>you'll have a good</v>
-<v English>understanding of what I do.</v> <v English>At the moment we are in</v>
-<v English>our Garage at MBRDNA.</v> <v English>Hi.</v> <v English>My name is</v>
-<v English>Maximilian, and I also</v> <v English>work on self-driving</v>
-<v English>cars at Mercedes-Benz</v> <v English>as part of the localization</v>
-<v English>team in Sunnyvale.</v> <v English>In the previous lessons you</v>
-<v English>learned about sensor fusion</v> <v English>and how to combine</v>
-<v English>different sensor</v> <v English>readings like lidar</v>
-<v English>and radar data</v> <v English>with the help of common filters.</v> <v English>You also learned how to</v>
-<v English>write complex code in C++,</v> <v English>which will be necessary to</v>
-<v English>be successful in the field</v> <v English>of autonomous driving.</v> <v English>Today you will learn</v>
-<v English>about localization.</v> <v English>Localization is what</v>
-<v English>allows an autonomous car</v> <v English>to know precisely where it is.</v> <v English>It's an amazing topic, and I</v>
-<v English>love working in this field.</v> <v English>And of course, localization</v>
-<v English>is really important</v> <v English>to drive autonomously.</v> <v English>Without localization it would</v>
-<v English>be impossible for a self-driving</v> <v English>car to drive safely.</v> <v English>At the end also localization</v>
-<v English>lesson you will be able</v> <v English>to implement high performance</v>
-<v English>localization software and C++</v> <v English>for autonomous cars.</v> <v English>So, what is localization?</v> <v English>That's what we are</v>
-<v English>going to cover next.</v> <v English>So let's dive in.</v>
+Hi I'm Tiffany, and I'm a self-driving car engineer at Mercedes-Benz. I work on the localization team and by the end of this module, you'll have a good understanding of what I do. At the moment we are in our Garage at MBRDNA. Hi. My name is Maximilian, and I also work on self-driving cars at Mercedes-Benz as part of the localization team in Sunnyvale. In the previous lessons you learned about sensor fusion and how to combine different sensor readings like lidar and radar data with the help of common filters. You also learned how to write complex code in C++, which will be necessary to be successful in the field of autonomous driving. Today you will learn about localization. Localization is what allows an autonomous car to know precisely where it is. It's an amazing topic, and I love working in this field. And of course, localization is really important to drive autonomously. Without localization it would be impossible for a self-driving car to drive safely. At the end also localization lesson you will be able to implement high performance localization software and C++ for autonomous cars. So, what is localization? That's what we are going to cover next. So let's dive in.
 
 ## Additional Content
 

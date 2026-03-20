@@ -42,25 +42,4 @@ Note: This code snippet is a simplified example and may not be directly applicab
 
 ## Transcript
 
-<v English>The bicycle model is</v>
-<v English>a simple and useful way</v> <v English>to represent how a car moves.</v> <v English>Like all models, it is</v>
-<v English>based on several simplifying</v> <v English>assumptions.</v> <v English>First, we all ignore all</v>
-<v English>vertical dynamics of the car,</v> <v English>so you can assume the</v>
-<v English>car only moves in 2D.</v> <v English>This means no flying</v>
-<v English>cars, unfortunately.</v> <v English>Next, we'll assume</v>
-<v English>that, like a bicycle,</v> <v English>the front wheels of</v>
-<v English>the car are connected</v> <v English>to the back wheels of the car by</v>
-<v English>a rigid beam with fixed length.</v> <v English>Here, we assume that the</v>
-<v English>front two wheels act together</v> <v English>so they can effectively be</v>
-<v English>represented as one wheel,</v> <v English>just like a bicycle.</v> <v English>The same holds for</v>
-<v English>the two rear wheels.</v> <v English>Finally, we assume the car is</v>
-<v English>also controlled like a bicycle,</v> <v English>with a steering angle theta</v>
-<v English>and some longitudinal velocity</v> <v English>in the direction that</v>
-<v English>the car is heading.</v> <v English>For this car, we change</v>
-<v English>the steering angle</v> <v English>by pi over 8 radians,</v>
-<v English>and then the car</v> <v English>moves forward at a velocity</v>
-<v English>of 3 meters per second.</v> <v English>You have just learned</v>
-<v English>how the motion of a car</v> <v English>can be simplified down to</v>
-<v English>something similar to a bicycle,</v> <v English>with a bicycle motion model.</v> <v English>Next, you'll get</v>
-<v English>reminded how to use</v> <v English>the yaw rate and velocity of a</v>
-<v English>car to find its new position.</v>
+The bicycle model is a simple and useful way to represent how a car moves. Like all models, it is based on several simplifying assumptions. First, we all ignore all vertical dynamics of the car, so you can assume the car only moves in 2D. This means no flying cars, unfortunately. Next, we'll assume that, like a bicycle, the front wheels of the car are connected to the back wheels of the car by a rigid beam with fixed length. Here, we assume that the front two wheels act together so they can effectively be represented as one wheel, just like a bicycle. The same holds for the two rear wheels. Finally, we assume the car is also controlled like a bicycle, with a steering angle theta and some longitudinal velocity in the direction that the car is heading. For this car, we change the steering angle by pi over 8 radians, and then the car moves forward at a velocity of 3 meters per second. You have just learned how the motion of a car can be simplified down to something similar to a bicycle, with a bicycle motion model. Next, you'll get reminded how to use the yaw rate and velocity of a car to find its new position.

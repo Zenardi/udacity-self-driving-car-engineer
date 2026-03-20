@@ -10,11 +10,7 @@
 
 Awesome work! Summing up, here is what we have learned so far:
 
-- How to apply the law of total probability by including the new variable
-
-$x_{t-1}$
-
-.
+- How to apply the law of total probability by including the new variable $x_{t-1}$.
 - The Markov assumption, which is very important for probabilistic reasoning, and allows us to make recursive state estimation without carrying our entire history of information
 - How to derive the recursive filter structure.
 

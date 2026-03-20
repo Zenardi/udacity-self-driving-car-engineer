@@ -24,26 +24,10 @@ $$P(a|b) = \frac{P(b|a) \, P(a)}{P(b)}$$
 
 With respect to localization, these terms are:
 
-1.
-
-$P(location|observation)$
-
-: This is P(a|b), the **normalized** probability of a position given an observation (posterior)  
--
-
-$P(observation|location)$
-
-: This is P(b|a), the probability of an observation given a position (likelihood)
--
-
-$P(location)$
-
-:  This is P(a), the prior probability of a position 
--
-
-$P(observation)$
-
-: This is P(b), the total probability of an observation
+1. $P(location|observation)$: This is P(a|b), the **normalized** probability of a position given an observation (posterior)  
+- $P(observation|location)$: This is P(b|a), the probability of an observation given a position (likelihood)
+- $P(location)$:  This is P(a), the prior probability of a position 
+- $P(observation)$: This is P(b), the total probability of an observation
 
 To determine the observation probability divide the P(posterior) by P(position):
 
@@ -67,8 +51,6 @@ Next, divide the P(Posterior) by the sum:
 
 Show Solution
 
-To determine the position probability  divide P(posterior) by P(observation):
-
-**3.87E-06 * 6.55E-08 = 1.69E-2**
+To determine the position probability  divide P(posterior) by P(observation): **3.87E-06 * 6.55E-08 = 1.69E-2**
 
 Show Solution

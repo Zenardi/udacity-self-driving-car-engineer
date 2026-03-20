@@ -30,12 +30,4 @@ These concepts will be built upon in future lessons, providing a deeper understa
 
 ## Transcript
 
-<v English>Conceptually,</v>
-<v English>localization</v> <v English>is pretty straightforward.</v> <v English>A robot takes information</v>
-<v English>about its environment</v> <v English>and compares that to</v>
-<v English>information it already</v> <v English>knows about the real world.</v> <v English>Humans do something similar.</v> <v English>Imagine you were suddenly</v>
-<v English>kidnapped and blindfolded.</v> <v English>You are stuffed into a</v>
-<v English>car that drove for hours.</v> <v English>You would have no idea</v>
-<v English>where in the world you were.</v> <v English>Then, the blindfold were</v>
-<v English>removed and you saw like this.</v> <v English>Now, what would you say if</v>
-<v English>you were asked, where are you?</v>
+Conceptually, localization is pretty straightforward. A robot takes information about its environment and compares that to information it already knows about the real world. Humans do something similar. Imagine you were suddenly kidnapped and blindfolded. You are stuffed into a car that drove for hours. You would have no idea where in the world you were. Then, the blindfold were removed and you saw like this. Now, what would you say if you were asked, where are you?

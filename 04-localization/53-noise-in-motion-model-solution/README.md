@@ -26,10 +26,4 @@ Example code (not provided in this transcript) might involve implementing a Baye
 
 ## Transcript
 
-<v English>If we move with no noise--</v> <v English>which means the transition</v>
-<v English>model is certain--</v> <v English>then we would result</v>
-<v English>in C. This means</v> <v English>we just shift the initial</v>
-<v English>belief 10 meters to the right.</v> <v English>No noise does not mean we</v>
-<v English>get a better precision.</v> <v English>If we move with low noise,</v>
-<v English>the belief is spread out--</v> <v English>so, answer B is correct.</v> <v English>And if we move with high noise,</v>
-<v English>the belief is very spread out</v> <v English>and almost looks uniform--</v> <v English>so answer A is correct.</v>
+If we move with no noise-- which means the transition model is certain-- then we would result in C. This means we just shift the initial belief 10 meters to the right. No noise does not mean we get a better precision. If we move with low noise, the belief is spread out-- so, answer B is correct. And if we move with high noise, the belief is very spread out and almost looks uniform-- so answer A is correct.

@@ -34,42 +34,4 @@ Note that this project assumes you have a global map of the environment, which c
 
 ## Transcript
 
-<v English>Now assume there is</v>
-<v English>a car that is totally lost,</v> <v English>which means you, as</v>
-<v English>a driver or as a car,</v> <v English>have no clue where you are.</v> <v English>Now you assume that you have a</v>
-<v English>global map of the environment.</v> <v English>In this example,</v>
-<v English>you can see a map</v> <v English>of the environment around</v>
-<v English>the [INAUDIBLE] office</v> <v English>in [INAUDIBLE].</v> <v English>Now, generally</v>
-<v English>speaking, localization</v> <v English>answers a question, where</v>
-<v English>is our car in a given</v> <v English>map with a high accuracy?</v> <v English>And high accuracy means between</v>
-<v English>three and 10 centimeters.</v> <v English>In a traditional way, we use</v>
-<v English>global navigation satellite</v> <v English>systems to find the car,</v>
-<v English>with respect to the map.</v> <v English>But GPS is not precise enough.</v> <v English>Most of the time,</v>
-<v English>GPS has an accuracy</v> <v English>of the worth of a lane--</v>
-<v English>about one to three meters.</v> <v English>But sometimes it can be as</v>
-<v English>broad as 10 to 50 meters.</v> <v English>Clearly this is not reliable</v>
-<v English>enough for a self-driving car.</v> <v English>So you can't trust GPS.</v> <v English>And you have to find another</v>
-<v English>technique to localize yourself</v> <v English>inside a given map.</v> <v English>It is common practice to</v>
-<v English>use the onboard sensor</v> <v English>data, along with our global</v>
-<v English>map, to solve the localization</v> <v English>issue.</v> <v English>So with the onboard</v>
-<v English>sensors it is</v> <v English>possible to measure distances</v>
-<v English>to static obstacles,</v> <v English>like trees, poles, or walls.</v> <v English>We measure these</v>
-<v English>distances, and the bearing</v> <v English>of these static</v>
-<v English>objects in the local</v> <v English>coordinate system of our car.</v> <v English>Now when you're lucky,</v>
-<v English>the same obstacles</v> <v English>that were observed by</v>
-<v English>the onboard sensors</v> <v English>are also part of the map.</v> <v English>And, of course, the map has its</v>
-<v English>own global coordinate system.</v> <v English>To estimate where the</v>
-<v English>car is in the map,</v> <v English>you have to match</v>
-<v English>the observations</v> <v English>with the map information.</v> <v English>And when you do it</v>
-<v English>correctly, this results</v> <v English>in a transformation between</v>
-<v English>both coordinate systems--</v> <v English>the local car coordinate system</v>
-<v English>and the global coordinate</v> <v English>system of the map.</v> <v English>This transformation</v>
-<v English>should be as accurate</v> <v English>as possible-- let's say within</v>
-<v English>a range of 10 centimeters</v> <v English>or less.</v> <v English>If you are able to estimate</v>
-<v English>this transformation,</v> <v English>you solve the</v>
-<v English>localization issue.</v> <v English>So after this example,</v>
-<v English>we can summarize.</v> <v English>First, localization</v>
-<v English>answers the question</v> <v English>of where the car is in a given</v>
-<v English>map within an accuracy of 10</v> <v English>centimeters or less.</v> <v English>And second, onboard</v>
-<v English>sensors are used</v> <v English>to estimate the transformation</v>
-<v English>between local measurements</v> <v English>and a given map.</v>
+Now assume there is a car that is totally lost, which means you, as a driver or as a car, have no clue where you are. Now you assume that you have a global map of the environment. In this example, you can see a map of the environment around the [INAUDIBLE] office in [INAUDIBLE]. Now, generally speaking, localization answers a question, where is our car in a given map with a high accuracy? And high accuracy means between three and 10 centimeters. In a traditional way, we use global navigation satellite systems to find the car, with respect to the map. But GPS is not precise enough. Most of the time, GPS has an accuracy of the worth of a lane-- about one to three meters. But sometimes it can be as broad as 10 to 50 meters. Clearly this is not reliable enough for a self-driving car. So you can't trust GPS. And you have to find another technique to localize yourself inside a given map. It is common practice to use the onboard sensor data, along with our global map, to solve the localization issue. So with the onboard sensors it is possible to measure distances to static obstacles, like trees, poles, or walls. We measure these distances, and the bearing of these static objects in the local coordinate system of our car. Now when you're lucky, the same obstacles that were observed by the onboard sensors are also part of the map. And, of course, the map has its own global coordinate system. To estimate where the car is in the map, you have to match the observations with the map information. And when you do it correctly, this results in a transformation between both coordinate systems-- the local car coordinate system and the global coordinate system of the map. This transformation should be as accurate as possible-- let's say within a range of 10 centimeters or less. If you are able to estimate this transformation, you solve the localization issue. So after this example, we can summarize. First, localization answers the question of where the car is in a given map within an accuracy of 10 centimeters or less. And second, onboard sensors are used to estimate the transformation between local measurements and a given map.

@@ -26,16 +26,7 @@ Note: The lesson does not provide explicit code or formulas for implementing Bay
 
 ## Transcript
 
-<v English>Assume you have a 1D</v>
-<v English>space between 0 and 30 meters.</v> <v English>At the very beginning,</v>
-<v English>the robot or the car</v> <v English>has no clue where it is.</v> <v English>So our initial belief would</v>
-<v English>be the uniform distribution,</v> <v English>which means maximum confusion.</v> <v English>Now we assume the car knows it</v>
-<v English>is parked closely to a tree.</v> <v English>Then, the initial belief</v>
-<v English>would look like this.</v> <v English>And here's my question to you.</v> <v English>How does that belief look</v>
-<v English>like after we move 10 meters</v> <v English>to the right with no noise, with</v>
-<v English>low noise, and with high noise?</v> <v English>And these are the</v>
-<v English>four possible answers.</v>
-
+Assume you have a 1D space between 0 and 30 meters. At the very beginning, the robot or the car has no clue where it is. So our initial belief would be the uniform distribution, which means maximum confusion. Now we assume the car knows it is parked closely to a tree. Then, the initial belief would look like this. And here's my question to you. How does that belief look like after we move 10 meters to the right with no noise, with low noise, and with high noise? And these are the four possible answers.
 ## Images
 
 ![quiz screenshot ](images/screen-shot-2017-04-07-at-12_08_14-pm.png)

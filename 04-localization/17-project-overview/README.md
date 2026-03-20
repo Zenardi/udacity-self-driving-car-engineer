@@ -42,10 +42,10 @@ I'm just going to hit up on the keyboard three times one, two, three, and I'll s
 
 ## Project Overview
 ### Project Demo
-At the end of the course, you will be working on the final project, wherein you will implement a scan matching algorithm on a point cloud map from the
 
-[CARLA simulator](https://carla.org/)
+[Watch on YouTube](https://www.youtube.com/watch?v=xqYREk_4_eg)
 
-, using your choice of either of the ICP or NDT algorithms you learn later on. Additionally, you will be building this localizer in C++.
+
+At the end of the course, you will be working on the final project, wherein you will implement a scan matching algorithm on a point cloud map from the [CARLA simulator](https://carla.org/), using your choice of either of the ICP or NDT algorithms you learn later on. Additionally, you will be building this localizer in C++.
 
 As is the case on a real self-driving car, localization accuracy is of high importance - a self-driving car that can't localize accurately could easily drift into the wrong lane or worse.
