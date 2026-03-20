@@ -41,46 +41,33 @@ This code snippet demonstrates how to implement Bayes' rule and the motion model
 
 ## Transcript
 
-<v English>At the beginning of this lesson,</v> <v English>we started with using Bayes' rule.</v> <v English>The belief of x_t as a normalized ether,</v> <v English>multiplied with the observation and the motion.</v> <v English>We simplified the observation model to p of</v> <v English>z_t only given x_t and the map using the Markov Assumption.</v> <v English>For the motion model,</v> <v English>we used to law of total probability and odds of</v> <v English>the Markov Assumption to get the desired recursive structure.</v> <v English>The motion model includes the belief at t minus one and our transition model.</v> <v English>Finally, the belief at x_t can be written as the following.</v> <v English>The motion model is also called the prediction step for the belief x_t</v> <v English>which can be expressed by the belief x_t covered with a little hat.</v> <v English>This formula represents a general base filter for localization</v> <v English>and is also called Markov Localization.</v> <v English>You can also represent the filter dependencies as a graph by combining both subgraphs.</v> <v English>To estimate the new state, x_t,</v> <v English>we only take into account</v> <v English>the previous belief state and only the current observations and controls.</v> <v English>The state x_t and z_t also depends on the map.</v> <v English>In literature, you will often find the representation without the belief x_t.</v> <v English>There's also common practice to neglect the map and the motion model.</v> <v English>This means, we remove the map, m,</v> <v English>over here and also remove the dependencies in the graph.</v>
+At the beginning of this lesson, we started with using Bayes' rule. The belief of x_t as a normalized ether, multiplied with the observation and the motion. We simplified the observation model to p of z_t only given x_t and the map using the Markov Assumption. For the motion model, we used to law of total probability and odds of the Markov Assumption to get the desired recursive structure. The motion model includes the belief at t minus one and our transition model. Finally, the belief at x_t can be written as the following. The motion model is also called the prediction step for the belief x_t which can be expressed by the belief x_t covered with a little hat. This formula represents a general base filter for localization and is also called Markov Localization. You can also represent the filter dependencies as a graph by combining both subgraphs. To estimate the new state, x_t, we only take into account the previous belief state and only the current observations and controls. The state x_t and z_t also depends on the map. In literature, you will often find the representation without the belief x_t. There's also common practice to neglect the map and the motion model. This means, we remove the map, m, over here and also remove the dependencies in the graph.
 
-## Images
-
-![image](images/21-i-finalize-the-bayes-localization-filter_00-01-00-15_still001.png)
-
-![image](images/21-i-finalize-the-bayes-localization-filter_00-01-17-24_still002.png)
-
-![image](images/21-i-finalize-the-bayes-localization-filter_00-01-35-19_still003.png)
 
 ## Additional Content
 
+![image](images/21-i-finalize-the-bayes-localization-filter_00-01-00-15_still001.png)
+
+
+
 We have accomplished a lot in this lesson. 
-- Starting with the generalized form of Bayes Rule, we expressed our posterior, the belief of x at t as
+- Starting with the generalized form of Bayes Rule, we expressed our posterior, the belief of x at t as $\eta$ (normalizer) multiplied with the observation model and the motion model.  
 
-$\eta$
+![image](images/21-i-finalize-the-bayes-localization-filter_00-01-17-24_still002.png)
 
-(normalizer) multiplied with the observation model and the motion model.  
+
 - We simplified the observation model using the Markov assumption to determine the probability of z at time t, given only x at time t, and the map.
 - We expressed the motion model as a recursive state estimator using the Markov assumption and the law of total probability, resulting in a model that includes our belief at t – 1 and our transition model.
-- Finally we derived the general Bayes Filter for Localization (Markov Localization) by expressing our belief of x at t as a simplified version of our original posterior expression (top equation),
-
-$\eta$
-
-multiplied by the simplified observation model and the motion model.  Here the motion model is written as
-
-$\hat{bel}$
-
-, a prediction model.
+- Finally we derived the general Bayes Filter for Localization (Markov Localization) by expressing our belief of x at t as a simplified version of our original posterior expression (top equation), $\eta$ multiplied by the simplified observation model and the motion model.  Here the motion model is written as $\hat{bel}$, a prediction model.
 
 The Bayes Localization Filter dependencies can be represented as a graph, by combining our sub-graphs.  To estimate the new state x at t we only need to consider the previous belief state, the current observations and controls, and the map.
-It is a common practice to represent this filter without the belief
 
-$x_t$
+![image](images/21-i-finalize-the-bayes-localization-filter_00-01-35-19_still003.png)
 
-and to remove the map from the motion model.  Ultimately we define
 
-$bel(x_t)$
+It is a common practice to represent this filter without the belief $x_t$ and to remove the map from the motion model.  Ultimately we define $bel(x_t)$ as the following expression.
 
-as the following expression.
+
 ### Bayes Filter for Localization (Markov Localization)
 
 $$bel(x_t) = p(x_t|z_t,z_{1:t-1},\mu_{1:t},m) = \eta *p(z_t|x_t,m) \hat{bel}(x_t)$$

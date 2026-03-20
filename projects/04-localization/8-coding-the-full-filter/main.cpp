@@ -58,6 +58,8 @@ int main() {
   /**
    * TODO: initialize priors
    */
+  vector<float> priors = initialize_priors(map_size, landmark_positions,
+                                           position_stdev);
   
 
   // UNCOMMENT TO SEE THIS STEP OF THE FILTER
@@ -95,23 +97,27 @@ int main() {
       /**
        * TODO: get the motion model probability for each x position
        */
-
+      float motion_prob = motion_model(pseudo_position, movement_per_timestep,
+                                       priors, map_size, control_stdev);
 
       /**
        * TODO: get pseudo ranges
        */
 
-
+      vector<float> pseudo_ranges = pseudo_range_estimator(landmark_positions, 
+                                                           pseudo_position);
       /**
        * TODO: get observation probability
        */
-
+      float observation_prob = observation_model(landmark_positions, observations, 
+                                                 pseudo_ranges, distance_max, 
+                                                 observation_stdev);
 
       /**
        * TODO: calculate the ith posterior and pass to posteriors vector
        */
       
-
+      posteriors[i] = motion_prob * observation_prob;
       // UNCOMMENT TO SEE THIS STEP OF THE FILTER
       //cout << motion_prob << "\t" << observation_prob << "\t" 
       //     << "\t"  << motion_prob * observation_prob << endl;   
@@ -127,6 +133,7 @@ int main() {
      * TODO: normalize posteriors (see helpers.h for a helper function)
      */
     
+    posteriors = Helpers::normalize_vector(posteriors);
 
     // print to stdout
     //cout << posteriors[t] <<  "\t" << priors[t] << endl;
@@ -137,7 +144,7 @@ int main() {
     /**
      * TODO: update priors
      */
-    
+    priors = posteriors;
 
     // UNCOMMENT TO SEE THIS STEP OF THE FILTER
     //for (int p = 0; p < posteriors.size(); ++p) {

@@ -28,38 +28,20 @@ The Bayes localization filter, also known as the Bayes filter, is a fundamental 
 
 ## Transcript
 
-<v English>Since I went</v>
-<v English>through a lot of math,</v> <v English>I want to present the core</v>
-<v English>achievements of the last steps.</v> <v English>So let's sum it up.</v> <v English>The Bayes localization</v>
-<v English>filter, or Bayes filter,</v> <v English>is a general framework for</v>
-<v English>recursive state estimation.</v> <v English>Recursive means that we</v>
-<v English>use the previous state</v> <v English>to estimate the new state by</v>
-<v English>using only current observations</v> <v English>and controls, and not the</v>
-<v English>whole history of data.</v> <v English>The motion model describes the</v>
-<v English>predictions step of the filter.</v> <v English>The observation model</v>
-<v English>is the update step</v> <v English>to estimate the new</v>
-<v English>state probabilities.</v> <v English>You already heard about this</v>
-<v English>interaction between prediction</v> <v English>and update step before.</v> <v English>For example, when Andray</v>
-<v English>talked about common filters</v> <v English>in the fusion lesson.</v> <v English>This means the current 1D</v>
-<v English>localization, common filters,</v> <v English>and also particle</v>
-<v English>filters are realizations</v> <v English>of the Bayes filter.</v> <v English>Now you understand probabilistic</v>
-<v English>reasoning, and recursive</v> <v English>of state estimation.</v> <v English>This is an amazing achievement,</v>
-<v English>not only for localization,</v> <v English>but also for the whole</v>
-<v English>self-driving car nanodegree.</v> <v English>Now that you know all</v>
-<v English>the theory behind it,</v> <v English>let's go back to the C++ example</v>
-<v English>and finalize the localizer.</v>
+Since I went through a lot of math, I want to present the core achievements of the last steps. So let's sum it up. The Bayes localization filter, or Bayes filter, is a general framework for recursive state estimation. Recursive means that we use the previous state to estimate the new state by using only current observations and controls, and not the whole history of data. The motion model describes the predictions step of the filter. The observation model is the update step to estimate the new state probabilities. You already heard about this interaction between prediction and update step before. For example, when Andray talked about common filters in the fusion lesson. This means the current 1D localization, common filters, and also particle filters are realizations of the Bayes filter. Now you understand probabilistic reasoning, and recursive of state estimation. This is an amazing achievement, not only for localization, but also for the whole self-driving car nanodegree. Now that you know all the theory behind it, let's go back to the C++ example and finalize the localizer.
 
-## Images
+
+## Additional Content
 
 ![image](images/22-l-bayes-filter-theory-summary_00-00-22-29_still001.png)
 
-![image](images/22-l-bayes-filter-theory-summary_00-00-52-03_still002.png)
-
-## Additional Content
 
 The image above sums up the core achievements of this lesson.
 - The Bayes Localization Filter Markov Localization is a general framework for recursive state estimation.
 - That means this framework allows us to use the previous state (state at t-1) to estimate a new state (state at t) using only current observations and controls (observations and control at t), rather than the entire data history (data from 0:t).
+
+![image](images/22-l-bayes-filter-theory-summary_00-00-52-03_still002.png)
+
 
 - The motion model describes the prediction step of the filter while the observation model is the update step.
 - The state estimation using the Bayes filter is dependent upon the interaction between prediction (motion model) and update (observation model steps) and all the localization methods discussed so far are realizations of the Bayes filter.
