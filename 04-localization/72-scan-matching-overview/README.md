@@ -85,11 +85,7 @@ $T =
    0 & 1
 \end{Bmatrix}$
 
-where Rotation
-
-$R$
-
-, is given by:
+where Rotation $R$, is given by:
 
 $R = 
 \begin{Bmatrix}
@@ -97,11 +93,7 @@ $R =
    sin(\Delta\theta) & \cos(\Delta\theta)
 \end{Bmatrix}$
 
-and Translation,
-
-$T$
-
-is:
+and Translation, $T$ is:
 
 $T = 
 \begin{Bmatrix}
@@ -114,6 +106,9 @@ Accordingly, you may then notice the relation here to trigonometry with:
 $X^\prime = x\cos(\Delta\theta) - y\sin(\Delta\theta)$
 
 $Y^\prime = x\sin(\Delta\theta) + y\cos(\Delta\theta)$
+
+
+> [Using Scan Matching Video](https://www.youtube.com/watch?v=RWFuB6cDw4o)
 
 ICP has a target scan and a source scan.
 

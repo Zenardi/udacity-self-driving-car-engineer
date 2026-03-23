@@ -54,48 +54,16 @@ You can take the Hessian and add the identity matrix times some Lambda constant.
 
 ### PDF Characteristics & NDT Equations
 * The Gradient and Hessian are dependent on current point, mean, and covariance
-* The
-
-$exp$
-
-variable can be computed once and then shows up quite a few times in
-
-$g$
-
-and
-
-$H$
-
-equations
+* The $exp$ variable can be computed once and then shows up quite a few times in $g$ and $H$ equations
 * Both the gradient and hessian use the partial derivatives
-* The Hessian uses a second order partial derivative which is <0,0> unless both
+* The Hessian uses a second order partial derivative which is <0,0> unless both $i$ and $j$ are 3, meaning both are theta term
 
-$i$
-
-and
-
-$j$
-
-are 3, meaning both are theta term
 ### Applying Newton's Method
+
+[Youtube Video](https://www.youtube.com/watch?v=GA_-f-f0Z6o)
+
 * Each cell has its own PDF being defined by which target points lie inside of it
 * Each source point is assigned to a PDF depending on which cell it is in
-* Each source point that has a PDF leads to a
-
-$g, H$
-
-calculation
-* All the
-
-$g$
-
-, and
-
-$H$
-
-matrices are summed up and then the overall transform is computed
-* Step size and ensuring
-
-$H$
-
-is positive definite are needed to get the final transform
+* Each source point that has a PDF leads to a $g, H$ calculation
+* All the $g$ , and $H$ matrices are summed up and then the overall transform is computed
+* Step size and ensuring $H$ is positive definite are needed to get the final transform

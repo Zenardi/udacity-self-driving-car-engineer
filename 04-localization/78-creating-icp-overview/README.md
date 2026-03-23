@@ -73,23 +73,7 @@ Then that moves the source points and then we can do the association steps over 
 * Finally, perform a singular value decomposition (which factorizes matrices into singular vectors or values) on the association matrix to get rotation and translation on the source that minimizes association distances with target.
 ### ICP Equations
 
-Here, the point is to go from the vectors adding up to total
-
-$X$
-
-and
-
-$Y$
-
-and get the Rotation
-
-$R$
-
-and Translation
-
-$t$
-
-.
+Here, the point is to go from the vectors adding up to total $X$ and $Y$ and get the Rotation $R$ and Translation $t$.
 
 $S = XY^T$
 
@@ -101,15 +85,8 @@ $R = V({^1}_{det(VU^T)})U^T$
 
 $t = c_T - Rc_S$
 
-where
+where $c_T$ and $c_S$ are the target and source centroids, respectively.
 
-$c_T$
-
-and
-
-$c_S$
-
-are the target and source centroids, respectively.
 ### Final Transformation Matrix
 
 $T = 

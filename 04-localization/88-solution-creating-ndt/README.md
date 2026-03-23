@@ -54,7 +54,8 @@ We'll just do this in increments in this max value, calculate the MatrixXd T usi
 ## Additional Content
 
 ## Solution: Creating NDT
-```
+
+```cpp
 using namespace std;
 
 #include
@@ -434,7 +435,11 @@ double PosDef(Eigen::MatrixBase& A, double start, double increment, int maxIt){
 	return  start + increment * count;
 }
 ```
-```
+
+
+> [Youtube Video](https://www.youtube.com/watch?v=HNtYuPEZpLI)
+
+```cpp
 int main(){
 
 	pcl::visualization::PCLVisualizer::Ptr viewer (new pcl::visualization::PCLVisualizer ("NDT Creation"));

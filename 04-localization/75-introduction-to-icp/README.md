@@ -84,6 +84,9 @@ In this first exercise you will be using ICP to recover the path taken by robot 
 The first scan that the robot took from the center is in blue. The robot then moves from the center shown by the green line segment and takes a second scan shown in red. Both scans are from the perspective of the robots local coordinate system, this means 0 degrees along the x axis is what the robot sees directly in front of it. This is why the red scan looks out of alignment with the blue scan. Diagram of the robots local coordinate frame shown below.
 The misalignment between the blue and red scans above actually translates to the distance and direction of the step taken by the robot shown by the green line segment. By doing a process to align the red and blue scans you can actually recover the robots new pose in the global map reference frame. This is exactly what you will do using ICP. Your first task in this exercise then will be to fill out the function `ICP` in `icp1-main.cpp`. In this first exercise you will be implementing ICP through PCL, in the next section of this lesson you will learn how to code up ICP from scratch.
 ## Implementing ICP function with PCL
+
+[Youtube Video](https://www.youtube.com/watch?v=w1YoH-o6TXE)
+
 Currently the function just returns an identity matrix. Any matrix multiplied by the identity matrix just remains the same.  The following steps can be done to complete the ICP function. The notation for **source** is the second red scan and **target** is what you are trying to align the scan to, which in this case is the first blue point cloud scan of the room.
 
 ```

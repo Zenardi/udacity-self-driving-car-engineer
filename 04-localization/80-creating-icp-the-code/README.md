@@ -56,21 +56,20 @@ So it's the initial score from transformInit that's started out the initial pose
 
 Then it looks at PairPoint associations, and looks at the score of that. So you can try moving it around, and seeing what the score looks like after you move that around. That's it for the overview.
 
-## Images
-
-![Calculated score from associations after pressing **space** key on viewer. Target point cloud is blue and source point cloud is showing first in red and then in green after pressing **space**.](images/score.png)
-*Calculated score from associations after pressing **space** key on viewer. Target point cloud is blue and source point cloud is showing first in red and then in green after pressing **space**.*
-
-![Associations visualized as line segments connecting each respective source point to it's closest target point.](images/associations.png)
-*Associations visualized as line segments connecting each respective source point to it's closest target point.*
 
 ## Additional Content
 
 ## Creating ICP - The Code
 In this next exercise you will be implementing the ICP, Iterative Closest Point, algorithm from scratch. As you saw in the last exercise ICP converges in iterations. During each iteration every point in the source point cloud is associated to the nearest point in the target point cloud. Once associations are made a transform is done which minimizes the least square distance between every association pair. ICP converges to the point where it can't change anymore when the source target point associations don't change after a transform. A score value can be calculated which is the sum of distances of every association pair. The score value gives you an idea of how well the source point cloud overlaps with the target point cloud. The lower the score the better the two point clouds overlap. For the first part of this exercise you will be writing a function which calculates the associations pairs, and once you have that you can test it by viewing score in the viewer from the `Score` function. The below image shows what it looks like when associations are made between source and target with the score value after pressing **space** key.
+
+
+![Calculated score from associations after pressing **space** key on viewer. Target point cloud is blue and source point cloud is showing first in red and then in green after pressing **space**.](images/score.png)
+*Calculated score from associations after pressing **space** key on viewer. Target point cloud is blue and source point cloud is showing first in red and then in green after pressing **space**.*
+
+
 You will be completing the `NN` function in `icp2-main.cpp` in order to create the associations. Before starting on `NN` function though lets take a look at the `Score` function to understand how points in the point cloud can be accessed and how associations are used to calculate the score. Below is the code from `Score`.
 
-```
+```cpp
 double Score(vector
 
 pairs, PointCloudT::Ptr target, PointCloudT::Ptr source, Eigen::Matrix4d transform){
@@ -123,9 +122,14 @@ For further reference on creating and using a KDTree in PCL check out [this page
 ## Visualizing Associations
 
 Once you are able to make index associations in this next section you will take those associations of matching indices and convert them to matching points. The matching points will be saved as a `Pair` in the vector `pairs`. In this section you can also visualize what the associations actually look like by using the PCL `viewer` input parameter with `renderRay` function. Below shows what the associations look like where each association is visualized as a line segment connecting the source point to its nearest target point.
+
+![Associations visualized as line segments connecting each respective source point to it's closest target point.](images/associations.png)
+*Associations visualized as line segments connecting each respective source point to it's closest target point.*
+
+
 To complete the `PairPoints` function loop through each association and get the source point and it's corresponding target point. Here are some tips for how to that. One possible way to loop through each source point is to do `for(PointT point : source->points )`, also `PointT association = (*target)[i]` where i is the value from associations at a given source index. Below shows how to create a `Pair` of points along with how to use the `renderRay` function.
 
-```
+```cpp
 // create a Pair containing two pcl::PointXYZ
 Pair(Point(point.x, point.y,0), Point(association.x, association.y,0))
 

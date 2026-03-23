@@ -73,22 +73,6 @@ Even in the classroom, there's notes for checking out the source code for comput
 
 Then what's going on is going ahead and taking that pose that was altered here, getting matrix transform out of it so we can multiply it by sourcing at this transform scan of source. Calculate the entity score after doing that transform. Then that's displayed, and that'll be one iteration. Then it's displaying the "ndt_scan". Then this last part here is doing that upose where you can use the keyboard to move around the scan, and then you can dynamically see how that affects the score, which is interesting to take a look at.
 
-## Images
-
-![Five cell points shown as blue dots and red shown everywhere else because just outputting zero.](images/start.png)
-*Five cell points shown as blue dots and red shown everywhere else because just outputting zero.*
-
-![Cell PDF visualized in pcl viewer with 3D intensity point cloud. Can orbit around the point cloud to see the 3D structure of the 2D Gaussian also visualized with color intensity.](images/pdf.png)
-*Cell PDF visualized in pcl viewer with 3D intensity point cloud. Can orbit around the point cloud to see the 3D structure of the 2D Gaussian also visualized with color intensity.*
-
-![Using Newton's method to find the root of a function by following it's tangent lines defined by the function's derivative.](images/newtons-method.svg)
-*Using Newton's method to find the root of a function by following it's tangent lines defined by the function's derivative.*
-
-![Newtons method iteratively moves the test point closer to the peak where probability score is the highest](images/path-to-peak.png)
-*Newtons method iteratively moves the test point closer to the peak where probability score is the highest*
-
-![Part 2](images/part2.png)
-*Part 2*
 
 ## Additional Content
 
@@ -96,7 +80,17 @@ Then what's going on is going ahead and taking that pose that was altered here, 
 ## Creating NDT
 
 In this final exercise for lesson 2 you will be implementing NDT, Normal Distribution Transform, algorithm from scratch. The creation of NDT involves creating a probability density function from a target point cloud and then using newton's method to find a transform that maximizes the overall summation of source point values within that probability field. To create the probability density function the grid space is discretized into cells, and each cell has it's own 2D Gaussian from the target cloud's points that lie in that cell region. The 2D Gaussian represents the probability of finding a point throughout the cell region and is calculated based on mean and covariance of the points inside the cell. In the first part of this exercise you will be completing the functions `PDF` and `Probability` in  `ndt-main.cpp` to produce a single cell's probability density function and then visualize it. The cell will be a region from 0 to 10 in both x and y directions and contain a set of five contrived points. When you first launch the exercise the viewers will show the five points in blue and red everywhere else. This is because`Probability` is currently just returning zero and `PDF` returning zero matrices instead of the proper mean and covariance of the five points. What this looks like is shown below.
+
+![Five cell points shown as blue dots and red shown everywhere else because just outputting zero.](images/start.png)
+*Five cell points shown as blue dots and red shown everywhere else because just outputting zero.*
+
+
 Once you calculate the correct 2 x 1 mean matrix and 2 x 2 covariance matrix in `PDF` and output the correct probability calculation in `Probability`, you will see what cell's probability density function looks like shown below.
+
+
+![Cell PDF visualized in pcl viewer with 3D intensity point cloud. Can orbit around the point cloud to see the 3D structure of the 2D Gaussian also visualized with color intensity.](images/pdf.png)
+*Cell PDF visualized in pcl viewer with 3D intensity point cloud. Can orbit around the point cloud to see the 3D structure of the 2D Gaussian also visualized with color intensity.*
+
 ## Creating a PDF
 
 A very useful resource for completing this exercise is
@@ -110,9 +104,15 @@ paper, which contains all calculations for building NDT. In section ***III. The 
 1. In `Probability` calculate the probability  of point by using mean and covariance and doing `exp( -0.5 * (point - mean).transpose() * covariance.inverse() * (point - mean) )`. Product of **1** x 2 matrix with 2 x 2 matrix and 2 x **1** matrix is **1** x **1** matrix. Take the single 1 x 1 element of this matrix mulitply it by -0.5 and then raise **e** to that value to get the final value.
 
 Verify your results for completing `PDF` and `Probability` by ensuring your results match the PDF image above.
+
+
 ## Newton's Method
 
 You are now half way through Part 1 of this exercise and creating NDT by producing cell probability density functions. The next half is using newtons method to find a transform that gives source points their highest values within the probability field. To gently introduce this idea, the next part of this exercise will by using source point cloud of a single test point. Your goal then will be to use Newton's method to iteratively move the test point closer and closer to the peak of the probability density function. To understand how Newton's method can allow you to do this, its best to start with a simple introduction problem. A very common introduction to Newtons' method is using it to find the square root of a particular value. Newtons Method is able to do this by following each starting point's tangent intersection with the x axis. Each following intersection point becomes the next starting point and doing this iteratively will allow the point to converge. At it's essence its following the function's curvature defined by the derivative that allows newton's method to converge. [Here is a link that shows how to use Newton's method](https://www.math24.net/newtons-method/) to find roots of a function and how to calculate the square root of a value.
+
+![Using Newton's method to find the root of a function by following it's tangent lines defined by the function's derivative.](images/newtons-method.svg)
+*Using Newton's method to find the root of a function by following it's tangent lines defined by the function's derivative.*
+
 ## Newton's Method with Multivariable Functions
 
 You will be using this same idea with a function of multiple parameters,  following the curvatures of the function to lock onto a maximum/minimum point, think of gradient descent. The function will be the probability density function that you created earlier which is a function of x,y position. The process of doing Newton's method to find the transform with your PDF function of two variables will be transformed into a linear algebra problem with matrices representing first and second order partial derivatives of the PDF. In this next part you will be completing `NewtonsMethod` function in `ndt-main.cpp`. Section **V. Optimization using Newton's Algorithm** from the
@@ -140,9 +140,25 @@ theta partial derivative = **<-xsin(theta)-ycos(theta), xcos(theta)-ysin(theta)>
 1. Calculate the H matrix, the Hessian, by following the equation in **reference 12**. H is 3 x 3 and uses all the other matrices that you calculated in the above steps except for the g matrix , the transposed gradient.
 
 Once you have completed these steps for `NewtonsMethod` the function will add the matrices you calculated to the input reference values H, and g. To finish the exercise fill in the `PosDef`function starting at some positive value and including a max. This function is to ensure that the H matrix is positive definite which is talked about in **(7.)** from **IV. Scan Alignment**. Then calculate the T matrix by doing `-H.inverse()*g` from **(4.) Optimization Using Newton's Algorithm**. Finally calculate the new point which should be higher than the previous by transforming the input point the transform defined by the matrix T < 3 x 1 >, see **(2.)** from **IV. Scan Alignment** to help see how to do that. The results from doing newtons method and transforming the test point for 20 iterations can be seen below.
-Now that you have finished doing Newton's method for a single cell PDF and single test point its still the same mechanics to do this with many cells each with their own PDF and a input of multiple points. To finish the exercise set `part1` in `ndt-main.cpp` to false.  Now exercise will change from using the contrived 5 points and single test point, to using the same target and source point clouds that you used in the previous **ICP** exercises. This will now look like the image below which visualizes the combination of PDF cells as well as the current score of the source point cloud in target's overall PDF which is around 9.1. The overall score is simply the summation of each source points probability/height in the target PDF. **The higher the score, the better source and target are overlapping. **
+
+![Newtons method iteratively moves the test point closer to the peak where probability score is the highest](images/path-to-peak.png)
+*Newtons method iteratively moves the test point closer to the peak where probability score is the highest*
+
+
+Now that you have finished doing Newton's method for a single cell PDF and single test point its still the same mechanics to do this with many cells each with their own PDF and a input of multiple points. To finish the exercise set `part1` in `ndt-main.cpp` to false.  Now exercise will change from using the contrived 5 points and single test point, to using the same target and source point clouds that you used in the previous **ICP** exercises. This will now look like the image below which visualizes the combination of PDF cells as well as the current score of the source point cloud in target's overall PDF which is around 9.1. The overall score is simply the summation of each source points probability/height in the target PDF. **The higher the score, the better source and target are overlapping.**
+
+![Part 2](images/part2.png)
+*Part 2*
+
+
 ### Part 2
+
+[Youtube Videp](https://www.youtube.com/watch?v=WPjwceOugBg)
+
 The Newton's method function that you completed in part 1 can be used in part 2 as well. The only thing that changes is the H and g matrices are summed over all source points. To have **NDT** transform the source point cloud to a position that will have a higher target score, in `ndt-main.cpp`. To finish part 2 so that launching the program and hitting the **space** key will execute one step for NDT, do the following. In the part 2 section transform the source point by the x, y, and theta values given in the current pose. This is very similar to the last step in part 1. Also set the parameters for `PosDef`, just like what was done in part 1. The video below shows the results of using NDT to try to align the source point cloud to the target.
+
+[Youtube Video](https://www.youtube.com/watch?v=xLWpGqy1haU)
+
 ## Closing Comments on NDT Algorithm
 
 In the video above each step executed by pressing **space key** increases the NDT score until it no longer can find a parameter transform given the hyper parameters. One main hyper parameter to go over that the reference article didn't touch on in detail is the step length. In part 1 of this exercise the step length was always **0.5** while in part 2 its calculated in `computeStepLength` which iterates through different lengths to see what gives the best score. To see how **PCL** manages calculating the step length you would might be curious to check out the function `computeStepLengthMT` from [this code](https://github.com/PointCloudLibrary/pcl/blob/master/registration/include/pcl/registration/impl/ndt.hpp). 

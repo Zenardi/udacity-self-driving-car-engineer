@@ -107,31 +107,17 @@ The next part of NDT is to utilize Newton's Method:
 * With a multi-variable function the gradient and hessian matrices are used to do Newton's method
 #### Newton's Method (2D) Equations
 
-$g$
-
-is the gradient vector:
+$g$ is the gradient vector:
 
 $\Large \triangledown f = \begin{pmatrix} \frac{\partial f}{\partial x_1} \\ \frac{\partial f}{\partial x_2} \\ \vdots \\ \frac{\partial f}{\partial x_n} \end{pmatrix}$
 
-while the
-
-$H$
-
-matrix is the Hessian matrix:
+while the $H$ matrix is the Hessian matrix:
 
 $\Large \triangledown^2 f = \begin{pmatrix} \frac{\partial^2 f}{\partial x_1^2} & \frac{\partial^2 f}{\partial x_1 \partial x_2} & \cdots  & \frac{\partial^2 f}{\partial x_1 \partial x_n} \\
 \frac{\partial^2 f}{\partial x_2 \partial x_1} & \frac{\partial^2 f}{\partial x_2^2} & \cdots & \frac{\partial^2 f}{\partial x_2 \partial x_n} \\
 \vdots & \enspace & \ddots & \vdots \\
 \frac{\partial^2 f}{\partial x_n \partial x_1} & \frac{\partial^2 f}{\partial x_n \partial x_2} & \cdots & \frac{\partial^2 f}{\partial x_n^2} \end{pmatrix}$
 
-If
-
-$H$
-
-is a [positive definite](https://www.math.utah.edu/~zwick/Classes/Fall2012_2270/Lectures/Lecture33_with_Examples.pdf), we can use the gradient and Hessian matrix to calculate the change in position
-
-$p$
-
-:
+If $H$ is a [positive definite](https://www.math.utah.edu/~zwick/Classes/Fall2012_2270/Lectures/Lecture33_with_Examples.pdf), we can use the gradient and Hessian matrix to calculate the change in position $p$:
 
 $H \Delta p = -g$
