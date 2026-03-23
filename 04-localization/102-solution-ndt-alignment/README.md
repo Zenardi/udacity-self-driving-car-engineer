@@ -58,7 +58,7 @@ Which one gives the smallest pose there? This will be really helpful when you wa
 ## Solution: NDT Alignment
 ### `NDT Function`
 
-```
+```cpp
 Eigen::Matrix4d NDT(pcl::NormalDistributionsTransform
 
 ndt, PointCloudT::Ptr source, Pose startingPose, int iterations){
@@ -86,7 +86,7 @@ ndt, PointCloudT::Ptr source, Pose startingPose, int iterations){
 ```
 ### Set Resolution and Point Cloud Target (Map) for NDT
 
-```
+```cpp
 pcl::NormalDistributionsTransform ndt;
 // Setting minimum transformation difference for termination condition.
 ndt.setTransformationEpsilon (.0001);
@@ -99,7 +99,7 @@ ndt.setInputTarget (mapCloud);
 
 ### Create the Voxel Filter
 
-```
+```cpp
 // cloudFiltered = scanCloud; // Make sure you removed this line
 
 pcl::VoxelGrid vg;

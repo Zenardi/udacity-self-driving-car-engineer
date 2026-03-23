@@ -48,22 +48,6 @@ Once you have H and g, so that's how that changes for NDT.
 
 ## NDT Alignment Overview
 * In 3D, the grid space is made of cubes instead of squares
-* The PDF is now in 3D, as the equation for a PDF generalizes to any dimension.
-
-$q$
-
-becomes 3x1 while the sum of centered vectors becomes 3x3.
-*
-
-$g$
-
-is now 6x1 and
-
-$H$
-
-is now 6x6
-* The calculation for
-
-$\Delta p$
-
-is still the same from the 2D case
+* The PDF is now in 3D, as the equation for a PDF generalizes to any dimension. $q$ becomes 3x1 while the sum of centered vectors becomes 3x3.
+* $g$ is now 6x1 and $H$ is now 6x6
+* The calculation for $\Delta p$ is still the same from the 2D case

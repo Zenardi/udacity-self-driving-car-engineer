@@ -37,7 +37,7 @@ Let's see what happens as it's picking up new scans. It's doing that transformat
 ## Additional Content
 
 ## Solution: Mapping
-```
+```cpp
 #include
 
 #include 

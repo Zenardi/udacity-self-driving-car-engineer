@@ -48,11 +48,7 @@ So you don't have to worry too much about that. Just the ordering changes, but y
 ## Additional Content
 
 ## ICP Alignment Overview
-* In 3D, there are six degrees of freedom
-
-translation and
-
-rotation. The transformation matrix becomes:
+* In 3D, there are six degrees of freedom translation and rotation. The transformation matrix becomes:
 
 $T = 
 \begin{Bmatrix}
@@ -62,16 +58,9 @@ $T =
    0 & 0 & 0 & 1
 \end{Bmatrix}$
 
-* For ICP in 3D, matrices are now 3x3 instead of 2x2 for
-
-$U, V, R$
-
-, and 3x1 instead 2x1 for translation
-
-$t$
-
-.
+* For ICP in 3D, matrices are now 3x3 instead of 2x2 for $U, V, R$ , and 3x1 instead 2x1 for translation $t$.
 * ICP in 3D is still very similar to the 2D case
+
 ### Roll, Pitch and Yaw Equations
 
 **Roll**

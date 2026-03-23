@@ -6,99 +6,87 @@
 
 ## Glossary
 
-* **Iterative Closest Point (ICP)**: A scan matching algorithm that does repeating iterations of 1) making associations between the source points and target points, and 2) finds a transform that minimizes the sum of associations' distances. These iterations of 1&2 repeat until convergence (no changes in association) or a desired number of iterations are performed.
-* **KDTree**: A data structure to quickly associate source points to target points; it is similar to a binary tree, but helpful for points in a multi-dimensional space, such as a point cloud.
-* **Probability Density Function (PDF)**: Used to specify the probability that something falls within a range of values.
-* **Singular Value Decomposition (SVD)**: Factorizes matrices into singular vectors or values.
-* **Normal Distributions Transform (NDT)**: NDT finds centroids of cluster regions and their covariances, and uses those to define a PDF. Using that PDF, Newton's Method is then used to find the root of the function, helping to create gradient and Hessian matrices. The scans can then be broken up into "cells" in a grid, where each cell has its own PDF. All the gradient and Hessian matrices are then summed up to calculate a total transform, to match the source and target scans.
-* **Newton's Method**: Gives a direction to take to get to the root of a function or a higher/smaller value. With a multi-variable function, the gradient and hessian matrices are used to do Newton's method.
-* **Point Cloud Library (PCL)**: A [powerful library](https://pointclouds.org/documentation/) for working with point clouds.
+- **Iterative Closest Point (ICP)**: A scan matching algorithm that iterates between: 1) associating source points with target points, and 2) finding a transform that minimizes the sum of association distances. These steps repeat until convergence (no changes in association) or a maximum number of iterations is reached.
+- **KDTree**: A data structure used to quickly associate source points to target points. It is similar to a binary tree, but designed for points in multi-dimensional space (for example, point clouds).
+- **Probability Density Function (PDF)**: A function used to specify the probability that a value falls within a given range.
+- **Singular Value Decomposition (SVD)**: A matrix factorization into singular vectors and singular values.
+- **Normal Distributions Transform (NDT)**: NDT finds centroids and covariances for clustered regions and uses them to define a PDF. Using that PDF, Newton's Method is used to find function roots and build gradient and Hessian matrices. Scans are partitioned into grid cells, each with its own PDF. The total transform is then computed by summing the gradient and Hessian terms.
+- **Newton's Method**: A method for finding roots (or optimization directions) of a function. For multivariable functions, it uses gradient and Hessian matrices.
+- **Point Cloud Library (PCL)**: A [powerful library](https://pointclouds.org/documentation/) for working with point clouds.
+
 ### ICP Equations
 
-Here, the point is to go from the vectors adding up to total
+The goal is to estimate rotation $R$ and translation $t$ from source and target point sets.
 
-$X$
+$$
+S = X Y^T
+$$
 
-and
+$$
+\mathrm{SVD}(S) = U, V
+$$
 
-$Y$
+$$
+R = V \begin{pmatrix} 1 & 0 \\ 0 & \det(VU^T) \end{pmatrix} U^T
+$$
 
-and get the Rotation
+$$
+t = c_T - R c_S
+$$
 
-$R$
+Where $c_T$ and $c_S$ are the target and source centroids, respectively.
 
-and Translation
-
-$t$
-
-.
-
-$S = XY^T$
-
-$SVD(S) = U, V$
-
-(the singular value decomposition)
-
-$R = V({^1}_{det(VU^T)})U^T$
-
-$t = c_T - Rc_S$
-
-where
-
-$c_T$
-
-and
-
-$c_S$
-
-are the target and source centroids, respectively.
 ### Create a Probability Density Function (PDF) Equations
 
-$q = \frac{1}{n} \sum_{i}^{n}x^i = mean$
+$$
+q = \frac{1}{n} \sum_{i=1}^{n} x^i = \text{mean}
+$$
 
-$\sum = \frac{1}{n} \sum_{i}^{n}(x^i-q)(x^i-q)^t$
+$$
+\Sigma = \frac{1}{n} \sum_{i=1}^{n} (x^i-q)(x^i-q)^T
+$$
 
-$\Large p(x) = e^\frac{-(x-q)^t\sum^{-1}(x-q)}{2}$
+$$
+p(x) = e^{-\frac{(x-q)^T\Sigma^{-1}(x-q)}{2}}
+$$
 
 ### Newton's Method (2D) Equations
 
-$g$
+The gradient vector $g$ is:
 
-is the gradient vector:
+$$
+\nabla f =
+\begin{pmatrix}
+\frac{\partial f}{\partial x_1} \\
+\frac{\partial f}{\partial x_2} \\
+\vdots \\
+\frac{\partial f}{\partial x_n}
+\end{pmatrix}
+$$
 
-$\Large \triangledown f = \begin{pmatrix} \frac{\partial f}{\partial x_1} \ \frac{\partial f}{\partial x_2} \ \vdots \ \frac{\partial f}{\partial x_n} \end{pmatrix}$
+The Hessian matrix $H$ is:
 
-while the
-
-$H$
-
-matrix is the Hessian matrix:
-
-$\Large \triangledown^2 f = \begin{pmatrix} \frac{\partial^2 f}{\partial x_1^2} & \frac{\partial^2 f}{\partial x_1 \partial x_2} & \cdots  & \frac{\partial^2 f}{\partial x_1 \partial x_n} \\
+$$
+\nabla^2 f =
+\begin{pmatrix}
+\frac{\partial^2 f}{\partial x_1^2} & \frac{\partial^2 f}{\partial x_1 \partial x_2} & \cdots & \frac{\partial^2 f}{\partial x_1 \partial x_n} \\
 \frac{\partial^2 f}{\partial x_2 \partial x_1} & \frac{\partial^2 f}{\partial x_2^2} & \cdots & \frac{\partial^2 f}{\partial x_2 \partial x_n} \\
 \vdots & \enspace & \ddots & \vdots \\
-\frac{\partial^2 f}{\partial x_n \partial x_1} & \frac{\partial^2 f}{\partial x_n \partial x_2} & \cdots & \frac{\partial^2 f}{\partial x_n^2} \end{pmatrix}$
+\frac{\partial^2 f}{\partial x_n \partial x_1} & \frac{\partial^2 f}{\partial x_n \partial x_2} & \cdots & \frac{\partial^2 f}{\partial x_n^2}
+\end{pmatrix}
+$$
 
-If
+If $H$ is [positive definite](https://www.math.utah.edu/~zwick/Classes/Fall2012_2270/Lectures/Lecture33_with_Examples.pdf), we can solve for the position update $\Delta p$ using:
 
-$H$
-
-is a
-
-[positive definite](https://www.math.utah.edu/~zwick/Classes/Fall2012_2270/Lectures/Lecture33_with_Examples.pdf)
-
-, we can use the gradient and Hessian matrix to calculate the change in position
-
-$p$
-
-:
-
-$H \Delta p = -g$
+$$
+H\Delta p = -g
+$$
 
 ### Resources
-* [Using ICP in PCL](https://pointclouds.org/documentation/tutorials/iterative_closest_point.html)
-* [Full list of ICP Parameters](http://docs.ros.org/en/hydro/api/pcl/html/classpcl_1_1IterativeClosestPoint.html)
-* [Creating and Using a KDTree in PCL](https://pointclouds.org/documentation/tutorials/kdtree_search.html)
-* [Paper: Least-Squares Rigid Motion Using SVD](https://igl.ethz.ch/projects/ARAP/svd_rot.pdf)
-* [Paper: The Normal Distributions Transform: A New Approach to Laser Scan Matching](https://www.researchgate.net/publication/4045903_The_Normal_Distributions_Transform_A_New_Approach_to_Laser_Scan_Matching)
-* [Using Newton's Method](https://www.math24.net/newtons-method)
+
+- [Using ICP in PCL](https://pointclouds.org/documentation/tutorials/iterative_closest_point.html)
+- [Full list of ICP Parameters](http://docs.ros.org/en/hydro/api/pcl/html/classpcl_1_1IterativeClosestPoint.html)
+- [Creating and Using a KDTree in PCL](https://pointclouds.org/documentation/tutorials/kdtree_search.html)
+- [Paper: Least-Squares Rigid Motion Using SVD](https://igl.ethz.ch/projects/ARAP/svd_rot.pdf)
+- [Paper: The Normal Distributions Transform: A New Approach to Laser Scan Matching](https://www.researchgate.net/publication/4045903_The_Normal_Distributions_Transform_A_New_Approach_to_Laser_Scan_Matching)
+- [Using Newton's Method](https://www.math24.net/newtons-method)

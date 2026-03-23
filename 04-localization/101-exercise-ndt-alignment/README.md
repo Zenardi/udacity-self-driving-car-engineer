@@ -35,11 +35,7 @@ using the commands below:
     └── assets
   ```
 
-  You must start with reviewing the root-level
-
-[README](https://github.com/udacity/nd0013_cd2693_Exercise_Starter_Code#readme)
-
-file. 
+  You must start with reviewing the root-level [README](https://github.com/udacity/nd0013_cd2693_Exercise_Starter_Code#readme) file. 
 
 
 * Navigate to the lesson directory.

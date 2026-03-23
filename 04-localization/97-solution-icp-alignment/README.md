@@ -51,7 +51,7 @@ Yeah, go ahead and play with this, but yeah, there's the solution.
 ## Solution: ICP Alignment
 ### `ICP Function`
 
-```
+```cpp
 Eigen::Matrix4d ICP(PointCloudT::Ptr target, PointCloudT::Ptr source, Pose startingPose, int iterations){
 
 	// Defining a rotation matrix and translation vector
@@ -108,7 +108,7 @@ icp;
 ```
 ### Create the Voxel Filter
 
-```
+```cpp
 // cloudFiltered = scanCloud; // Make sure you removed this line
 
 pcl::VoxelGrid vg;

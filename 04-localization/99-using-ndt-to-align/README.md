@@ -82,7 +82,7 @@ Your task will then be to set the input cloud, resolution, and any additional pa
 
 #STEP `double` max step size, ~1m can be a good starting value to test
 
-```
+```cpp
 ndt.setInputTarget (##INPUT);
 ndt.setResolution (##RES);
 ndt.setStepSize (##STEP);
@@ -103,7 +103,7 @@ The function `transfrom3D` from `helper.h` can be used to convert the input `Pos
 
 ##OUTPUT `pcl::PointCloud` aligned scan
 
-```
+```cpp
 ndt.setMaximumIterations (##ITERATIONS);
 ndt.setInputSource (##SOURCE);
 ndt.align (##OUTPUT, ##TRANSFORM);
@@ -111,7 +111,7 @@ ndt.align (##OUTPUT, ##TRANSFORM);
 
 The final matrix transformation from **ndt** can be retrieved by calling
 
-```
+```cpp
 ndt.getFinalTransformation ().cast();
 ```
 ## Testing ICP vs NDT
