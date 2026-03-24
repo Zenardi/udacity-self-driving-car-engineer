@@ -53,26 +53,11 @@ If you remember from previous sections a path is the curve that the vehicle desc
 
 ## Parametric Curve
 
-**A parametric curve** “C” in R2 is a set of equations (one for each dimension)
-
-$x=x(t)$
-
-and
-
-$y=y(t)$
-
-that trace a curve C as the Parameter t varies, usually from 0 - 1. 
+**A parametric curve** “C” in R2 is a set of equations (one for each dimension) $x=x(t)$ and $y=y(t)$ that trace a curve C as the Parameter t varies, usually from 0 - 1. 
 
 ### Splines
-**Splines** are parametric curves in which the equations that describe X and Y are polynomials. At
 
-$t = 0$
-
-, we will get X and Y at the *beginning* of the curve, and at
-
-$t = 1$
-
-, we will get X and Y at the *end* of the curve. 
+**Splines** are parametric curves in which the equations that describe X and Y are polynomials. At $t = 0$ , we will get X and Y at the *beginning* of the curve, and at $t = 1$ , we will get X and Y at the *end* of the curve. 
 
 #### Cubic spline example:
 
@@ -90,15 +75,7 @@ $\kappa(s) = a_3t^3 + a_2t^2 + a_1t + a_0$
 
 $s=[0,s_f]$
 
-This is a Cubic Spiral since the polynomial used is of order 3,
-
-$\kappa$
-
-is the curvature as a function of the arc length
-
-$s$
-
-. 
+This is a Cubic Spiral since the polynomial used is of order 3, $\kappa$ is the curvature as a function of the arc length $s$. 
 
 
 ## Other Resources

@@ -44,11 +44,8 @@ There are 5 files in the provided code. You'll probably want to start by modifyi
 3. `evaluate_ptg.py` - This file sets a start state, goal, and traffic conditions and runs the PTG code. Feel free to modify the goal, add traffic, etc... to test your vehicle's trajectory generation ability.
 4. `constants.py` - constants like speed limit, vehicle size, etc... 
 5. `helpers.py` - helper functions used by other files.
+
 ##### Supporting Materials
-*
+* [Trajectoryexercise2](https://video.udacity-data.com/topher/2017/October/59d5bfcb_trajectoryexercise2/trajectoryexercise2.zip)
 
-[Trajectoryexercise2](https://video.udacity-data.com/topher/2017/October/59d5bfcb_trajectoryexercise2/trajectoryexercise2.zip)
-
-*
-
-[Trajectoryexercise2_python3](https://video.udacity-data.com/topher/2017/December/5a3ea459_trajectoryexercise2-python3/trajectoryexercise2-python3.zip)
+* [Trajectoryexercise2_python3](https://video.udacity-data.com/topher/2017/December/5a3ea459_trajectoryexercise2-python3/trajectoryexercise2-python3.zip)

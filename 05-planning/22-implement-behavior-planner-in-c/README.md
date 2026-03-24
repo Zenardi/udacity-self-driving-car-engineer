@@ -51,10 +51,6 @@ page in the current lesson as a guideline for your implementation. In this quiz,
 
 Provided in one of the links below is a zip file `python_3_practice`, which is the same problem written in Python 3 - you can optionally use this file for additional coding practice. In the `python_3_solution` link, the solution is provided as well. If you get stuck on the quiz see if you can convert the python solution to C++ and pass the classroom quiz with it. You can run the python quiz with `python simulate_behavior.py`.
 ##### Supporting Materials
-*
+* [python_3_practice](https://video.udacity-data.com/topher/2017/November/5a024c18_python-3-practice/python-3-practice.zip)
 
-[python_3_practice](https://video.udacity-data.com/topher/2017/November/5a024c18_python-3-practice/python-3-practice.zip)
-
-*
-
-[python_3_solution](https://video.udacity-data.com/topher/2017/November/5a024c70_python-3-solution/python-3-solution.zip)
+* [python_3_solution](https://video.udacity-data.com/topher/2017/November/5a024c70_python-3-solution/python-3-solution.zip)

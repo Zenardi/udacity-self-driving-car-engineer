@@ -26,4 +26,3 @@ for a full understanding of the project grading requirements.
    * Finally, you will evaluate each trajectory generated against an objective function and select the “best” one. The goal of this objective function is to score poor paths that are in collision OR too close to static obstacles and to score high paths that end up closer to the center-line of the global path.
 
 **Go through the task lists below to make sure you have completed each of the required TODOs: **
-## Project Steps

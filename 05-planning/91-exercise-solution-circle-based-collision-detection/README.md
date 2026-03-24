@@ -6,7 +6,7 @@
 
 Refer to the code below to check the solution to the exercise you just completed!
 ## TODO - Circle placement: Where should the circles be at?
-```
+```cpp
       Location ego_circle_center;
       ego_circle_center.x = ego_vehicle.location.x + CIRCLE_OFFSETS[c] * std::cos(ego_vehicle.rotation.yaw);
       ego_circle_center.y = ego_vehicle.location.y + CIRCLE_OFFSETS[c] * std::sin(ego_vehicle.rotation.yaw);
@@ -16,7 +16,7 @@ Refer to the code below to check the solution to the exercise you just completed
         actor_circle_center.y =  actor.location.y + CIRCLE_OFFSETS[c2] * std::sin(actor.rotation.yaw);
 ```
 ## TODO - Distance from circles to obstacles/actor: How do you calculate the distance between the center of both circles? HINT: distance between 2 points. Use std::sqrt(...)
-```
+```cpp
 double dist = std::sqrt(
             std::pow((ego_circle_center.x - actor_circle_center.x), 2) +
             std::pow((ego_circle_center.y - actor_circle_center.y), 2));

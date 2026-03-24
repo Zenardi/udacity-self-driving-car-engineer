@@ -36,6 +36,6 @@ next_state = transition_function(current_state, input_data)
 
 ## Transcript
 
-<v English>You just saw how the states we choose to use can impact the behavior of the vehicle.</v> <v English>But deciding how those states transition and what inputs</v> <v English>the transition functions use is crucial to</v> <v English>the actual implementation of a finite-state machine.</v> <v English>For the example with the vending machine,</v> <v English>the only input was the coin.</v> <v English>The self-driving car is more complicated.</v> <v English>So the question is,</v> <v English>what data will we need to pass into our transition function as input.</v> <v English>Check all that apply.</v>
+You just saw how the states we choose to use can impact the behavior of the vehicle. But deciding how those states transition and what inputs the transition functions use is crucial to the actual implementation of a finite-state machine. For the example with the vending machine, the only input was the coin. The self-driving car is more complicated. So the question is, what data will we need to pass into our transition function as input. Check all that apply.
 
-<v English>The answer is that we have to pass all of the data</v> <v English>into the transition function except for the previous state.</v>
+The answer is that we have to pass all of the data into the transition function except for the previous state.

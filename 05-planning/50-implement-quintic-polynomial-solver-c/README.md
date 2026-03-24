@@ -41,24 +41,13 @@ $$\dot{s}(t) = \dot{s_i} + \ddot{s_i}t + 3 \alpha_3t^2 + 4\alpha_4t^3 + 5\alpha_
 
 $$\ddot{s}(t) = \ddot{s_i}  + 6 \alpha_3t + 12\alpha_4t^2 + 20\alpha_5t^3$$
 
-and if you evaluate these at
-
-$t=0$
-
-you find the first three coeffecients of your JMT are:
-
-$[\alpha_0,  \alpha_1, \alpha_2] = [s_i, \dot{s_i}, \frac{1}{2}\ddot{s_i}]$
-
-and you can get the last three coefficients by evaluating these equations at
-
-$t = T$
-
-. When you carry out the math and write the problem in matrix form you get the following:
+and if you evaluate these at $t=0$ you find the first three coeffecients of your JMT are: $[\alpha_0,  \alpha_1, \alpha_2] = [s_i, \dot{s_i}, \frac{1}{2}\ddot{s_i}]$ and you can get the last three coefficients by evaluating these equations at $t = T$ . When you carry out the math and write the problem in matrix form you get the following:
 All these quantities are known except for
 
 $\alpha_3, \alpha_4, \alpha_5$
 
->Note: 
+Note: 
+
 1. The code for this exercise is present in the directory `/home/workspace/quiz/`. The solution files are present in `/home/workspace/solution/`
 2. To run your code, you first need to compile all the **.cpp** files. For this exercise, you can compile the code by running the following commands from the workspace terminal:
 	```bash

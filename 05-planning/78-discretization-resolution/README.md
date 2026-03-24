@@ -59,22 +59,11 @@ We also discussed the pros and cons of too few, and too many points.
 
 ## Importance of Discretization Resolution
 
-Solving the Path Planning problem using numerical approximation or optimization, we obtain a spiral that represents a continuous curve for infinite values of
+Solving the Path Planning problem using numerical approximation or optimization, we obtain a spiral that represents a continuous curve for infinite values of $s$ , from 0 to $s_f$ :
 
-$s$
+** $\kappa(s) = a_3s^3 + a_2s^2 + a_1s + a_0$
 
-, from 0 to
-
-$s_f$
-
-:
-
-**
-
-$\kappa(s) = a_3s^3 + a_2s^2 + a_1s + a_0$
-
-**
-where all “a” parameters are now known.
+** where all “a” parameters are now known.
 
 We still need to discretize this continuous curve, so it can be feasibly and efficiently used for the following tasks:
 - Collision Checking
@@ -103,15 +92,9 @@ We still need to discretize this continuous curve, so it can be feasibly and eff
 ## Finding a Good Discretization Resolution
 
 Ideally, this resolution should be calculated dynamically based on:
-- Curve arc length
+- Curve arc length $S_f$
 
-$S_f$
-
-- Curvature changes
-
-$\kappa'(s)$
-
-: Add more points when making tighter curves
+- Curvature changes $\kappa'(s)$: Add more points when making tighter curves
 
 **For simplicity and convenience, if we always plan a constant distance ahead, we can use a constant number of points to discretize the curve.
 Pick enough points to account for tight curves.**

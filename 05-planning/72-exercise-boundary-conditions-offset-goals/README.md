@@ -18,27 +18,7 @@ given center-goal at a distance "_goal_offset". The offset goals will be aligned
 perpendicular line to the heading of the main goal. To get a perpendicular
 angle, just add 90 degrees (or π/2 rad) to the main goal heading (ϴ). After
 that you will just need to calculate the x and y coordinates for each offset
-goal using the equations presented in the lectures:
-
-X
-
-offset
-
-= X
-
-center_goal
-
-+ goal_number x Offset_distance x cos(ϴ+π/2);
-
-Y
-
-offset
-
-= Y
-
-center_goal
-
-+ goal_number x Offset_distance x sin(ϴ+π/2)
+goal using the equations presented in the lectures: X offset = X center_goal + goal_number x Offset_distance x cos(ϴ+π/2); Y offset = Y center_goal + goal_number x Offset_distance x sin(ϴ+π/2)
 
 NOTE:
 1) goal_number will go from: -3, -2, -1, 0, 1 ,2 ,3  (for 7 total goals)

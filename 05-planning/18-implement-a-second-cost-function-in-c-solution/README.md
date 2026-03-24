@@ -5,7 +5,7 @@
 ## Additional Content
 
 One possible solution for the previous quiz is the following:
-```
+```cpp
 double inefficiency_cost(int target_speed, int intended_lane, int final_lane, 
                          const std::vector
 

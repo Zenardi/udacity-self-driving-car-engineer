@@ -52,38 +52,21 @@ Since this profiles have always a constant acceleration, the first thing we do i
 
 ### Linear Velocity Profiles
 1. This means we have always a constant acceleration:
-  -
+  - $a = \frac{(v_f^2 - v_0^2)} {2s_f}$
 
-$a = \frac{(v_f^2 - v_0^2)} {2s_f}$
-
--
-
-$s_f$
-
-is known from solving the Path Planning Problem and is the total length of the curve
+- $s_f$ is known from solving the Path Planning Problem and is the total length of the curve
 
 2. Once we have the constant acceleration we can calculate every single path point speed:
 
-  -
-
-$v_i = \sqrt{(2as_i + v_0^2)}$
-
+  - $v_i = \sqrt{(2as_i + v_0^2)}$
 - Where i = 1, 2, 3, 4, .... = all path points between 0 and final
+
 3. Calculate the velocity limit due to curvature for all the points on the path.
-  -
-
-$V_{k_i}= \sqrt{( a_{maxlat} / k_i)}$
-
--  Where k
-
-i
-
-is the curvature at every path points "i" between 0 and final.
+  - $V_{k_i}= \sqrt{( a_{maxlat} / k_i)}$
+-  Where k i is the curvature at every path points "i" between 0 and final.
 
 4. Finally chose the minimum
-  -
-
-$V_{i_final} = min (V_i, V_{k_i})$
+  - $V_{i_final} = min (V_i, V_{k_i})$
 
 ## Check it out!
 

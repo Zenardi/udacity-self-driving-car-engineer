@@ -8,8 +8,7 @@
 
 ## Summary
 
-**Circle-Based Collision Detection**
-=====================================
+### Circle-Based Collision Detection
 
 This project involves implementing a circle-based collision detection system for vehicles. The goal is to determine whether two or more vehicles collide based on their positions and orientations.
 
@@ -18,14 +17,14 @@ This project involves implementing a circle-based collision detection system for
 * **Collision Detection**: A point is inside a circle if the distance between the point and the center of the circle is smaller than the radius of the circle.
 * **Circle Intersection**: Two circles intersect if the distance between their centers is smaller than the sum of their radii.
 * **Effective Footprint**: Three aligned circles provide the most effective footprint for collision detection.
-* **Circle Placement**: Circles should be placed at specific locations and orientations to achieve an effective footprint. For a compact car, three circles of 1.5 meters radius each are used, located at:
-	+ One meter behind the center
-	+ One meter ahead from the center
-	+ Three meters ahead from the center
-* **Accounting for Vehicle Heading**: The x and y coordinates of the center of each circle can be calculated using simple trigonometry, taking into account the vehicle's heading angle (Theta).
+* **Circle Placement**: Circles should be placed at specific locations and orientations to achieve an effective footprint. For a compact car, three circles of 1.5 m radius each are commonly used at offsets:
+  - 1 m behind the center
+  - 1 m ahead of the center
+  - 3 m ahead of the center
+* **Accounting for Vehicle Heading**: The $(x, y)$ coordinates of each circle center can be calculated with trigonometry using the vehicle heading angle $\theta$.
 * **Collision Checking Algorithm**:
-	1. Calculate the distance between the centers of two circles.
-	2. Check if the distance is smaller than the sum of their radii.
+  1. Calculate the distance between the centers of two circles.
+  2. Check whether the distance is smaller than the sum of their radii.
 
 ### Practical Notes
 
@@ -66,76 +65,39 @@ After you finish this, you should be able to detect the collision between the se
 
 #### Point mass collision check
 
-* **Inside or outside the circle**: Distance between point
+Given a point $(x_i, y_i)$ and a circle center $(x_c, y_c)$ with radius $R$:
 
-$(x_i,y_i)$
-
-and center circle
-
-$(x_c, y_c)$
-
-* Collision if
-
-$\sqrt{[ (x_i - x_c)^2 + (y_i - y_c)^2]} <= R$
+$$
+  ext{collision if } \sqrt{(x_i - x_c)^2 + (y_i - y_c)^2} \leq R
+$$
 
 #### Vehicle to Vehicle collision check
 
-* **2 circles intersect when the **distance between their centers
+Two circles with centers $(x_{c1}, y_{c1})$ and $(x_{c2}, y_{c2})$, and radii $R_1$ and $R_2$, intersect when:
 
-$(x_{c1},y_{c1}) and (x_{c2}, y_{c2})$
-
-is smaller than the sum of their radii.   
-* Collision if
-
-$\sqrt{[ (x_{c1} - x_{c2})^2 + (y_{c1} - y_{c2})^2 ]} <= (R1 + R2)$
+$$
+\sqrt{(x_{c1} - x_{c2})^2 + (y_{c1} - y_{c2})^2} \leq (R_1 + R_2)
+$$
 
 #### Circles location and size on an average compact car for perfect coverage
 
-* Circles should be located at: [-1m, +1m, +3m] On the centerline
-* With 1.5 m Radius
+* Centerline offsets: $[-1, +1, +3]$ meters
+* Circle radius: $1.5$ meters
 
 ### X and Y coordinates of circles' center
 
-* x
+For each circle center using offset distance $d_{offset}$ and ego heading $\theta_{ego}$:
 
-c
+$$
+x_c = x_{ego} + d_{offset} \cos(\theta_{ego})
+$$
 
-= x
+$$
+y_c = y_{ego} + d_{offset} \sin(\theta_{ego})
+$$
 
-ego
+Where:
+- $x_{ego}$: car center $x$ coordinate in the world frame
+- $y_{ego}$: car center $y$ coordinate in the world frame
+- $\theta_{ego}$: car heading in world coordinates
 
-+ Offset dist * cos(θ
-
-ego
-
-)
-* y
-
-c
-
-= y
-
-ego
-
-+ Offset dist * sin(θ
-
-ego
-
-)
-* Where:
-   * x
-
-ego
-
-= Car "center" X coordinate on the world reference frame
-   * y
-
-ego
-
-= Car "center" Y coordinate on the world reference frame
-   * θ
-
-ego
-
-= Car heading in world coordinates
-## Pre-exercise Walkthrough

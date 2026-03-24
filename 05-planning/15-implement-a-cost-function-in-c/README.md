@@ -22,29 +22,15 @@ In this quiz, we'd like you to implement the cost function in C++, but with one 
 
 - Intended lane: the intended lane for the given behavior. For PLCR, PLCL, LCR, and LCL, this would be the one lane over from the current lane.
 - Final lane: the immediate resulting lane of the given behavior. For LCR and LCL, this would be one lane over.
-- The
-
-$\Delta s$
-
-distance to the goal.
-- The goal lane.
-
-Your task in the implementation will be to modify
-
-$|\Delta d|$
-
-in the equation above so that it satisifes:
--
-
-$|\Delta d|$
-
-is smaller as both intended lane and final lane are closer to the goal lane.
+- The $\Delta s$ distance to the goal.
+- The goal lane. Your task in the implementation will be to modify $|\Delta d|$ in the equation above so that it satisifes:
+- $|\Delta d|$ is smaller as both intended lane and final lane are closer to the goal lane.
 - The cost function provides different costs for each possible behavior: KL, PLCR/PLCL, LCR/LCL.
 - The values produced by the cost function are in the range 0 to 1.
 
 You can implement your solution in `cost.cpp` in the workspace below.
 
->Note: 
+ 
 1. The code for this exercise is present in the directory `/home/workspace/quizzes/01_impl_cost_fn_cpp/`. The solution is present in `/home/workspace/solutions/01_impl_cost_fn_cpp/`
 2. To run your code, you first need to compile all the **.cpp** files. For this exercise, you can compile the code by running the following commands from the workspace terminal:
 	```bash

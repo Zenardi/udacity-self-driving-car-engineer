@@ -8,28 +8,37 @@
 
 ## Summary
 
-**Composition Profiles for Speed Planning**
-=============================================
+### Composition Profiles for Speed Planning
 
 This project focuses on creating composition profiles for speed planning in autonomous vehicles. Composition profiles are used to determine the speeds at which a vehicle should travel through different segments of its path.
 
 ### Key Concepts
 
-* **Decel-to-stop profile**: A type of composition profile that involves three linear segments: constant deceleration, transition speed, and final speed.
-* **Transition speed (V_t)**: The speed at which the vehicle transitions from one segment to another.
-* **Gentle deceleration (a)**: The rate at which the vehicle slows down during the constant deceleration segment.
-* **Distance (s_t)**: The distance required for the vehicle to reach the transition speed V_t.
+* **Decel-to-stop profile**: A composition profile with three segments: constant deceleration, transition-speed cruise, and final deceleration.
+* **Transition speed ($V_t$)**: The speed at which the vehicle transitions from one segment to another.
+* **Gentle deceleration ($a$)**: The target deceleration used by the profile.
+* **Distance ($s_t$)**: The distance required for the vehicle to reach transition speed $V_t$.
 * **Speed calculation**: The process of determining the speeds at each point on the path, taking into account curvature and other factors.
 
 ### Practical Notes
 
 To implement a decel-to-stop profile, you will need to:
 
-1. Calculate the distance s_t required to reach the transition speed V_t using the formula `s_t = (V_t^2 - v_i^2) / (2 * a)`, where `v_i` is the initial speed and `a` is the gentle deceleration.
-2. Calculate the speeds at each point on the first segment using the equation `v_i = V_t + a * s_i`.
-3. Calculate the distance required to slow down from V_t to the final speed V_f, assuming a gentle deceleration.
+1. Calculate the distance $s_t$ required to reach transition speed $V_t$:
+
+   $$
+   s_t = \frac{V_t^2 - v_0^2}{2a}
+   $$
+
+2. Calculate speed at each point on segment 1:
+
+   $$
+   v_i = \sqrt{2as_i + v_0^2}
+   $$
+
+3. Calculate the distance required to slow down from $V_t$ to final speed $V_f$.
 4. Calculate the speeds at each point on the third segment using the same equation as above.
-5. Assign constant speed V_t to all points between `s_t` and `s_b`.
+5. Assign constant speed $V_t$ to all points between $s_t$ and $s_b$.
 
 You will also need to handle edge cases where the discriminant is negative or infinite, and ensure that you can calculate the square root of the discriminant.
 
@@ -69,217 +78,84 @@ If the absolute value of the acceleration has a very small number, you know that
 
 #### Segment 1
 
-1. Calculate the distance
+1. Calculate the distance $S_t$ required to reach $V_t$ from $V_0$ using gentle accel/decel $a$. $V_t$ and $a$ are design parameters.
 
-$S_t$
+   $$
+   S_t = \frac{V_t^2 - V_0^2}{2a}
+   $$
 
-required to reach
+2. Calculate the speed for every point between $S_0$ and $S_t$:
 
-$V_t$
+   $$
+   v_i = \sqrt{2as_i + v_0^2}
+   $$
 
-from
+   Where:
+   - $s_i$: distance traveled from the path origin to point $i$
+   - $i = 1, 2, 3, \ldots$: all path points between $S_0$ and $S_t$
 
-$V_0$
+3. Calculate the speed limit at the same points based on curvature $k_i$ and maximum comfortable lateral acceleration:
 
-using a gentle accel/deccel a.
+   $$
+   V_{k_i} = \sqrt{\frac{a_{maxlat}}{k_i}}
+   $$
 
-$V_t$
+4. Choose the minimum:
 
-and **a** are design parameters.
-   *
-
-$S_t$
-
-=
-
-$(V_t^2 - V_0^2)  /  2a$
-
-1. Calculate the speed for every point that falls between
-
-$S_0$
-
-and
-
-$S_t$
-
-.
-   *
-
-$v_i = \sqrt{(2as_i + v_0^2)}$
-
-* Where 
-      *
-
-$s_i$
-
-- distance traveled from origin to point “i”
-      * i = 1, 2, 3, 4, .... = all path points between
-
-$S_0$
-
-and
-
-$S_t$
-
-.
-1. Calculate the speed of these same points based on their curvature
-
-$(k_i)$
-
-and the max comfortable lateral acceleration allowed.
-   *
-
-$V_{k_i} = \sqrt{( a_{maxlat} / k_i)}$
-
-* Where
-
-$k_i$
-
-is the curvature at all path points between
-
-$S_0$
-
-and
-
-$S_t$
-
-.
-1. Finally chose the minimum
-   *
-
-$V_{i_{final}} = min (V_i, V_{k_i})$
+   $$
+   V_{i_{final}} = \min(V_i, V_{k_i})
+   $$
 
 #### Segment 3
 
-1. Calculate the distance S
+1. Calculate the distance $S_b$ required to reach $V_f$ from $V_t$ using gentle accel/decel $a$.
 
-b
+   $$
+   S_b = S_f - \frac{V_f^2 - V_t^2}{2a}
+   $$
 
-required to reach
+2. Calculate the speed for every point between $S_b$ and $S_f$:
 
-$V_f$
+   $$
+   v_i = \sqrt{2a(s_i - s_b) + v_t^2}
+   $$
 
-from
+   Where:
+   - $s_i$: distance traveled from the path origin to point $i$
+   - $i = 1, 2, 3, \ldots$: all path points between $S_b$ and $S_f$
 
-$V_t$
+3. Calculate the speed limit at the same points based on curvature:
 
-using a gentle accel/deccel a. Recall that
+   $$
+   V_{k_i} = \sqrt{\frac{a_{maxlat}}{k_i}}
+   $$
 
-$V_t$
+4. Choose the minimum:
 
-and **a** are design parameters.
-   *
-
-$S_b = S_f - (V_f^2 - V_f^2)  /  2a$
-
-1. Calculate the speed for every point that falls between
-
-$S_b$
-
-and
-
-$S_f$
-
-.
-   *
-
-$v_i = \sqrt{(2a(s_i - s_b) + v_t^2)}$
-
-* Where 
-      *
-
-$s_i$
-
-- distance traveled from origin to point “i”
-      * i = 1, 2, 3, 4, .... = all path points between
-
-$S_b$
-
-and
-
-$S_f$
-
-.
-1. Calculate the speed of these same points based on their curvature (k
-
-i
-
-) and the max comfortable lateral acceleration allowed.
-   *
-
-$V_{k_i} = \sqrt{( a_{maxlat} / k_i)}$
-
-* Where
-
-$k_i$
-
-is the curvature at all path points between
-
-$S_b$
-
-and
-
-$S_f$
-
-.
-1. Finally chose the minimum
-   *
-
-$V_{i_{final}} = min (V_i, V_{k_i})$
+   $$
+   V_{i_{final}} = \min(V_i, V_{k_i})
+   $$
 
 #### Segment 2
 
-1. All points that fall between
+1. Assign constant speed to all points between $S_t$ and $S_b$:
 
-$S_t$
+   $$
+   V_i = V_t
+   $$
 
-and
+2. Calculate the speed limit for the same points based on curvature:
 
-$S_b$
+   $$
+   V_{k_i} = \sqrt{\frac{a_{maxlat}}{k_i}}
+   $$
 
-will be assigned a constant speed
+   Where $k_i$ is the curvature at all path points between $S_t$ and $S_b$.
 
-$V_t$
+3. Choose the minimum:
 
-.
-   *
+   $$
+   V_{i_{final}} = \min(V_i, V_{k_i})
+   $$
 
-$V_i = V_t$
-
-1. Calculate the speed of all 2nd segment points based on their curvature
-
-$(k_i)$
-
-and the max comfortable lateral acceleration allowed.
-   *
-
-$V_{k_i} = \sqrt{( a_{maxlat} / k_i)}$
-
-* Where
-
-$k_i$
-
-is the curvature at all path points between
-
-$S_b$
-
-and
-
-$S_f$
-
-.
-1. Finally chose the minimum
-   *
-
-$V_{i_{final}} = min (V_i, V_{k_i})$
-
-Where i = all path points between
-
-$S_t$
-
-and
-
-$S_b$
-
-.
-## Walkthrough
+Where $i$ includes all path points between $S_t$ and $S_b$.

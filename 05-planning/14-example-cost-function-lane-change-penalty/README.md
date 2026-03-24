@@ -21,29 +21,13 @@ $\Delta s = s_G - s$
 
 $\Delta d = d_G - d_{LC/KL}$
 
-**   the lateral distance between the goal lane and the options being considered. In this case
-
-$\Delta d_{KL} = d_G - d_{KL}$
-
-would be zero and
-
-$\Delta d_{LC} = d_G - d_{LC}$
-
-would not.
+**   the lateral distance between the goal lane and the options being considered. In this case $\Delta d_{KL} = d_G - d_{KL}$ would be zero and $\Delta d_{LC} = d_G - d_{LC}$ would not.
 
 
 Before we define an actual cost function, let's think of some of the properties we want it to have...
 
 
-So we want a cost function that penalizes large
-
-$|\Delta d|$
-
-and we want that penalty to be bigger when
-
-$\Delta s$
-
-is small. 
+So we want a cost function that penalizes large $|\Delta d|$ and we want that penalty to be bigger when $\Delta s$ is small. 
 
 Furthermore, we want to make sure that the **maximum** cost of this cost function never exceeds one and that the **minimum** never goes below zero. 
 
@@ -61,13 +45,4 @@ $\text{cost} = \frac{|\Delta d|}{\Delta s}$
 
 $\text{cost} = 1 - e^{- \frac{|\Delta d|}{\Delta s}}$
 
-In this example, we found that the ratio
-
-$\LARGE \frac{|\Delta d|}{\Delta s}$
-
-was important. If we call that ratio
-
-$x$
-
-we can then 
-use that ratio in any function with bounded range. These functions tend to be useful when designing cost functions. These types of functions are called Sigmoid Functions. You can learn more in the [Wikipedia article](https://en.wikipedia.org/wiki/Sigmoid_function) if you're interested.
+In this example, we found that the ratio $\LARGE \frac{|\Delta d|}{\Delta s}$ was important. If we call that ratio $x$ we can then  use that ratio in any function with bounded range. These functions tend to be useful when designing cost functions. These types of functions are called Sigmoid Functions. You can learn more in the [Wikipedia article](https://en.wikipedia.org/wiki/Sigmoid_function) if you're interested.

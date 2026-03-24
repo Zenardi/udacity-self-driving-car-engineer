@@ -18,7 +18,7 @@ Your task in the implementation will be to create a cost function that satisifes
 
 You can implement your solution in `cost.cpp` in the workspace below.
 
->Note: 
+
 1. The code for this exercise is present in the directory `/home/workspace/quizzes/02_impl_second_cost_fn_cpp/`. The solution is present in `/home/workspace/solutions/02_impl_second_cost_fn_cpp/`
 2. To run your code, you first need to compile all the **.cpp** files. For this exercise, you can compile the code by running the following commands from the workspace terminal:
 	```bash

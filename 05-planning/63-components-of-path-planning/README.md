@@ -79,9 +79,7 @@ The below components of the Path Planning Problem we described above are as foll
 - Boundary Conditions: Specified by the start and end states.
 
 - Constraints: 
-  - Curvature -
-
-$\kappa_{max}$
+  - Curvature - $\kappa_{max}$
 
 which is represented in the image below. The vehicle has a minimum turning radius, which is also known as the maximum curvature a vehicle can perform. 
 
