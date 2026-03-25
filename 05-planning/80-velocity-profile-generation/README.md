@@ -67,70 +67,31 @@ We could create this profiles based on the driving scene. For example, a Decel-t
 ## Additional Content
 
 ## Velocity Profile Generation 
-We need to add a time element to our state vector **
-
-$(x_i, y_i, \Theta_i, \kappa_i)$
-
-**  by either:
+We need to add a time element to our state vector **$(x_i, y_i, \Theta_i, \kappa_i)$**  by either:
 - Calculating the “time” at which the vehicle needs to reach every waypoint
 - Assigning a speed to each waypoint
 
 **We will choose the latter since it will give us a nice and convenient target (the speed) for the motion controller.**
 
 ### Steps:
-1. Calculate the **Final Speed
-
-$(V_f)$
-
-** at the end of the path
+1. Calculate the **Final Speed$(V_f)$** at the end of the path
 2. **Follow a speed profile** (adequate for the driving scene) to assign speed values to all path points in between.
 
 ### Calculate the **Final Speed
 
-$(V_f)$
-
-** at the end of the path
-Contributors to calculate/select the **
-
-$Final Speed (V_f)$
-
-**:
-- The Behavioral Planner reference speed: **
-
-$V_{ref}$
-
-**
-- Leading Vehicle speed: **
-
-$V_{lead}$
-
-**
-- Speed based on the curvature at the goal and the max comfortable lateral acceleration allowed: **
-
-$V_{\kappa f}$
-
-**
+$(V_f)$** at the end of the path Contributors to calculate/select the **$Final Speed (V_f)$**:
+- The Behavioral Planner reference speed: **$V_{ref}$**
+- Leading Vehicle speed: **$V_{lead}$**
+- Speed based on the curvature at the goal and the max comfortable lateral acceleration allowed: **$V_{\kappa f}$**
 
 The final Speed will be:
 
 $V_f = min (V_{ref}, V_{lead}, V_{\kappa f})$
 
 ### Velocity Profile when we have a vehicle ahead of us
-- The first waypoint behind a safety distance from the vehicle ahead MUST have a speed not higher than
-
-$V_{lead}$
-
-. 
-- The rest of the waypoints ahead should keep that speed
-
-$(V_{lead})$
-
-to make sure there is no collision.
-- A Velocity Profile will be applied only to the waypoints behind. This profile will depend on the driving scene. We might want to accelerate or we might have been traveling faster so we will slow down to
-
-$V_{lead}$
-
-.
+- The first waypoint behind a safety distance from the vehicle ahead MUST have a speed not higher than $V_{lead}$. 
+- The rest of the waypoints ahead should keep that speed $(V_{lead})$ to make sure there is no collision.
+- A Velocity Profile will be applied only to the waypoints behind. This profile will depend on the driving scene. We might want to accelerate or we might have been traveling faster so we will slow down to $V_{lead}$.
 
 ### Velocity limit based on path point curvature
 
