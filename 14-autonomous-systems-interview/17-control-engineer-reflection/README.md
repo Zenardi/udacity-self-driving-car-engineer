@@ -26,7 +26,9 @@ This summary covers the key concepts of PID (Proportional-Integral-Derivative) c
 
 ## Transcript
 
-<v English>Halyon had a fairly good answer for his PID controller.</v> <v English>He went through each step of proportional,</v> <v English>integral, and derivative, and explained each of these well,</v> <v English>and how they relate to the overall PID controller equation,</v> <v English>which is what gets output for steering angle,</v> <v English>for instance, or for a robotic arm.</v> <v English>One of the things I would say that he could do better was the first time he went through.</v> <v English>He mainly did things in pseudocode.</v> <v English>I prompted him a little bit to say what would you do if this within C++,</v> <v English>and he did a good job to add</v> <v English>his type declarations like floats as well as initializing things to zero,</v> <v English>if they needed to be, and adding semicolons.</v> <v English>Other than that though, I thought he gave a great answer.</v>
+Halyon had a fairly good answer for his PID controller. He went through each step of proportional, integral, and derivative, and explained each of these well, and how they relate to the overall PID controller equation, which is what gets output for steering angle, for instance, or for a robotic arm. One of the things I would say that he could do better was the first time he went through. He mainly did things in pseudocode. I prompted him a little bit to say what would you do if this within C++, and he did a good job to add his type declarations like floats as well as initializing things to zero, if they needed to be, and adding semicolons. Other than that though, I thought he gave a great answer.
+
+
 
 ## Additional Content
 
